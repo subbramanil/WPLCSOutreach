@@ -1,0 +1,83 @@
+﻿/* Additional Styling on Top of Bootstrap */
+
+h1, h2, h3, h4, h5, h6 {
+    color: #158FD6;
+}
+
+.content {
+    min-height: 90%;
+}
+
+.banner {
+    background-color: #E16F06;
+    color: white;
+}
+
+.banner-container {
+    position: relative;
+}
+
+#banner-logo {
+    width: 300px;
+    left: 0px;
+    padding: 10px;
+}
+
+#banner-title {
+    color: white;
+    clear: both;
+    text-align: right;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    padding: 10px;
+}
+
+.banner-title-large {
+    font-size: x-large;
+}
+
+.banner-title-small {
+    font-size: large;
+}
+
+.navbar-csoutreach {
+    position: relative;
+    background-color: #FCA811;
+    color: white;
+    
+    -webkit-box-shadow: 0px 1px 5px 0px rgba(160, 160, 160, 0.5);
+    -moz-box-shadow:    0px 1px 5px 0px rgba(160, 160, 160, 0.5);
+    box-shadow:         0px 1px 5px 0px rgba(160, 160, 160, 0.5);
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+    font-weight: bold;
+}
+
+.carousel-cs-outreach {
+    max-height: 500px;
+}
+
+.carousel-caption {
+    background-color: black;
+    opacity: .7;
+}
+
+.carousel-control {
+    color: orange;
+}
+
+#footer {
+    background-color: #E16F06;
+    color: white;
+    text-align: center;
+    min-height: 75px;
+    width: 100%;
+    margin-top: 20px;
+}
