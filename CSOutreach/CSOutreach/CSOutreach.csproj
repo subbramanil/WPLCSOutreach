@@ -57,6 +57,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DatabaseCSOutreach.mdf" />
+    <Content Include="App_Data\DatabaseCSOutreach_log.ldf">
+      <DependentUpon>DatabaseCSOutreach.mdf</DependentUpon>
+    </Content>
     <Content Include="Pages\Common\AboutUs.aspx" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
