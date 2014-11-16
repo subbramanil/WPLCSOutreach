@@ -61,6 +61,10 @@
     <Content Include="App_Data\DatabaseCSOutreach_log.ldf">
       <DependentUpon>DatabaseCSOutreach.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\DataCSOutreach.mdf" />
+    <Content Include="App_Data\DataCSOutreach_log.ldf">
+      <DependentUpon>DataCSOutreach.mdf</DependentUpon>
+    </Content>
     <Content Include="Pages\Common\AboutUs.aspx" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
