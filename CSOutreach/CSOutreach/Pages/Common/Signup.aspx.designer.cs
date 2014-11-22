@@ -7,99 +7,135 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CSOutreach {
+namespace CSOutreach.Pages.Common {
     
     
-    public partial class Site {
+    public partial class Signup {
         
         /// <summary>
-        /// HeadContent control.
+        /// FirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText FirstName;
         
         /// <summary>
-        /// pageform control.
+        /// LastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm pageform;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText LastName;
         
         /// <summary>
-        /// login control.
+        /// Address1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor login;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Address1;
         
         /// <summary>
-        /// inputUsername control.
+        /// Address2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText inputUsername;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Address2;
         
         /// <summary>
-        /// inputPassword control.
+        /// City control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword inputPassword;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText City;
         
         /// <summary>
-        /// InvisibleLoginButton control.
+        /// State control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button InvisibleLoginButton;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText State;
         
         /// <summary>
-        /// A1 control.
+        /// Zip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Zip;
         
         /// <summary>
-        /// logoutButton control.
+        /// PhoneAreaCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit logoutButton;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText PhoneAreaCode;
         
         /// <summary>
-        /// BodyContent control.
+        /// PhoneFirstPart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyContent;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText PhoneFirstPart;
         
         /// <summary>
-        /// PageScripts control.
+        /// PhoneSecondPart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder PageScripts;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText PhoneSecondPart;
+        
+        /// <summary>
+        /// Email control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Email;
+        
+        /// <summary>
+        /// EmailConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText EmailConfirm;
+        
+        /// <summary>
+        /// Password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password;
+        
+        /// <summary>
+        /// PasswordConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText PasswordConfirm;
     }
 }

@@ -73,11 +73,47 @@ h1, h2, h3, h4, h5, h6 {
     color: orange;
 }
 
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html, body {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+/* The top-level asp form must also be height: 100% or else the sticky footer does not work */
+#pageform {
+    height: 100%;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -75px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
 #footer {
+    height: 75px;
+}
+#footer {
+    width: 100%;
     background-color: #E16F06;
     color: white;
-    text-align: center;
-    min-height: 75px;
-    width: 100%;
-    margin-top: 20px;
+}
+
+.csoutreach-logindropdown {
+    padding: 20px;
+    min-width: 320px;
+    color: #158FD6;
+}
+
+.has-error {
+    color: #a94442
 }

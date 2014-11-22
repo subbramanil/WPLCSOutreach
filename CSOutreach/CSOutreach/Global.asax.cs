@@ -19,7 +19,7 @@ namespace CSOutreach
         protected void Session_Start(object sender, EventArgs e)
         {
             //Caching Dynamic Menu Items 
-            MenuRender.RenderDynamicMenu();
+           // MenuRender.RenderDynamicMenu();
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
