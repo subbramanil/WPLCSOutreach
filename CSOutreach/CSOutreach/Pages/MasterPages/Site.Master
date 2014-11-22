@@ -83,14 +83,21 @@
                         </div>
                         <% } %>
                     </li>
-
                   </ul>
                 </div><!--/.nav-collapse -->
               </div>
             </nav>
         </div>
-
         <div class="container">
+            <!-- Page message divs -->
+            <div id="ErrorMessage" runat="server" class="alert alert-danger" role="alert" visible="false">
+            </div>
+            <div id="WarningMessage" runat="server" class="alert alert-warning" role="alert" visible="false">
+            </div>
+            <div id="InfoMessage" runat="server" class="alert alert-info" role="alert" visible="false">
+            </div>
+            <div id="SuccessMessage" runat="server" class="alert alert-success" role="alert" visible="false">
+            </div>
             <asp:ContentPlaceHolder ID="BodyContent" runat="server">  
             </asp:ContentPlaceHolder>
         </div><!-- container -->

@@ -11,8 +11,6 @@ namespace CSOutreach
     public partial class Site : System.Web.UI.MasterPage
     {
 
-        
-
         // Child Pages should set AuthenticationRequired and AuthenticationRole in Page_PreInit
         private bool auth = false;
         public bool AuthenticationRequired { get { return auth; }  set { auth = value; } }
@@ -41,6 +39,17 @@ namespace CSOutreach
                 {
                     // Save current page to optionally return once log in is completed.
                     Session["return_to_page"] = Request.Url.ToString();
+
+                    if (Session["redirected_on_logout"] == null
+                        || (Boolean)(Session["redirected_on_logout"]) == false)
+                    {
+                        Session["error_message"] = "You must be logged in to view that page.";
+                    }
+                    else
+                    {
+                        Session["redirected_on_logout"] = null;
+                    }
+
                     Response.Redirect(ResolveClientUrl("~/Pages/Common/Default.aspx"));
                 };
             }
@@ -48,8 +57,33 @@ namespace CSOutreach
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Output page alert messages, if the exist and reset the session variables to clear message.
+            if (Session["error_message"] != null)
+            {
+                ErrorMessage.Visible = true;
+                ErrorMessage.InnerHtml = Session["error_message"].ToString();
+                Session["error_message"] = null;
+            }
+            if (Session["warning_message"] != null)
+            {
+                WarningMessage.Visible = true;
+                WarningMessage.InnerHtml = Session["warning_message"].ToString();
+                Session["warning_message"] = null;
+            }
+            if (Session["info_message"] != null)
+            {
+                InfoMessage.Visible = true;
+                InfoMessage.InnerHtml = Session["info_message"].ToString();
+                Session["info_message"] = null;
+            }
+            if (Session["success_message"] != null)
+            {
+                SuccessMessage.Visible = true;
+                SuccessMessage.InnerHtml = Session["success_message"].ToString();
+                Session["success_message"] = null;
+            }
 
-           if(! Page.IsPostBack)
+           if(!Page.IsPostBack)
            {
                InitPage();
            }
@@ -78,6 +112,7 @@ namespace CSOutreach
         {
             // TODO: add real code to sign out
             Authentication.logout();
+            Session["redirected_on_logout"] = true;
             Response.Redirect(Request.Url.ToString()); // Force full page reload
         }
     }
