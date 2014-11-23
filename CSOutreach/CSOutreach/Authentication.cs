@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataOperations.DBEntity;
+using DataOperations.DBEntityManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +9,8 @@ namespace CSOutreach
 {
     public class Authentication
     {
+        private static bool isvalidusername;
+        private static bool isvalidpassword;
         public enum Role
         {
             USER,
@@ -45,6 +49,15 @@ namespace CSOutreach
                 else { return String.Empty; }
             }
         }
+        public static bool IsValidUserName
+        {
+            get { return isvalidusername; }
+        }
+
+        public static bool IsValidPassword
+        {
+            get { return isvalidpassword; }
+        }
 
         public static bool hasRequiredRole(Role role) 
         {
@@ -58,14 +71,12 @@ namespace CSOutreach
             //TODO: Add real code (or redirect) to log in or log out as appropriate.
             if (HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] == null)
             {
-                if (Authentication.isValidUsername(username))
+                if (Authentication.isValidPerson(username,password))
                 {
-                    if (Authentication.isCorrectPassword(username, password)){
-                        HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = username;
-                    }
+                      HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = username;
                 }
             }
-
+            
         }
 
         public static void logout()
@@ -74,14 +85,54 @@ namespace CSOutreach
             HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = null;
         }
 
-        public static bool isValidUsername(string username)
+        public static bool isValidPerson(string username,string password)
         {
-            //TODO: add real code to check
+            PersonDBManager personDBManager = new PersonDBManager();
+            try
+            {
+                Person person = personDBManager.GetUser(username);
+                if (person != null)
+                {
+                    isvalidusername = true;
+                    if (Authentication.isCorrectPassword(password, person.Password))
+                    { 
+                        isvalidpassword = true; 
+                        return true; 
+                    }
+                    else
+                    { isvalidpassword = false; }
+                }
+                else
+                {
+                    isvalidusername = false;
+                }
+            }
+            catch (Exception ex)
+            { }
 
-            return true;
+            return false;
         }
 
-        public static bool isCorrectPassword(string username, string password)
+        public static bool isValidUsername(string username)
+        {
+            PersonDBManager personDBManager = new PersonDBManager();
+            try
+            {
+                if (personDBManager.GetUser(username) != null)
+                    return true;
+            }
+            catch(Exception ex)
+            { }
+             
+            return false;
+        }
+
+        public static bool isCorrectPassword(string password)
+        {
+            //TODO: add real code to check
+            return true;
+        }
+        public static bool isCorrectPassword(string password,string person_password)
         {
             //TODO: add real code to check
             return true;

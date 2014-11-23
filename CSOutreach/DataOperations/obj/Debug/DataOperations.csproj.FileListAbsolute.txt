@@ -9,3 +9,13 @@ D:\Amey Kelkar\Dropbox\IT Docs\Github\WPLCSOutreach\WPLCSOutreach\CSOutreach\Dat
 D:\Amey Kelkar\Dropbox\IT Docs\Github\WPLCSOutreach\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\DataOperations.dll.config
 D:\Amey Kelkar\Dropbox\IT Docs\Github\WPLCSOutreach\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\EntityFramework.dll
 D:\Amey Kelkar\Dropbox\IT Docs\Github\WPLCSOutreach\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\EntityFramework.xml
+E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\DataOperations.dll.config
+E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\DataOperations.dll
+E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\DataOperations.pdb
+E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\EntityFramework.dll
+E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\EntityFramework.xml
+E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\obj\Debug\DataOperations.csprojResolveAssemblyReference.cache
+E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\obj\Debug\DataOperations.dll
+E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\obj\Debug\DataOperations.pdb

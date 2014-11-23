@@ -115,5 +115,6 @@ namespace CSOutreach
             Session["redirected_on_logout"] = true;
             Response.Redirect(Request.Url.ToString()); // Force full page reload
         }
+        
     }
 }
