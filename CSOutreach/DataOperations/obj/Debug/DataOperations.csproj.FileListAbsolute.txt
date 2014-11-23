@@ -16,7 +16,6 @@ E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\EntityFram
 E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
 E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
 E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\EntityFramework.xml
-E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\obj\Debug\DataOperations.csprojResolveAssemblyReference.cache
 E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\obj\Debug\DataOperations.dll
 E:\Git Hub Projects\WPLCSOutreach\CSOutreach\DataOperations\obj\Debug\DataOperations.pdb
 C:\Users\Jonny\Documents\GitHub\WPLCSOutreach\CSOutreach\DataOperations\bin\Debug\DataOperations.dll.config
