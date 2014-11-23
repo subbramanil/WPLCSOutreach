@@ -103,8 +103,11 @@ namespace CSOutreach
         }
 
         protected void login_ServerClick(object sender, EventArgs e){
-            //TODO: Add real code (or redirect) to log in or log out as appropriate.
-            Authentication.login(inputUsername.Value, inputPassword.Value);
+            bool successful = Authentication.login(inputUsername.Value, inputPassword.Value);
+            if (!successful)
+            {
+                Session["error_message"] += "<br />Unable to log in.";
+            }
             Response.Redirect(Request.Url.ToString()); // Force full page reload
         }
 

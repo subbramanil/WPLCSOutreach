@@ -24,8 +24,7 @@ namespace DataOperations.DBEntityManager
             catch(Exception ex) 
             {
                 person = new Person();
-                person.FirstName = ex.Message; 
-               
+                person.FirstName = ex.Message;               
             }
             return person;
         }

@@ -66,17 +66,18 @@ namespace CSOutreach
         }
 
 
-        public static void login(string username, string password)
+        public static bool login(string username, string password)
         {
             //TODO: Add real code (or redirect) to log in or log out as appropriate.
             if (HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] == null)
             {
-                if (Authentication.isValidPerson(username,password))
+                if (Authentication.isValidPerson(username, password))
                 {
                       HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = username;
+                      return true;
                 }
             }
-            
+            return false;
         }
 
         public static void logout()
@@ -85,7 +86,7 @@ namespace CSOutreach
             HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = null;
         }
 
-        public static bool isValidPerson(string username,string password)
+        public static bool isValidPerson(string username, string password)
         {
             PersonDBManager personDBManager = new PersonDBManager();
             try
@@ -95,7 +96,8 @@ namespace CSOutreach
                 {
                     isvalidusername = true;
                     if (Authentication.isCorrectPassword(password, person.Password))
-                    { 
+                    {
+                        HttpContext.Current.Session["error_message"] += "<br />Incorrect Password.";
                         isvalidpassword = true; 
                         return true; 
                     }
@@ -109,6 +111,8 @@ namespace CSOutreach
             }
             catch (Exception ex)
             { }
+
+            HttpContext.Current.Session["error_message"] += "<br />Null person.";
 
             return false;
         }
@@ -127,15 +131,13 @@ namespace CSOutreach
             return false;
         }
 
-        public static bool isCorrectPassword(string password)
+        public static bool isCorrectPassword(string inputPassword, string personPassword)
         {
-            //TODO: add real code to check
-            return true;
-        }
-        public static bool isCorrectPassword(string password,string person_password)
-        {
-            //TODO: add real code to check
-            return true;
+            //TODO: hash the password before comparing it. 
+            // (since dummy data is currently not hashed.
+            string hashedPassword = inputPassword;
+
+            return true ? inputPassword == personPassword : false;
         }
 
     }
