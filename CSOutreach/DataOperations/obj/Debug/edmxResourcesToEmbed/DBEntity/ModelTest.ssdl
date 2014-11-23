@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBEntityModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DBEntityModelStoreContainer">
+    <EntitySet Name="Academics" EntityType="DBEntityModel.Store.Academics" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Course" EntityType="DBEntityModel.Store.Course" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Event" EntityType="DBEntityModel.Store.Event" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EventInstructor" EntityType="DBEntityModel.Store.EventInstructor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EventType" EntityType="DBEntityModel.Store.EventType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ExtraWork" EntityType="DBEntityModel.Store.ExtraWork" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Instructor" EntityType="DBEntityModel.Store.Instructor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InstructorAcademics" EntityType="DBEntityModel.Store.InstructorAcademics" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InstructorCourse" EntityType="DBEntityModel.Store.InstructorCourse" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InstructorSkill" EntityType="DBEntityModel.Store.InstructorSkill" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Person" EntityType="DBEntityModel.Store.Person" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SkillSet" EntityType="DBEntityModel.Store.SkillSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Student" EntityType="DBEntityModel.Store.Student" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StudentEvent" EntityType="DBEntityModel.Store.StudentEvent" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="fk_AcademicsIdrInstructorAcademics" Association="DBEntityModel.Store.fk_AcademicsIdrInstructorAcademics">
+      <End Role="Academics" EntitySet="Academics" />
+      <End Role="InstructorAcademics" EntitySet="InstructorAcademics" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CourseIdEvent" Association="DBEntityModel.Store.fk_CourseIdEvent">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CourseIdInstructorCourse" Association="DBEntityModel.Store.fk_CourseIdInstructorCourse">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="InstructorCourse" EntitySet="InstructorCourse" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CreatedByEvent" Association="DBEntityModel.Store.fk_CreatedByEvent">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EventIdEventInstructor" Association="DBEntityModel.Store.fk_EventIdEventInstructor">
+      <End Role="Event" EntitySet="Event" />
+      <End Role="EventInstructor" EntitySet="EventInstructor" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EventIdStudentEvent" Association="DBEntityModel.Store.fk_EventIdStudentEvent">
+      <End Role="Event" EntitySet="Event" />
+      <End Role="StudentEvent" EntitySet="StudentEvent" />
+    </AssociationSet>
+    <AssociationSet Name="fk_EventTypeIdEvent" Association="DBEntityModel.Store.fk_EventTypeIdEvent">
+      <End Role="EventType" EntitySet="EventType" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="fk_InstructorIdEventInstructor" Association="DBEntityModel.Store.fk_InstructorIdEventInstructor">
+      <End Role="Instructor" EntitySet="Instructor" />
+      <End Role="EventInstructor" EntitySet="EventInstructor" />
+    </AssociationSet>
+    <AssociationSet Name="fk_InstructorIdExtraWork" Association="DBEntityModel.Store.fk_InstructorIdExtraWork">
+      <End Role="Instructor" EntitySet="Instructor" />
+      <End Role="ExtraWork" EntitySet="ExtraWork" />
+    </AssociationSet>
+    <AssociationSet Name="fk_InstructorIdInsrtutorSkill" Association="DBEntityModel.Store.fk_InstructorIdInsrtutorSkill">
+      <End Role="Instructor" EntitySet="Instructor" />
+      <End Role="InstructorSkill" EntitySet="InstructorSkill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_InstructorIdInstructorAcademics" Association="DBEntityModel.Store.fk_InstructorIdInstructorAcademics">
+      <End Role="Instructor" EntitySet="Instructor" />
+      <End Role="InstructorAcademics" EntitySet="InstructorAcademics" />
+    </AssociationSet>
+    <AssociationSet Name="fk_InstructorIdInstructorCourse" Association="DBEntityModel.Store.fk_InstructorIdInstructorCourse">
+      <End Role="Instructor" EntitySet="Instructor" />
+      <End Role="InstructorCourse" EntitySet="InstructorCourse" />
+    </AssociationSet>
+    <AssociationSet Name="fk_PersonIdInstructor" Association="DBEntityModel.Store.fk_PersonIdInstructor">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Instructor" EntitySet="Instructor" />
+    </AssociationSet>
+    <AssociationSet Name="fk_PersonIdStudent" Association="DBEntityModel.Store.fk_PersonIdStudent">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SkillSetId" Association="DBEntityModel.Store.fk_SkillSetId">
+      <End Role="SkillSet" EntitySet="SkillSet" />
+      <End Role="InstructorSkill" EntitySet="InstructorSkill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_StudentIdStudentEvent" Association="DBEntityModel.Store.fk_StudentIdStudentEvent">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="StudentEvent" EntitySet="StudentEvent" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UpdatedByEvent" Association="DBEntityModel.Store.fk_UpdatedByEvent">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Academics">
+    <Key>
+      <PropertyRef Name="AcademicsId" />
+    </Key>
+    <Property Name="AcademicsId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DayOfWeek" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="StartTime" Type="time" Nullable="false" />
+    <Property Name="EndTime" Type="time" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CourseLevel" Type="int" Nullable="false" />
+    <Property Name="CourseName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="EventTypeId" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="StartTime" Type="time" Nullable="false" />
+    <Property Name="EndDate" Type="date" Nullable="false" />
+    <Property Name="EndTime" Type="time" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="date" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="date" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="EventInstructor">
+    <Key>
+      <PropertyRef Name="EventInstructorId" />
+    </Key>
+    <Property Name="EventInstructorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="int" Nullable="false" />
+    <Property Name="InstructorId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="ACCEPTED" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventType">
+    <Key>
+      <PropertyRef Name="EventTypeId" />
+    </Key>
+    <Property Name="EventTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Recurrence" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ExtraWork">
+    <Key>
+      <PropertyRef Name="ExtraWorkId" />
+    </Key>
+    <Property Name="ExtraWorkId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="InstructorId" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="StartTime" Type="time" Nullable="false" />
+    <Property Name="EndDate" Type="date" Nullable="false" />
+    <Property Name="EndTime" Type="time" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Miles" Type="int" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="InstructorId" />
+    </Key>
+    <Property Name="InstructorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="canTeach" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructorAcademics">
+    <Key>
+      <PropertyRef Name="InstructorId" />
+      <PropertyRef Name="AcademicsId" />
+    </Key>
+    <Property Name="InstructorId" Type="int" Nullable="false" />
+    <Property Name="AcademicsId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructorCourse">
+    <Key>
+      <PropertyRef Name="CourseId" />
+      <PropertyRef Name="InstructorId" />
+    </Key>
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="InstructorId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InstructorSkill">
+    <Key>
+      <PropertyRef Name="InstructorId" />
+      <PropertyRef Name="SkillSetId" />
+    </Key>
+    <Property Name="InstructorId" Type="int" Nullable="false" />
+    <Property Name="SkillSetId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonId" />
+    </Key>
+    <Property Name="PersonId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="ContactNumber" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="Role" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsLocked" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SkillSet">
+    <Key>
+      <PropertyRef Name="SkillSetId" />
+    </Key>
+    <Property Name="SkillSetId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SkillName" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EmergencyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmergencyNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmergencyRelation" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsPaperWorkComplete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentEvent">
+    <Key>
+      <PropertyRef Name="StudentEventId" />
+    </Key>
+    <Property Name="StudentEventId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RegistrationDate" Type="date" Nullable="false" />
+    <Property Name="EventId" Type="int" Nullable="false" />
+    <Property Name="StudentId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_AcademicsIdrInstructorAcademics">
+    <End Role="Academics" Type="DBEntityModel.Store.Academics" Multiplicity="1" />
+    <End Role="InstructorAcademics" Type="DBEntityModel.Store.InstructorAcademics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Academics">
+        <PropertyRef Name="AcademicsId" />
+      </Principal>
+      <Dependent Role="InstructorAcademics">
+        <PropertyRef Name="AcademicsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CourseIdEvent">
+    <End Role="Course" Type="DBEntityModel.Store.Course" Multiplicity="1" />
+    <End Role="Event" Type="DBEntityModel.Store.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CourseIdInstructorCourse">
+    <End Role="Course" Type="DBEntityModel.Store.Course" Multiplicity="1" />
+    <End Role="InstructorCourse" Type="DBEntityModel.Store.InstructorCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="InstructorCourse">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CreatedByEvent">
+    <End Role="Person" Type="DBEntityModel.Store.Person" Multiplicity="1" />
+    <End Role="Event" Type="DBEntityModel.Store.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EventIdEventInstructor">
+    <End Role="Event" Type="DBEntityModel.Store.Event" Multiplicity="1" />
+    <End Role="EventInstructor" Type="DBEntityModel.Store.EventInstructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventId" />
+      </Principal>
+      <Dependent Role="EventInstructor">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EventIdStudentEvent">
+    <End Role="Event" Type="DBEntityModel.Store.Event" Multiplicity="1" />
+    <End Role="StudentEvent" Type="DBEntityModel.Store.StudentEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventId" />
+      </Principal>
+      <Dependent Role="StudentEvent">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_EventTypeIdEvent">
+    <End Role="EventType" Type="DBEntityModel.Store.EventType" Multiplicity="1" />
+    <End Role="Event" Type="DBEntityModel.Store.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventType">
+        <PropertyRef Name="EventTypeId" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="EventTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_InstructorIdEventInstructor">
+    <End Role="Instructor" Type="DBEntityModel.Store.Instructor" Multiplicity="1" />
+    <End Role="EventInstructor" Type="DBEntityModel.Store.EventInstructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="InstructorId" />
+      </Principal>
+      <Dependent Role="EventInstructor">
+        <PropertyRef Name="InstructorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_InstructorIdExtraWork">
+    <End Role="Instructor" Type="DBEntityModel.Store.Instructor" Multiplicity="1" />
+    <End Role="ExtraWork" Type="DBEntityModel.Store.ExtraWork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="InstructorId" />
+      </Principal>
+      <Dependent Role="ExtraWork">
+        <PropertyRef Name="InstructorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_InstructorIdInsrtutorSkill">
+    <End Role="Instructor" Type="DBEntityModel.Store.Instructor" Multiplicity="1" />
+    <End Role="InstructorSkill" Type="DBEntityModel.Store.InstructorSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="InstructorId" />
+      </Principal>
+      <Dependent Role="InstructorSkill">
+        <PropertyRef Name="InstructorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_InstructorIdInstructorAcademics">
+    <End Role="Instructor" Type="DBEntityModel.Store.Instructor" Multiplicity="1" />
+    <End Role="InstructorAcademics" Type="DBEntityModel.Store.InstructorAcademics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="InstructorId" />
+      </Principal>
+      <Dependent Role="InstructorAcademics">
+        <PropertyRef Name="InstructorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_InstructorIdInstructorCourse">
+    <End Role="Instructor" Type="DBEntityModel.Store.Instructor" Multiplicity="1" />
+    <End Role="InstructorCourse" Type="DBEntityModel.Store.InstructorCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="InstructorId" />
+      </Principal>
+      <Dependent Role="InstructorCourse">
+        <PropertyRef Name="InstructorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_PersonIdInstructor">
+    <End Role="Person" Type="DBEntityModel.Store.Person" Multiplicity="1" />
+    <End Role="Instructor" Type="DBEntityModel.Store.Instructor" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Instructor">
+        <PropertyRef Name="InstructorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_PersonIdStudent">
+    <End Role="Person" Type="DBEntityModel.Store.Person" Multiplicity="1" />
+    <End Role="Student" Type="DBEntityModel.Store.Student" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SkillSetId">
+    <End Role="SkillSet" Type="DBEntityModel.Store.SkillSet" Multiplicity="1" />
+    <End Role="InstructorSkill" Type="DBEntityModel.Store.InstructorSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SkillSet">
+        <PropertyRef Name="SkillSetId" />
+      </Principal>
+      <Dependent Role="InstructorSkill">
+        <PropertyRef Name="SkillSetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_StudentIdStudentEvent">
+    <End Role="Student" Type="DBEntityModel.Store.Student" Multiplicity="1" />
+    <End Role="StudentEvent" Type="DBEntityModel.Store.StudentEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentEvent">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UpdatedByEvent">
+    <End Role="Person" Type="DBEntityModel.Store.Person" Multiplicity="0..1" />
+    <End Role="Event" Type="DBEntityModel.Store.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonId" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
