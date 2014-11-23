@@ -3,6 +3,8 @@ using DataOperations.DBEntityManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 
 namespace CSOutreach
@@ -97,22 +99,26 @@ namespace CSOutreach
                     isvalidusername = true;
                     if (Authentication.isCorrectPassword(password, person.Password))
                     {
-                        HttpContext.Current.Session["error_message"] += "<br />Incorrect Password.";
                         isvalidpassword = true; 
                         return true; 
                     }
                     else
-                    { isvalidpassword = false; }
+                    {
+                        // Incorrect password : When password doesn't match
+                        HttpContext.Current.Session["error_message"] += "<br />Incorrect Password.";
+                        isvalidpassword = false; }
                 }
                 else
                 {
+                    // Incorrect Username
                     isvalidusername = false;
+                    HttpContext.Current.Session["error_message"] += "<br />User name doesn't exist.";
                 }
             }
             catch (Exception ex)
-            { }
-
-            HttpContext.Current.Session["error_message"] += "<br />Null person.";
+            {
+                HttpContext.Current.Session["error_message"] += "<br />Error Occured.";
+            }
 
             return false;
         }
@@ -126,18 +132,35 @@ namespace CSOutreach
                     return true;
             }
             catch(Exception ex)
-            { }
+            { 
+            }
              
             return false;
         }
 
+        /// <summary>
+        /// Validate the password
+        /// </summary>
+        /// <param name="inputPassword">Entered password</param>
+        /// <param name="personPassword">DB stored password</param>
+        /// <returns>Returns true when password matches</returns>
         public static bool isCorrectPassword(string inputPassword, string personPassword)
         {
-            //TODO: hash the password before comparing it. 
-            // (since dummy data is currently not hashed.
-            string hashedPassword = inputPassword;
+            // Encrypted password
+            string hashedPassword = Encrypt(inputPassword);
+            return true ? hashedPassword == personPassword : false;
+        }
 
-            return true ? inputPassword == personPassword : false;
+        /// <summary>
+        /// Encrypt the Password
+        /// </summary>
+        /// <param name="inputPassword">input String</param>
+        /// <returns>Encrypted String</returns>
+        public static string Encrypt(string inputPassword)
+        {
+            MD5 md5 = MD5.Create();
+            return Encoding.ASCII.GetString(md5.ComputeHash(ASCIIEncoding.Default.GetBytes(inputPassword)));
+
         }
 
     }
