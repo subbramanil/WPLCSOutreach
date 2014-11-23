@@ -11,20 +11,20 @@ namespace DataOperations.DBEntityManager
     {
         public Person GetUser(string username)
         {
-            Person person;
+            Person person = new Person();
+            person = null;
                
             try
             {
                 using (DBCSEntities entity = new DBCSEntities())
                 {
-                    person = new Person();
+                    
                     person = (from personRecord in entity.People where personRecord.Email == username select personRecord).FirstOrDefault();
                 }
             }
             catch(Exception ex) 
             {
-                person = new Person();
-                person.FirstName = ex.Message; 
+               
                
             }
             return person;
