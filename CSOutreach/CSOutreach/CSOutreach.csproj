@@ -71,6 +71,8 @@
     <Content Include="App_Data\DataCSOutreach_log.ldf">
       <DependentUpon>DataCSOutreach.mdf</DependentUpon>
     </Content>
+    <Content Include="js\cs-outreach.js" />
+    <Content Include="js\jquery.validate.js" />
     <Content Include="Pages\Common\AboutUs.aspx" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />

@@ -58,15 +58,6 @@ namespace CSOutreach.Pages.Common {
         protected global::System.Web.UI.HtmlControls.HtmlInputText City;
         
         /// <summary>
-        /// State control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText State;
-        
-        /// <summary>
         /// Zip control.
         /// </summary>
         /// <remarks>
