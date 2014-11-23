@@ -7,7 +7,7 @@ namespace CSOutreach
 {
     public enum UserRoles
     {
-        Administrator,
+        Admin,
         Instructor,
         Student
     }
