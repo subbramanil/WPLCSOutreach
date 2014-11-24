@@ -3,10 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="server">
-
-    <div class=" col-md-12">
-        
-            <div class="col-md-2">
+    
+    <div class="treeStruct">
+        <div class="row">
+            <div class="tree col-md-2">
                 <asp:TreeView ID="TreeView1" runat="server" Width="175px">
                     <Nodes>
                         <asp:TreeNode Text="Event">
@@ -25,8 +25,10 @@
                 <asp:ContentPlaceHolder ID="AdminContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
+       </div>
 
     </div>
+
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" runat="server">

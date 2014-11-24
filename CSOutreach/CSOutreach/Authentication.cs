@@ -146,22 +146,12 @@ namespace CSOutreach
         /// <returns>Returns true when password matches</returns>
         public static bool isCorrectPassword(string inputPassword, string personPassword)
         {
-            // Encrypted password
-            string hashedPassword = Encrypt(inputPassword);
+            PersonDBManager dbManager = new PersonDBManager();
+            // Encrypted password in "hashedPassword"
+            string hashedPassword = dbManager.Encrypt(inputPassword);
             return true ? hashedPassword == personPassword : false;
         }
 
-        /// <summary>
-        /// Encrypt the Password
-        /// </summary>
-        /// <param name="inputPassword">input String</param>
-        /// <returns>Encrypted String</returns>
-        public static string Encrypt(string inputPassword)
-        {
-            MD5 md5 = MD5.Create();
-            return Encoding.ASCII.GetString(md5.ComputeHash(ASCIIEncoding.Default.GetBytes(inputPassword)));
-
-        }
 
     }
 }
