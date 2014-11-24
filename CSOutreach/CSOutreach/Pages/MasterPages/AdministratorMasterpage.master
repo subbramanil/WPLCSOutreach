@@ -23,7 +23,7 @@
                     </Nodes>
                 </asp:TreeView>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 contentDiv" >
                 <asp:ContentPlaceHolder ID="AdminContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
