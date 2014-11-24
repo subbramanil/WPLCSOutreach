@@ -86,6 +86,7 @@
             </div>
             <div class="col-md-1" id="email-ok"></div>
         </div>
+        <p class="has-error" id="usernameError"><em>Username already exists.</em></p>
         <p class="has-error"><em>*Use your UTDallas email address if you have one.</em></p>
         <br />
         <div class="row">
@@ -109,6 +110,49 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function () {
+            $("#usernameError").hide();
+            var emailId = $("#<%= Email.ClientID %>");
+
+            // Code Added
+            // On Email Id change
+            $(emailId).change(function () {
+                $("#usernameError").hide();
+                $(emailId).css("border-color", "#66afe9");
+            });
+
+            //On key up
+            $(emailId).keyup(function () {
+                $("#usernameError").hide();
+                $(emailId).css("border-color", "#66afe9");
+            });
+
+            // On Focus Lost : Check the user Id exists in database.
+            $(emailId).focusout(function () {
+            $.ajax({
+                url: "Signup.aspx/IsUserExists",
+                data: "{userName: '" + emailId.val() + "'}",
+                cache: false,
+                type: 'POST',
+                Async: false,
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+                    if (response.d == 1) {
+                        $(emailId).css("border-color", "#a94442");
+                        $("#usernameError").show();
+                    }
+                },
+                error: function () {
+                    //alert("Error");
+                }
+            });
+
+        });
+
+    });
+    </script>
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" runat="server">
