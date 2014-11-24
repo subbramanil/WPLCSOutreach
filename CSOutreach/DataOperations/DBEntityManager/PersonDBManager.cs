@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,11 +11,11 @@ namespace DataOperations.DBEntityManager
     public class PersonDBManager
     {
         /// <summary>
-        /// Get a user by email address, if they exist in the database.
+        /// Get the user details
         /// </summary>
-        /// <param name="email"></param>
-        /// <returns>Person or null</returns>
-        public Person GetUser(string email)
+        /// <param name="username"></param>
+        /// <returns>Returns person Object</returns>
+        public Person GetUser(string username)
         {
             Person person = new Person();
                
@@ -22,16 +23,52 @@ namespace DataOperations.DBEntityManager
             {
                 using (DBCSEntities entity = new DBCSEntities())
                 {
-                    person = (from personRecord in entity.People where personRecord.Email == email select personRecord).FirstOrDefault();
+                    person = (from personRecord in entity.People where personRecord.Email == username 
+                              select personRecord).FirstOrDefault();
                 }
             }
             catch(Exception ex) 
             {
-                person = null;
-                //person.Email = ex.Message; // use this to debug.
+
             }
-            return person; // null if not found.
+            return person;
         }
 
+        /// <summary>
+        /// Add New User in database
+        /// </summary>
+        /// <param name="person"></param>
+        /// <returns></returns>
+        public bool AddNewUserDetails(Person person)
+        {
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    string password = person.Password;
+                    person.Password = string.Empty;
+                    person.Password = Encrypt(password);
+                    entity.AddToPeople(person);
+                    entity.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Encrypt the Password
+        /// </summary>
+        /// <param name="inputPassword">input String</param>
+        /// <returns>Encrypted String</returns>
+        public string Encrypt(string inputPassword)
+        {
+            MD5 md5 = MD5.Create();
+            return Encoding.ASCII.GetString(md5.ComputeHash(ASCIIEncoding.Default.GetBytes(inputPassword)));
+
     }
+}
 }

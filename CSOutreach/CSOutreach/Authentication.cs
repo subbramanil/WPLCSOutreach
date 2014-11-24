@@ -3,6 +3,8 @@ using DataOperations.DBEntityManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 
 namespace CSOutreach
@@ -97,30 +99,31 @@ namespace CSOutreach
             PersonDBManager personDBManager = new PersonDBManager();
             Person user = personDBManager.GetUser(username);
 
-           
+
             if (user == null) // user == null
-            {
+        {
                 isvalidusername = false;
-            }
+        }
             else
-            {
-                isvalidusername = true;
+        {
+                    isvalidusername = true;
                 attemptedLoginUsername = user.Email;
 
                 if (matchingPasswords(password, user.Password))
-                {
-                    isvalidpassword = true;
+                    {
+                        isvalidpassword = true; 
                     HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = user.Email;
-                }
-                else
+                    }
+                    else
                 {
                     isvalidpassword = false;
+                    HttpContext.Current.Session["error_message"] += "<br />User name doesn't exist.";
                 }
             }
 
             if (isvalidusername && isvalidpassword)
-            {
-                return true;
+        {
+                    return true;
             }
             return false;
         }
@@ -140,10 +143,12 @@ namespace CSOutreach
         /// <returns>true if matching, false if not</returns>
         public static bool matchingPasswords(string inputPassword, string personPassword)
         {
-            //TODO: hash the password before comparing it. 
-            // (since dummy data is currently not hashed, for now there is no hashing done first)
-            string hashedInputPassword = inputPassword;
-            return true ? hashedInputPassword == personPassword : false;
+            PersonDBManager dbManager = new PersonDBManager();
+            // Encrypted password in "hashedPassword"
+            string hashedPassword = dbManager.Encrypt(inputPassword);
+            return true ? hashedPassword == personPassword : false;
         }
+
+
     }
 }
