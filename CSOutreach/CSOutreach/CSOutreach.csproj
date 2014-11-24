@@ -90,6 +90,7 @@
     <Content Include="Pages\Common\CodingClub.aspx" />
     <Content Include="Pages\Common\Profile.aspx" />
     <Content Include="Pages\Common\Signup.aspx" />
+    <Content Include="Pages\Student\DummyHomePage.aspx" />
     <Content Include="Sampler.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -148,6 +149,13 @@
     </Compile>
     <Compile Include="Pages\MasterPages\AdministratorMasterpage.master.designer.cs">
       <DependentUpon>AdministratorMasterpage.master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Student\DummyHomePage.aspx.cs">
+      <DependentUpon>DummyHomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Student\DummyHomePage.aspx.designer.cs">
+      <DependentUpon>DummyHomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sampler.aspx.cs">

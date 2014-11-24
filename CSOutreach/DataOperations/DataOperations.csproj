@@ -58,6 +58,7 @@
     <Compile Include="DBEngine\Parameters.cs" />
     <Compile Include="DBEntityManager\InstructorDBManager.cs" />
     <Compile Include="DBEntityManager\PersonDBManager.cs" />
+    <Compile Include="DBEntityManager\StudentDBManager.cs" />
     <Compile Include="DBEntity\DBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

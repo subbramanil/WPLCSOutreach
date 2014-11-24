@@ -143,10 +143,11 @@ namespace CSOutreach
         /// <returns>true if matching, false if not</returns>
         public static bool matchingPasswords(string inputPassword, string personPassword)
         {
-            PersonDBManager dbManager = new PersonDBManager();
-            // Encrypted password in "hashedPassword"
-            string hashedPassword = dbManager.Encrypt(inputPassword);
-            return true ? hashedPassword == personPassword : false;
+            MD5 MD5Hash = MD5.Create();
+            byte[] PasswordBinary = Encoding.ASCII.GetBytes(inputPassword);
+            string HashedPassword = Encoding.ASCII.GetString(MD5Hash.ComputeHash(PasswordBinary));
+
+            return true ? HashedPassword == personPassword : false;
         }
 
 

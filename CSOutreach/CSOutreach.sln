@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSOutreach", "CSOutreach\CS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataOperations", "DataOperations\DataOperations.csproj", "{B660FF80-347C-4FCE-ABD5-A8D72C5E3744}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentEntity", "StudentEntity\StudentEntity.csproj", "{DDAB484A-41FC-4B15-9A44-F43A320412EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B660FF80-347C-4FCE-ABD5-A8D72C5E3744}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B660FF80-347C-4FCE-ABD5-A8D72C5E3744}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B660FF80-347C-4FCE-ABD5-A8D72C5E3744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDAB484A-41FC-4B15-9A44-F43A320412EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDAB484A-41FC-4B15-9A44-F43A320412EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDAB484A-41FC-4B15-9A44-F43A320412EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDAB484A-41FC-4B15-9A44-F43A320412EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
