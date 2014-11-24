@@ -31,6 +31,15 @@ namespace CSOutreach {
         protected global::System.Web.UI.HtmlControls.HtmlForm pageform;
         
         /// <summary>
+        /// ScriptManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager;
+        
+        /// <summary>
         /// login control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace CSOutreach {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor login;
+        
+        /// <summary>
+        /// LoginDropdownUpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel LoginDropdownUpdatePanel;
         
         /// <summary>
         /// inputUsername control.
@@ -56,6 +74,24 @@ namespace CSOutreach {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword inputPassword;
+        
+        /// <summary>
+        /// LoginFormErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LoginFormErrorMessage;
+        
+        /// <summary>
+        /// LoginFormStatusMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LoginFormStatusMessage;
         
         /// <summary>
         /// InvisibleLoginButton control.

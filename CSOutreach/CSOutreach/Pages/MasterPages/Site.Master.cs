@@ -13,7 +13,7 @@ namespace CSOutreach
 
         // Child Pages should set AuthenticationRequired and AuthenticationRole in Page_PreInit
         private bool auth = false;
-        public bool AuthenticationRequired { get { return auth; }  set { auth = value; } }
+        public bool AuthenticationRequired { get { return auth; } set { auth = value; } }
 
         private Authentication.Role role = Authentication.Role.ANONYMOUS;
         public Authentication.Role Role { get { return role; } set { role = value; } }
@@ -31,10 +31,23 @@ namespace CSOutreach
             }
         }
 
+
+
+        public bool UsernameError { get; set; }
+        public bool PasswordError { get; set; }
+
+
         protected void Page_Init(object sender, EventArgs e)
         {
-            if (AuthenticationRequired) {
-                if (!Authentication.Authenticated 
+            if (!IsPostBack)
+            {
+                UsernameError = false;
+                PasswordError = false;
+            }
+
+            if (AuthenticationRequired)
+            {
+                if (!Authentication.Authenticated
                     || !Authentication.hasRequiredRole(this.Role))
                 {
                     // Save current page to optionally return once log in is completed.
@@ -54,7 +67,7 @@ namespace CSOutreach
                 };
             }
         }
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // Output page alert messages, if the exist and reset the session variables to clear message.
@@ -83,10 +96,10 @@ namespace CSOutreach
                 Session["success_message"] = null;
             }
 
-           if(!Page.IsPostBack)
-           {
-               InitPage();
-           }
+            if (!Page.IsPostBack)
+            {
+                InitPage();
+            }
         }
 
         private void InitPage()
@@ -95,20 +108,56 @@ namespace CSOutreach
         }
         protected string getDynamicMenuContent()
         {
-           // TODO: Replace this dummy content with html of the same format generated dynamically from the database.
+            // TODO: Replace this dummy content with html of the same format generated dynamically from the database.
             //string MenuContent = MenuRender.DynamicMenu;
 
-           // return MenuContent;
+            // return MenuContent;
             return string.Empty;
         }
 
-        protected void login_ServerClick(object sender, EventArgs e){
+        protected void login_ServerClick(object sender, EventArgs e)
+        {
+            LoginFormStatusMessage.InnerHtml = String.Empty;
+            LoginFormErrorMessage.InnerHtml = String.Empty;
+
+            string error = String.Empty;
+
+            if (inputUsername.Value.Trim() == String.Empty)
+            {
+                error = "<strong>Username</strong> is required.<br />";
+                UsernameError = true;
+            }
+            if (inputPassword.Value.Trim() == String.Empty)
+            {
+                error += "<strong>Password</strong> is required.<br />";
+                PasswordError = true;
+            }
+
+            if (error != String.Empty) 
+            {
+                LoginFormErrorMessage.InnerHtml = error;
+                return; 
+            }
+
             bool successful = Authentication.login(inputUsername.Value, inputPassword.Value);
             if (!successful)
             {
-                Session["error_message"] += "<br />Unable to log in.";
+
+                if (!Authentication.IsValidUserName)
+                {
+                    LoginFormErrorMessage.InnerHtml = "Incorrect user <strong>email</strong>.";
+                    UsernameError = true;
+                }
+                else if (!Authentication.IsValidPassword)
+                {
+                    LoginFormErrorMessage.InnerHtml = "Incorrect <strong>password</strong>.";
+                    PasswordError = true;
+                }
             }
-            Response.Redirect(Request.Url.ToString()); // Force full page reload
+            else // if successful
+            {
+                Response.Redirect(Request.Url.ToString()); // full page reload
+            }
         }
 
         protected void logoutButton_ServerClick(object sender, EventArgs e)
@@ -118,6 +167,10 @@ namespace CSOutreach
             Session["redirected_on_logout"] = true;
             Response.Redirect(Request.Url.ToString()); // Force full page reload
         }
-        
+
+        protected void Page_Unload(object sender, EventArgs e)
+        {
+            Authentication.reset();
+        }
     }
 }

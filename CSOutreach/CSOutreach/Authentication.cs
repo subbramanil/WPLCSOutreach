@@ -9,8 +9,18 @@ namespace CSOutreach
 {
     public class Authentication
     {
-        private static bool isvalidusername;
-        private static bool isvalidpassword;
+        private static bool isvalidusername = true;
+        private static bool isvalidpassword = true;
+        private static string attemptedLoginUsername = String.Empty;
+
+        public static void reset()
+        {
+            isvalidusername = true;
+            isvalidpassword = true;
+            attemptedLoginUsername = String.Empty;
+        }
+
+
         public enum Role
         {
             USER,
@@ -24,7 +34,9 @@ namespace CSOutreach
             USERNAME,
             ROLE
         }
-
+        /// <summary>
+        /// Returns true if a user of any role is logged in.
+        /// </summary>
         public static bool Authenticated
         {
             get
@@ -36,7 +48,9 @@ namespace CSOutreach
                 return false;
             }
         }
-
+        /// <summary>
+        /// Retrieves the username (email) from the Session.
+        /// </summary>
         public static string Username
         {
             get
@@ -59,86 +73,77 @@ namespace CSOutreach
             get { return isvalidpassword; }
         }
 
+        public static string AttemptedLoginUsername
+        {
+            get { return attemptedLoginUsername; }
+        }
+
         public static bool hasRequiredRole(Role role) 
         {
             // TODO: Add real checking.
             return true;
         }
 
-
+        /// <summary>
+        /// Attempt login with user credentials.
+        /// Side Effects: if the login fails, IsValidUsername, AttemptedLoginUsername, IsValidPassword are set to
+        /// indicate the reasons for failure.
+        /// </summary>
+        /// <param name="username">Email address (used as username) of the user</param>
+        /// <param name="password">Password entered by the user</param>
+        /// <returns>true if successful, false if not</returns>
         public static bool login(string username, string password)
         {
-            //TODO: Add real code (or redirect) to log in or log out as appropriate.
-            if (HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] == null)
-            {
-                if (Authentication.isValidPerson(username, password))
-                {
-                      HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = username;
-                      return true;
-                }
-            }
-            return false;
-        }
-
-        public static void logout()
-        {
-            // TODO: add real code to sign out
-            HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = null;
-        }
-
-        public static bool isValidPerson(string username, string password)
-        {
             PersonDBManager personDBManager = new PersonDBManager();
-            try
+            Person user = personDBManager.GetUser(username);
+
+           
+            if (user == null) // user == null
             {
-                Person person = personDBManager.GetUser(username);
-                if (person != null)
+                isvalidusername = false;
+            }
+            else
+            {
+                isvalidusername = true;
+                attemptedLoginUsername = user.Email;
+
+                if (matchingPasswords(password, user.Password))
                 {
-                    isvalidusername = true;
-                    if (Authentication.isCorrectPassword(password, person.Password))
-                    {
-                        HttpContext.Current.Session["error_message"] += "<br />Incorrect Password.";
-                        isvalidpassword = true; 
-                        return true; 
-                    }
-                    else
-                    { isvalidpassword = false; }
+                    isvalidpassword = true;
+                    HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = user.Email;
                 }
                 else
                 {
-                    isvalidusername = false;
+                    isvalidpassword = false;
                 }
             }
-            catch (Exception ex)
-            { }
 
-            HttpContext.Current.Session["error_message"] += "<br />Null person.";
-
-            return false;
-        }
-
-        public static bool isValidUsername(string username)
-        {
-            PersonDBManager personDBManager = new PersonDBManager();
-            try
+            if (isvalidusername && isvalidpassword)
             {
-                if (personDBManager.GetUser(username) != null)
-                    return true;
+                return true;
             }
-            catch(Exception ex)
-            { }
-             
             return false;
         }
-
-        public static bool isCorrectPassword(string inputPassword, string personPassword)
+        /// <summary>
+        /// If a user is logged in, log them out. This is done simply by setting the user session variable to null.
+        /// Any pages that require users to be logged in check the session for username and redirect if null.
+        /// </summary>
+        public static void logout()
+        {
+            HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = null;
+        }
+        /// <summary>
+        /// Compare an unhashed password (input) to hashed password from person object (person.password)
+        /// </summary>
+        /// <param name="inputPassword">password obtained from input</param>
+        /// <param name="personPassword">password obtained form person object</param>
+        /// <returns>true if matching, false if not</returns>
+        public static bool matchingPasswords(string inputPassword, string personPassword)
         {
             //TODO: hash the password before comparing it. 
-            // (since dummy data is currently not hashed.
-            string hashedPassword = inputPassword;
-
-            return true ? inputPassword == personPassword : false;
+            // (since dummy data is currently not hashed, for now there is no hashing done first)
+            string hashedInputPassword = inputPassword;
+            return true ? hashedInputPassword == personPassword : false;
         }
-
     }
 }

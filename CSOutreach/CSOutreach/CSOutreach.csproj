@@ -94,6 +94,7 @@
     <Content Include="js\jquery-1.11.1.js" />
     <Content Include="Pages\Common\CodingClub.aspx" />
     <Content Include="Pages\Common\Profile.aspx" />
+    <Content Include="Pages\Common\Services.asmx" />
     <Content Include="Pages\Common\Signup.aspx" />
     <Content Include="Sampler.aspx" />
     <Content Include="Web.config">
@@ -132,6 +133,10 @@
     </Compile>
     <Compile Include="Pages\Common\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Common\Services.asmx.cs">
+      <DependentUpon>Services.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Pages\Common\Signup.aspx.cs">
       <DependentUpon>Signup.aspx</DependentUpon>

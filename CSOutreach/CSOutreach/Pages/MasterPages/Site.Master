@@ -18,7 +18,10 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form runat="server" id="pageform">
+    
+<form runat="server" id="pageform">
+        <!-- for update panel usage -->
+        <asp:ScriptManager ID="ScriptManager" runat="server" />
     <div id="wrap">
         <div class="header">
             <nav class="navbar navbar-default navbar-static-top navbar-csoutreach" role="navigation">
@@ -45,31 +48,44 @@
                     <li><a href="Contact.aspx">Contact Us</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown csoutrech-loginbutton">
+                    <li class="dropdown csoutreach-loginbutton">
                         <% if (!LoggedIn){ %>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="login" runat="server"><span class="glyphicon glyphicon-user"></span> Log In</a>
-                        <div class="dropdown-menu csoutreach-logindropdown" role="menu">
-                            <div class="stop-clicks">
-                                <div class="form-group">
-                                    <label for="<%= inputUsername.ClientID %>">Email: </label>
-                                    <input type="text" class="form-control stop-clicks" id="inputUsername" runat="server" name="email" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="<%= inputPassword.ClientID %>">Password: </label>
-                                    <input type="password" class="form-control stop-clicks" id="inputPassword" runat="server" name="password" />
-                                </div>
-                                <div class="form-group">
-                                    <div id="login-form-message" class="has-error"></div>
-                                </div>
+                            <div class="dropdown-menu csoutreach-logindropdown" role="menu">
+                                <asp:UpdatePanel ID="LoginDropdownUpdatePanel" UpdateMode="Always" runat="server">
+                                    <ContentTemplate>
+                                        <div class="stop-clicks">
+                                            <% if (!UsernameError){ %>
+                                                <div class="form-group">
+                                            <% } else { %>
+                                                <div class="form-group has-error">
+                                            <%} %>
+                                                <label for="<%= inputUsername.ClientID %>">Email: </label>
+                                                    <input type="text" class="form-control stop-clicks" id="inputUsername" runat="server" name="email" />
+                                            </div>
+                                                <% if (!PasswordError){ %>
+                                                    <div class="form-group">
+                                                <% } else { %>
+                                                    <div class="form-group has-error">
+                                                <%} %>
+                                                <label for="<%= inputPassword.ClientID %>">Password: </label>
+                                                    <input type="password" class="form-control stop-clicks" id="inputPassword" runat="server" name="password" />
+                                            </div>
+                                            <div class="form-group">
+                                                <div id="LoginFormErrorMessage" class="has-error" runat="server"></div>
+                                                <div id="LoginFormStatusMessage" class="has-feedback" runat="server"></div>
+                                            </div>
+                                        </div>
+                                        <input type="submit" class="btn btn-primary center-block" id="loginButton" value="Log In" />
+                                        <asp:Button ID="InvisibleLoginButton" runat="server" style="display: none" OnClick="login_ServerClick" />
+                                        <hr />
+                                        <div class="text-center">
+                                            <a href="<%= ResolveClientUrl("~/Pages/Common/AccountRecovery.aspx") %>">Forgot Password?</a> |
+                                            <a href="<%= ResolveClientUrl("~/Pages/Common/Signup.aspx") %>">Create Account</a>
+                                        </div>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
-                            <input type="submit" class="btn btn-primary center-block" id="loginButton" value="Log In" />
-                            <asp:Button ID="InvisibleLoginButton" runat="server" style="display: none" OnClick="login_ServerClick" />
-                            <hr />
-                            <div class="text-center">
-                                <a href="<%= ResolveClientUrl("~/Pages/Common/AccountRecovery.aspx") %>">Forgot Password?</a> |
-                                <a href="<%= ResolveClientUrl("~/Pages/Common/Signup.aspx") %>">Create Account</a>
-                            </div>
-                        </div>
                         <% } else {  %>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="A1" runat="server"><span class="glyphicon glyphicon-user"></span> <%= Username %></a>
                             <div class="dropdown-menu csoutreach-logindropdown" role="menu">
@@ -118,56 +134,30 @@
     </div>
     </form>
     <script>
-        $(document).ready(function () {
+        function registerPanelClickEvents() {
+            console.log("registering panel click events");
             $(".stop-clicks").click(function (event) {
                 // Prevent Bootstrap.js from hiding dropdown when user clicks on elements in the dropdown.
                 event.preventDefault();
                 event.stopPropagation();
             });
-            
-            $("#loginButton").click(function (event) {
 
+            $("#loginButton").click(function (event) {
                 event.preventDefault();
                 event.stopPropagation();
 
-                var error = "";
-                
-                var usernameInput = $("#<%= inputUsername.ClientID %>");
-                var passwordInput = $("#<%= inputPassword.ClientID %>");
-
-                if (usernameInput.val().trim() === "") {
-                    error += "Email is required.";
-                    usernameInput.parent().addClass("has-error");
-                }
-                else {
-                    usernameInput.parent().removeClass("has-error");
-                }
-
-                if (passwordInput.val().trim() === "") {
-                    error += "<br />Password is required.";
-                    passwordInput.parent().addClass("has-error");
-                }
-                else {
-                    passwordInput.parent().removeClass("has-error");
-                }
-
-                if (error === "") {
-
-                    $.ajax({
-                        // TOOD: Call webmethod to validate user.
-                    });
-
-                    // If server returns user valid confirmation, submit the form to log user in
-                    if (error === "") {
-                        $("#<%= InvisibleLoginButton.ClientID %>").click();
-                    }
-                }
-                else {
-                    $("#login-form-message").html(error);
-                }
-
+                $("#<%= InvisibleLoginButton.ClientID %>").click();
+                $("#<%= LoginFormStatusMessage.ClientID %>").html("Logging in...");
+                $("#login").attr("aria-expanded", true);
+                $(".csoutreach-loginbutton").addClass("open");
             });
+        }
+        $(document).ready(function () { 
+            registerPanelClickEvents();
         });
+        // After login update panel updates, the already registered events for PanelClicks will no longer be valid
+        // The line below re-registers them to preserve the dropdown panel's behavior after async postback.
+       Sys.WebForms.PageRequestManager.getInstance().add_endRequest(registerPanelClickEvents);
     </script>
     <asp:ContentPlaceHolder ID="PageScripts" runat="server"></asp:ContentPlaceHolder>
 </body>
