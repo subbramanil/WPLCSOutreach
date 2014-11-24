@@ -7,9 +7,9 @@
     <div class=" col-md-12">
         
             <div class="col-md-2">
-                <asp:TreeView ID="TreeView1" runat="server" Width="175px">
+                <asp:TreeView ID="TreeView1" runat="server" Width="175px" CssClass =" nav nav-pills nav-stacked">
                     <Nodes>
-                        <asp:TreeNode Text="Event">
+                        <asp:TreeNode Text="Event" >
                             <asp:TreeNode Text="Create Event" NavigateUrl="~/CeateEvent.aspx" />
                             <asp:TreeNode Text="Update Event" NavigateUrl="~/UpdateEvent.aspx" />
                         </asp:TreeNode>
