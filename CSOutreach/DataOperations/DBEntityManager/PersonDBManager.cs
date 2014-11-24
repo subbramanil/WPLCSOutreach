@@ -9,25 +9,28 @@ namespace DataOperations.DBEntityManager
 { 
     public class PersonDBManager
     {
-        public Person GetUser(string username)
+        /// <summary>
+        /// Get a user by email address, if they exist in the database.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns>Person or null</returns>
+        public Person GetUser(string email)
         {
             Person person = new Person();
-            person = null;
                
             try
             {
                 using (DBCSEntities entity = new DBCSEntities())
                 {
-                    
-                    person = (from personRecord in entity.People where personRecord.Email == username select personRecord).FirstOrDefault();
+                    person = (from personRecord in entity.People where personRecord.Email == email select personRecord).FirstOrDefault();
                 }
             }
             catch(Exception ex) 
             {
-               
-               
+                person = null;
+                //person.Email = ex.Message; // use this to debug.
             }
-            return person;
+            return person; // null if not found.
         }
 
     }
