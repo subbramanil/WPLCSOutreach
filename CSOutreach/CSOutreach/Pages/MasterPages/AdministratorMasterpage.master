@@ -7,11 +7,13 @@
     <div class="treeStruct">
         <div class="row">
             <div class="tree col-md-2">
-                <asp:TreeView ID="TreeView1" runat="server" Width="175px">
+                <asp:TreeView ID="TreeView1" runat="server" Width="175px" HoverNodeStyle-CssClass= "nav-pills" NodeStyle-CssClass="treeParent" SelectedNodeStyle-CssClass="treeNodeSelected">
                     <Nodes>
+                        
                         <asp:TreeNode Text="Event">
                             <asp:TreeNode Text="Create Event" NavigateUrl="~/CeateEvent.aspx" />
                             <asp:TreeNode Text="Update Event" NavigateUrl="~/UpdateEvent.aspx" />
+                        
                         </asp:TreeNode>
                         <asp:TreeNode Text="Instructor">
                             <asp:TreeNode Text="Review Applicants" NavigateUrl="~/ReviewApplicant.aspx" />
