@@ -117,3 +117,54 @@ html, body {
 .has-error {
     color: #a94442
 }
+
+/*Styling for tree navigation*/
+
+.tree{
+    margin-left:-70px;
+    border-right: 1px solid;
+    height:100%;
+}
+
+.treeParent{
+    
+    color:#008542;
+}
+
+.treeNodeSelected{
+
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #008542;
+  border-radius: 10px;
+}
+.treeParent a:hover {
+     color: #008542;
+     background-color:#F2FCF7;
+  text-decoration: none;
+  cursor: pointer;
+
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10px;
+
+}
+
+.contentDiv{
+    padding-left: 20px;
+}
+
