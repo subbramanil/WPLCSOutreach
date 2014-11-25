@@ -10,6 +10,7 @@
                     <Nodes>
                         <asp:TreeNode Text="My Profile" NavigateUrl="~/Profile.aspx"></asp:TreeNode>
                         <asp:TreeNode Text="List of Events">
+                            <asp:TreeNode Text="Detailed Event Listing" NavigateUrl="~/Pages/Student/DetailedEventsListing.aspx" />
                             <asp:TreeNode Text="By Event Type" NavigateUrl="~/Pages/Student/ListAllEventsByType.aspx" />
                             <asp:TreeNode Text="By Event Technology" NavigateUrl="~/Pages/Student/ListAllEventsByTech.aspx" />
                         </asp:TreeNode>

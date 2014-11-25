@@ -9,7 +9,9 @@ using System.Web.UI.WebControls;
 
 namespace CSOutreach.Pages.Student
 {
-    public partial class DetailedEventsListing : StudentBasePage
+
+    //This page temporarily inherits System.Web.UI.page as against StudentBasePage
+    public partial class DetailedEventsListing : Page
     {
         private CrossPageDetailedEventsListing CrossPageInfo;
         protected void Page_Load(object sender, EventArgs e)
@@ -23,9 +25,11 @@ namespace CSOutreach.Pages.Student
         {
             if (!IsPostBack)
             {
-                CrossPageInfo = this.CrossPageInformation as CrossPageDetailedEventsListing;
+                //Temporarily disabled for demo purpose
+              //  CrossPageInfo = this.CrossPageInformation as CrossPageDetailedEventsListing;
+                RenderPageData();
             }
-            RenderPageData();
+           
         }
 
         private void RenderPageData()
