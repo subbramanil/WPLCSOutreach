@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Pages/MasterPages/Site.Master" AutoEventWireup="true" CodeBehind="StudentMasterPage.master.cs" Inherits="CSOutreach.Pages.MasterPages.StudentMasterPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="server">
+    <div class="treeStruct">
+        <div class="row">
+            <div class="tree col-md-2">
+                <asp:TreeView ID="TreeView1" runat="server" Width="175px" HoverNodeStyle-CssClass="nav-pills" NodeStyle-CssClass="treeParent" SelectedNodeStyle-CssClass="treeNodeSelected">
+                    <Nodes>
+                        <asp:TreeNode Text="My Profile" NavigateUrl="~/Profile.aspx"></asp:TreeNode>
+                        <asp:TreeNode Text="Event">
+                            <asp:TreeNode Text="All Events" NavigateUrl="~/Events.aspx" />
+                            <asp:TreeNode Text="Registered Events" NavigateUrl="~/Events.aspx" />
+                        </asp:TreeNode>
+                    </Nodes>
+                </asp:TreeView>
+            </div>
+            <div class="col-md-10 contentDiv">
+                <asp:ContentPlaceHolder ID="StudentContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+
+    </div>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="PageScripts" runat="server">
+</asp:Content>
