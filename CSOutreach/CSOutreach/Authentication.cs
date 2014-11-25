@@ -113,6 +113,7 @@ namespace CSOutreach
                 {
                     isvalidpassword = true;
                     HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = user.Email;
+                    HttpContext.Current.Session[SessionVariable.ROLE.ToString()] = user.Role;
                 }
                 else
                 {
