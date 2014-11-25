@@ -15,8 +15,8 @@ namespace CSOutreach
         private bool auth = false;
         public bool AuthenticationRequired { get { return auth; } set { auth = value; } }
 
-        private Authentication.Role role = Authentication.Role.ANONYMOUS;
-        public Authentication.Role Role { get { return role; } set { role = value; } }
+        private Role role = Role.ANONYMOUS;
+        public Role Role { get { return role; } set { role = value; } }
 
         public bool LoggedIn { get { return Authentication.Authenticated; } }
         public string Username
@@ -133,14 +133,15 @@ namespace CSOutreach
                 PasswordError = true;
             }
 
-            if (error != String.Empty) 
+            if (error != String.Empty)
             {
                 LoginFormErrorMessage.InnerHtml = error;
-                return; 
+                return;
             }
 
-            bool successful = Authentication.login(inputUsername.Value, inputPassword.Value);
-            if (!successful)
+            Role UserRole = Authentication.login(inputUsername.Value, inputPassword.Value);
+
+            if (UserRole == Role.ANONYMOUS)
             {
 
                 if (!Authentication.IsValidUserName)
@@ -156,7 +157,12 @@ namespace CSOutreach
             }
             else // if successful
             {
-                Response.Redirect(Request.Url.ToString()); // full page reload
+                //Response.Redirect(Request.Url.ToString()); // full page reload
+
+                if (UserRole == Role.STUDENT)
+                {
+                    Response.Redirect("../Student/DefaultHome.aspx");
+                }
             }
         }
 

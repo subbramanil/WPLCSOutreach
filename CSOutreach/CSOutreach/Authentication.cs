@@ -23,13 +23,7 @@ namespace CSOutreach
         }
 
 
-        public enum Role
-        {
-            USER,
-            ADMIN,
-            INSTRUCTOR,
-            ANONYMOUS
-        }
+       
 
         public enum SessionVariable
         {
@@ -94,7 +88,7 @@ namespace CSOutreach
         /// <param name="username">Email address (used as username) of the user</param>
         /// <param name="password">Password entered by the user</param>
         /// <returns>true if successful, false if not</returns>
-        public static bool login(string username, string password)
+        public static Role login(string username, string password)
         {
             PersonDBManager personDBManager = new PersonDBManager();
             Person user = personDBManager.GetUser(username);
@@ -113,7 +107,7 @@ namespace CSOutreach
                 {
                     isvalidpassword = true;
                     HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = user.Email;
-                    HttpContext.Current.Session[SessionVariable.ROLE.ToString()] = user.Role;
+                    HttpContext.Current.Session[SessionVariable.ROLE.ToString()] = user.Role.ToUpper();
                 }
                 else
                 {
@@ -124,9 +118,9 @@ namespace CSOutreach
 
             if (isvalidusername && isvalidpassword)
             {
-                return true;
+                return ((Role)Enum.Parse(Type.GetType("CSOutreach.Role, CSOutreach"), HttpContext.Current.Session[SessionVariable.ROLE.ToString()].ToString(),true));
             }
-            return false;
+            return Role.ANONYMOUS;
         }
         /// <summary>
         /// If a user is logged in, log them out. This is done simply by setting the user session variable to null.

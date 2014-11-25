@@ -70,6 +70,8 @@
     <Content Include="App_Data\DataCSOutreach_log.ldf">
       <DependentUpon>DataCSOutreach.mdf</DependentUpon>
     </Content>
+    <Content Include="js\dataTables.bootstrap.js" />
+    <Content Include="js\jquery.dataTables.min.js" />
     <Content Include="Pages\Administrator\Dashboard.aspx" />
     <Content Include="Pages\Administrator\XmlFIles\AdministratorTreeItems.xml" />
     <Content Include="Pages\Common\AboutUs.aspx" />
@@ -89,6 +91,7 @@
     <Content Include="Pages\Common\CodingClub.aspx" />
     <Content Include="Pages\Common\Profile.aspx" />
     <Content Include="Pages\Common\Signup.aspx" />
+    <Content Include="Pages\Student\DefaultHome.aspx" />
     <Content Include="Pages\Student\DetailedEventsListing.aspx" />
     <Content Include="Sampler.aspx" />
     <Content Include="Web.config">
@@ -156,6 +159,13 @@
     <Compile Include="Pages\MasterPages\StudentMasterPage.master.designer.cs">
       <DependentUpon>StudentMasterPage.master</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Student\DefaultHome.aspx.cs">
+      <DependentUpon>DefaultHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Student\DefaultHome.aspx.designer.cs">
+      <DependentUpon>DefaultHome.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Student\DetailedEventsListing.aspx.cs">
       <DependentUpon>DetailedEventsListing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -183,7 +193,7 @@
     </Compile>
     <Compile Include="UI\MenuElement.cs" />
     <Compile Include="UI\MenuRender.cs" />
-    <Compile Include="UserRoles.cs" />
+    <Compile Include="Role.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\MasterPages\Site.Master" />

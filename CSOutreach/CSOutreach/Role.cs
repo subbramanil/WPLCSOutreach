@@ -5,10 +5,11 @@ using System.Web;
 
 namespace CSOutreach
 {
-    public enum UserRoles
+    public enum Role
     {
-        Admin,
-        Instructor,
-        Student
+        STUDENT,
+        ADMIN,
+        INSTRUCTOR,
+        ANONYMOUS
     }
 }

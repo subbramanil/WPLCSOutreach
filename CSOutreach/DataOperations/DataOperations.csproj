@@ -58,7 +58,8 @@
     <Compile Include="DBEngine\Parameters.cs" />
     <Compile Include="DBEntityManager\InstructorDBManager.cs" />
     <Compile Include="DBEntityManager\PersonDBManager.cs" />
-    <Compile Include="DBEntityManager\StudentDBManager.cs" />
+    <Compile Include="DBEntityManager\StudentData\DataManagerDetailedEventsListing.cs" />
+    <Compile Include="DBEntityManager\StudentEventDBManager.cs" />
     <Compile Include="DBEntity\DBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -73,6 +74,7 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="DBEntity\App.Config" />
     <None Include="DBEntity\DBModel.edmx.diagram">
       <DependentUpon>DBModel.edmx</DependentUpon>
