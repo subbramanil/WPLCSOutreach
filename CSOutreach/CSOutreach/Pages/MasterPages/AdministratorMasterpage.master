@@ -4,32 +4,34 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="server">
     
-    <div class="treeStruct">
-        <div class="row">
-            <div class="tree col-md-2">
-                <asp:TreeView ID="TreeView1" runat="server" Width="175px" HoverNodeStyle-CssClass= "nav-pills" NodeStyle-CssClass="treeParent" SelectedNodeStyle-CssClass="treeNodeSelected">
+   <div class="treeStruct">
+        <div class="col-md-12">
+            <div class="treeBorderRight col-md-3">
+                <asp:TreeView ID="TreeView1" runat="server" Width="175px" HoverNodeStyle-CssClass= "nav nav-pills" NodeStyle-CssClass="nav nav-pills" SelectedNodeStyle-CssClass="nav nav-pills active" LeafNodeStyle-CssClass="nav nav-pills ">
                     <Nodes>
                         
                         <asp:TreeNode Text="Event">
-                            <asp:TreeNode Text="Create Event" NavigateUrl="~/CeateEvent.aspx" />
-                            <asp:TreeNode Text="Update Event" NavigateUrl="~/UpdateEvent.aspx" />
+                            <asp:TreeNode Text="Create Event" NavigateUrl="~/Pages/Administrator/CeateEvent.aspx" />
+                            <asp:TreeNode Text="Update Event" NavigateUrl="~/Pages/Administrator/UpdateEvent.aspx" />
                         
                         </asp:TreeNode>
                         <asp:TreeNode Text="Instructor">
-                            <asp:TreeNode Text="Review Applicants" NavigateUrl="~/ReviewApplicant.aspx" />
-                            <asp:TreeNode Text="Manage Instructors" NavigateUrl="~/ManageInstructor.aspx" />
-                            <asp:TreeNode Text="Leave Approval" NavigateUrl="~/LeaveApplicationReview.aspx" />
+                            <asp:TreeNode Text="Review Applicants" NavigateUrl="~/Pages/Administrator/ReviewApplicant.aspx" />
+                            <asp:TreeNode Text="Manage Instructors" NavigateUrl="~/Pages/Administrator/ManageInstructor.aspx" />
+                            <asp:TreeNode Text="Leave Approval" NavigateUrl="~/Pages/Administrator/LeaveApplicationReview.aspx" />
                         </asp:TreeNode>
+                          
                     </Nodes>
                 </asp:TreeView>
             </div>
-            <div class="col-md-10 contentDiv" >
+            <div class=" contentBorderLeft col-md-9 contentDiv" >
                 <asp:ContentPlaceHolder ID="AdminContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
        </div>
 
     </div>
+
 
 
 </asp:Content>
