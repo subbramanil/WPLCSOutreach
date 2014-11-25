@@ -25,7 +25,7 @@ namespace CSOutreach.Pages.Student
         {
             if(Session["USERNAME"]!=null)
             {
-                if(Session["ROLE"]=="Student")
+                if(Session["ROLE"].ToString().CompareTo("Student")==0)
                 {
                     return true;
                 }

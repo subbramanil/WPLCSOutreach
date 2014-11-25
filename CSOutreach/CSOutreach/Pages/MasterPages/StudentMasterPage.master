@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="server">
     <div class="treeStruct">
         <div class="row">
-            <div class="tree col-md-2">
+            <div class="tree col-md-2" style="float:left">
                 <asp:TreeView ID="TreeView1" runat="server" Width="175px" HoverNodeStyle-CssClass="nav-pills" NodeStyle-CssClass="treeParent" SelectedNodeStyle-CssClass="treeNodeSelected">
                     <Nodes>
                         <asp:TreeNode Text="My Profile" NavigateUrl="~/Profile.aspx"></asp:TreeNode>
