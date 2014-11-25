@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrossPageInformation\CrossPageDetailedEventsListing.cs" />
     <Compile Include="PageTraversal\PageData.cs" />
     <Compile Include="PageTraversal\PageInfo.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -47,7 +48,7 @@
     </Compile>
     <Compile Include="PageTraversal\TraverseManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Session\SessionVariables.cs" />
+    <Compile Include="Session\StudentSession.cs" />
     <Compile Include="Utilities\Helper.cs" />
   </ItemGroup>
   <ItemGroup>

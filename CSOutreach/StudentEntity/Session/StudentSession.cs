@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace StudentEntity.Session
 {
-    public enum SessionVariables
+    public class StudentSession
     {
+        public const string CROSS_PAGE_INFORMATION = "CROSS_PAGE_INFORMATION";
     }
 }

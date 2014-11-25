@@ -61,6 +61,15 @@ namespace StudentEntity.PageTraversal {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pages/Common/Default.aspx.
+        /// </summary>
+        internal static string LoginPage {
+            get {
+                return ResourceManager.GetString("LoginPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pages/Student/StudentHome.aspx.
         /// </summary>
         internal static string StudentHome {

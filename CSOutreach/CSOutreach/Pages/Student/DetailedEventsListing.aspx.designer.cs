@@ -11,7 +11,7 @@ namespace CSOutreach.Pages.Student
 {
 
 
-    public partial class DummyHomePage
+    public partial class DetailedEventsListing
     {
     }
 }

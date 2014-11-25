@@ -14,6 +14,7 @@ namespace StudentEntity.PageTraversal
 {
    public enum PageData
     {
-        StudentHome
+        StudentHome,
+       LoginPage
     }
 }
