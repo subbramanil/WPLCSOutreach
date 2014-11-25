@@ -185,7 +185,9 @@ html, body {
     border-radius: 8px;
     margin-left: 10px;
     min-height: 300px;
-=======
+}
+
+/*Css for tree navigation*/
 .treeStruct{
     margin-left:-100px;
 }
