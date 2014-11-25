@@ -9,9 +9,9 @@
                 <asp:TreeView ID="TreeView1" runat="server" Width="175px" HoverNodeStyle-CssClass="nav-pills" NodeStyle-CssClass="treeParent" SelectedNodeStyle-CssClass="treeNodeSelected">
                     <Nodes>
                         <asp:TreeNode Text="My Profile" NavigateUrl="~/Profile.aspx"></asp:TreeNode>
-                        <asp:TreeNode Text="Event">
-                            <asp:TreeNode Text="All Events" NavigateUrl="~/Events.aspx" />
-                            <asp:TreeNode Text="Registered Events" NavigateUrl="~/Events.aspx" />
+                        <asp:TreeNode Text="List of Events">
+                            <asp:TreeNode Text="By Event Type" NavigateUrl="~/Pages/Student/ListAllEventsByType.aspx" />
+                            <asp:TreeNode Text="By Event Technology" NavigateUrl="~/Pages/Student/ListAllEventsByTech.aspx" />
                         </asp:TreeNode>
                     </Nodes>
                 </asp:TreeView>

@@ -70,6 +70,10 @@
     <Content Include="App_Data\DataCSOutreach_log.ldf">
       <DependentUpon>DataCSOutreach.mdf</DependentUpon>
     </Content>
+    <Content Include="img\camp.jpg" />
+    <Content Include="img\contest.jpg" />
+    <Content Include="img\school.jpg" />
+    <Content Include="img\workshops.jpg" />
     <Content Include="js\dataTables.bootstrap.js" />
     <Content Include="js\jquery.dataTables.min.js" />
     <Content Include="Pages\Administrator\Dashboard.aspx" />
@@ -93,6 +97,9 @@
     <Content Include="Pages\Common\Signup.aspx" />
     <Content Include="Pages\Student\DefaultHome.aspx" />
     <Content Include="Pages\Student\DetailedEventsListing.aspx" />
+    <Content Include="Pages\Student\EventRegistration.aspx" />
+    <Content Include="Pages\Student\ListAllEventsByTech.aspx" />
+    <Content Include="Pages\Student\ListAllEventsByType.aspx" />
     <Content Include="Sampler.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -173,6 +180,27 @@
     <Compile Include="Pages\Student\DetailedEventsListing.aspx.designer.cs">
       <DependentUpon>DetailedEventsListing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Student\EventRegistration.aspx.cs">
+      <DependentUpon>EventRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Student\EventRegistration.aspx.designer.cs">
+      <DependentUpon>EventRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Student\ListAllEventsByTech.aspx.cs">
+      <DependentUpon>ListAllEventsByTech.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Student\ListAllEventsByTech.aspx.designer.cs">
+      <DependentUpon>ListAllEventsByTech.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Student\ListAllEventsByType.aspx.cs">
+      <DependentUpon>ListAllEventsByType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Student\ListAllEventsByType.aspx.designer.cs">
+      <DependentUpon>ListAllEventsByType.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Student\StudentBasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -202,6 +230,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Pages\MasterPages\AdministratorMasterpage.master" />
     <Content Include="Pages\MasterPages\StudentMasterPage.master" />
+    <Content Include="img\sample.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
