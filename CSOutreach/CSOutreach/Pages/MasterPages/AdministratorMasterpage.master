@@ -19,7 +19,7 @@
                         
                         </asp:TreeNode>
                         <asp:TreeNode Text="Instructor">
-                            <asp:TreeNode  Text="Review Applicants" NavigateUrl="~/Pages/Administrator/ReviewApplicant.aspx" />
+                            <asp:TreeNode  Text="Review Applicants" NavigateUrl="~/Pages/Administrator/ReviewApplicants.aspx" />
                             <asp:TreeNode  Text="Manage Instructors" NavigateUrl="~/Pages/Administrator/ManageInstructor.aspx" />
                             <asp:TreeNode  Text="Leave Approval" NavigateUrl="~/Pages/Administrator/LeaveApplicationReview.aspx" />
                         </asp:TreeNode>
