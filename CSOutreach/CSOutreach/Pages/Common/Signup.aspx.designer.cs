@@ -13,6 +13,24 @@ namespace CSOutreach.Pages.Common {
     public partial class Signup {
         
         /// <summary>
+        /// divsuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divsuccess;
+        
+        /// <summary>
+        /// diverror control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl diverror;
+        
+        /// <summary>
         /// FirstName control.
         /// </summary>
         /// <remarks>
@@ -136,6 +154,15 @@ namespace CSOutreach.Pages.Common {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText PasswordConfirm;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword PasswordConfirm;
+        
+        /// <summary>
+        /// btnclick control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit btnclick;
     }
 }
