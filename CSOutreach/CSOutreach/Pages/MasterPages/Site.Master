@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width" />
 
     <script src="../../js/jquery-1.11.1.js"></script>
+    <script src="../../js/jquery.validate.js"></script>
     <script src="../../js/bootstrap.js"></script>
     <script src="../../js/jquery.dataTables.min.js"></script>
     <script src="../../js/dataTables.bootstrap.js"></script>
