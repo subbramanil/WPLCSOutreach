@@ -50,3 +50,5 @@ C:\Users\Acer\Documents\GitHub\Wpl-Project\WPLCSOutreach\CSOutreach\CSOutreach\b
 C:\Users\Acer\Documents\GitHub\Wpl-Project\WPLCSOutreach\CSOutreach\CSOutreach\obj\Debug\CSOutreach.csprojResolveAssemblyReference.cache
 C:\Users\Acer\Documents\GitHub\Wpl-Project\WPLCSOutreach\CSOutreach\CSOutreach\obj\Debug\CSOutreach.dll
 C:\Users\Acer\Documents\GitHub\Wpl-Project\WPLCSOutreach\CSOutreach\CSOutreach\obj\Debug\CSOutreach.pdb
+C:\Users\Acer\Documents\GitHub\Wpl-Project\WPLCSOutreach\CSOutreach\CSOutreach\bin\StudentEntity.dll
+C:\Users\Acer\Documents\GitHub\Wpl-Project\WPLCSOutreach\CSOutreach\CSOutreach\bin\StudentEntity.pdb
