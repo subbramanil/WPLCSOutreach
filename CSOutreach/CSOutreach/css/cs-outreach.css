@@ -323,5 +323,7 @@ html, body {
         color: #000;
         text-decoration: none;
     }
-
+    .error_vld{
+    border: solid 1px #a94442;
+  }
 

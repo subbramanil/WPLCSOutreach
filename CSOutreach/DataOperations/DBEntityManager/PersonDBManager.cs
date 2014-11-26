@@ -17,7 +17,7 @@ namespace DataOperations.DBEntityManager
         /// <returns>Returns person Object</returns>
         public Person GetUser(string username)
         {
-            Person person = new Person();
+            Person person = new Person();   
                
             try
             {
@@ -45,9 +45,7 @@ namespace DataOperations.DBEntityManager
             {
                 using (DBCSEntities entity = new DBCSEntities())
                 {
-                    string password = person.Password;
-                    person.Password = string.Empty;
-                    person.Password = Encrypt(password);
+                    person.Password = Encrypt(person.Password != null ? person.Password : "");
                     entity.AddToPeople(person);
                     entity.SaveChanges();
                 }
