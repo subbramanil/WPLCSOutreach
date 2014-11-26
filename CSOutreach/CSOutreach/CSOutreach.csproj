@@ -97,6 +97,11 @@
     <Content Include="Pages\Common\CodingClub.aspx" />
     <Content Include="Pages\Common\Profile.aspx" />
     <Content Include="Pages\Common\Signup.aspx" />
+    <Content Include="Pages\Instructor\InstructorJobs.aspx" />
+    <Content Include="Pages\Instructor\InstructorLeave.aspx" />
+    <Content Include="Pages\Instructor\InstructorProfile.aspx" />
+    <Content Include="Pages\Instructor\InstructorStudent.aspx" />
+    <Content Include="Pages\Instructor\InstructorTimesheet.aspx" />
     <Content Include="Pages\Student\DefaultHome.aspx" />
     <Content Include="Pages\Student\DetailedEventsListing.aspx" />
     <Content Include="Pages\Student\EventRegistration.aspx" />
@@ -153,6 +158,36 @@
     </Compile>
     <Compile Include="Pages\Common\Signup.aspx.designer.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Instructor\InstructorJobs.aspx.cs">
+      <DependentUpon>InstructorJobs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Instructor\InstructorJobs.aspx.designer.cs">
+      <DependentUpon>InstructorJobs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Instructor\InstructorLeave.aspx.cs">
+      <DependentUpon>InstructorLeave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Instructor\InstructorLeave.aspx.designer.cs">
+      <DependentUpon>InstructorLeave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Instructor\InstructorProfile.aspx.cs">
+      <DependentUpon>InstructorProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Instructor\InstructorProfile.aspx.designer.cs">
+      <DependentUpon>InstructorProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Instructor\InstructorStudent.aspx.cs">
+      <DependentUpon>InstructorStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Instructor\InstructorStudent.aspx.designer.cs">
+      <DependentUpon>InstructorStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Instructor\InstructorTimesheet.aspx.cs">
+      <DependentUpon>InstructorTimesheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Instructor\InstructorTimesheet.aspx.designer.cs">
+      <DependentUpon>InstructorTimesheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\MasterPages\AdministratorMasterpage.master.cs">
       <DependentUpon>AdministratorMasterpage.master</DependentUpon>
