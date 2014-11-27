@@ -1,5 +1,39 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPages/AdministratorMasterpage.master" AutoEventWireup="true" CodeBehind="ReviewApplicants.aspx.cs" Inherits="CSOutreach.Pages.ReviewApplicants" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
+     <link href="../../css/theme.default.css" rel="stylesheet" />
+    <script src="../../js/jquery.tablesorter.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            $(".tablesorter").tablesorter({
+
+                // make header text selectable
+                cancelSelection: false,
+                headers: {
+                    5: {
+                        sorter: false
+                    },
+                    6: {
+                        sorter: false
+                    
+                    }
+                },    
+                // prevent text selections (optional)
+                onRenderHeader: function (index) {
+                    if (index > 0) {
+                        $(this)
+                            .addClass('no-select')
+                            .attr('unselectable', 'on')
+                            .bind('selectstart', false);
+                    }
+                }
+
+            });
+
+        });
+        
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="AdminContent" runat="server">
       <div class="row">
@@ -52,8 +86,10 @@
      <div class="row">
 
          
-         <asp:Table ID="SearchResult" runat="server" CssClass="table table-hover">
-             <asp:TableRow>
+         <asp:Table ID="SearchResult" runat="server" CssClass="tablesorter table table-hover">
+             
+             
+              <asp:TableHeaderRow  TableSection="TableHeader">  
                  <asp:TableHeaderCell>Name</asp:TableHeaderCell>
                  <asp:TableHeaderCell>Degree Major</asp:TableHeaderCell>
                  <asp:TableHeaderCell>Skills</asp:TableHeaderCell>
@@ -61,7 +97,8 @@
                  <asp:TableHeaderCell>Phone Number</asp:TableHeaderCell>
                  <asp:TableHeaderCell>Accept</asp:TableHeaderCell>
                  <asp:TableHeaderCell>Reject</asp:TableHeaderCell>
-             </asp:TableRow>
+                     
+             </asp:TableHeaderRow> 
              <asp:TableRow>
                  <asp:TableCell>Test1</asp:TableCell>
                  <asp:TableCell>CS</asp:TableCell>
@@ -78,7 +115,27 @@
                  </asp:TableCell>
 
              </asp:TableRow>
+            
+            
+             <asp:TableRow>
+                 <asp:TableCell>Test2</asp:TableCell>
+                 <asp:TableCell>CS</asp:TableCell>
+                 <asp:TableCell>
+                     <asp:ListBox ID="ListBox2" runat="server" CssClass="form-control"></asp:ListBox>
+                 </asp:TableCell>
+                 <asp:TableCell>Yes</asp:TableCell>
+                 <asp:TableCell>(214) 234 - 2311</asp:TableCell>
+                 <asp:TableCell>
+                     <input type="submit" class="btn btn-success" value="Accept"/>
+                 </asp:TableCell>
+                 <asp:TableCell>
+                     <input type="submit" class="btn btn-danger" value="Reject"/>
+                 </asp:TableCell>
+
+             </asp:TableRow>
+                
          </asp:Table>
+
          
 
      </div>
