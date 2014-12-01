@@ -46,6 +46,28 @@ namespace DataOperations.DBEntityManager
             return courseTypes;
         }
 
+        public List<Event> GetUpcommingEvents()
+        {
+            DateTime thisDay = DateTime.Today;
+
+            //Using this because there are no events that will start from today
+            DateTime someDay = new DateTime(2014,9,2);
+            List<Event> events = new List<Event>();
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    events = (from eventTemp in entity.Events where eventTemp.StartDate>=someDay  select eventTemp).ToList();
+                }
+            }
+            catch (Exception)
+            {
+
+
+            }
+            return events;
+        }
+
 
     }
 }

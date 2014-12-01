@@ -6,9 +6,20 @@
                      <div class="module">
                 <h5 class="disblock" style="cursor: default;">Upcomming Events</h5>
                 <div class="moduleBody">
-                    <ul>
-                        <li>First Event</li>
-                    </ul>
+                    <asp:Repeater ID="menu_ul_1" runat="server">
+                        <HeaderTemplate>
+                            <ul class="my-menu">
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <li>
+                                    <a href='<%# Eval("Name")%>'>
+                                        <%# Eval("Name")%></a>
+                            </li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </ul>
+                        </FooterTemplate>
+                    </asp:Repeater>
                 </div>
             </div>
         </div>
