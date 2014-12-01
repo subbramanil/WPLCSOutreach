@@ -53,7 +53,9 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label>Event Type :</label>
-               <asp:DropDownList ID="drpEventType" runat="server" DataTextField="TypeName" DataValueField="EventTypeId" onchange="showHideOthersTxt()"></asp:DropDownList>
+               <asp:DropDownList ID="drpEventType" runat="server" DataTextField="TypeName" DataValueField="EventTypeId" onchange="showHideOthersTxt()">
+
+               </asp:DropDownList>
             </div>
            <div class="form-group col-md-6" ID="othrLabel" style="display:none;">
                 <label for="">If selected Other:</label>

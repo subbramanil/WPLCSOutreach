@@ -163,6 +163,9 @@ namespace CSOutreach
                 {
                     Response.Redirect("../Student/DefaultHome.aspx");
                 }
+                else if (UserRole == Role.ADMIN) {
+                    Response.Redirect("../Administrator/Dashboard.aspx");
+                }
             }
         }
 

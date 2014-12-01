@@ -19,6 +19,11 @@ namespace CSOutreach.Pages.Administrator
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            PersonDBManager user = new PersonDBManager();
+            string password = user.Encrypt("abc");
+            Console.WriteLine(password);
+
+
             List<EventType> eventTypes = new List<EventType>();
             
             eventTypes = db.GetEventTypes();
