@@ -13,13 +13,13 @@ namespace CSOutreach.Pages.Administrator {
     public partial class CreateEvent {
         
         /// <summary>
-        /// EventType control.
+        /// drpEventType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList EventType;
+        protected global::System.Web.UI.WebControls.DropDownList drpEventType;
         
         /// <summary>
         /// TextBox5 control.
@@ -40,31 +40,13 @@ namespace CSOutreach.Pages.Administrator {
         protected global::System.Web.UI.WebControls.DropDownList EventRecurrance;
         
         /// <summary>
-        /// CourseType control.
+        /// drpCourseType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CourseType;
-        
-        /// <summary>
-        /// SqlDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
-        
-        /// <summary>
-        /// EntityDataSource1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSource1;
+        protected global::System.Web.UI.WebControls.DropDownList drpCourseType;
         
         /// <summary>
         /// Level control.

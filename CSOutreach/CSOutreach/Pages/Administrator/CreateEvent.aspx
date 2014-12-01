@@ -10,7 +10,7 @@
         <div class="row">
             <div class="form-group col-md-3">
                 <label>Event Type :</label>
-               <asp:DropDownList ID="EventType" runat="server" Height="16px" Width="15px">
+               <asp:DropDownList ID="drpEventType" runat="server"  DataTextField="TypeName" DataValueField="EventTypeId">
                 </asp:DropDownList>
             </div>
             <div class="form-group col-md-6">
@@ -30,11 +30,8 @@
         <div class="row">
             <div class="form-group col-md-6">
                 <label for="">Course Type:</label>
-               <asp:DropDownList ID="CourseType" runat="server" DataSourceID="SqlDataSource1" DataTextField="CourseName" DataValueField="CourseName">
+               <asp:DropDownList ID="drpCourseType" runat="server" DataTextField="CourseName" DataValueField="CourseId">
                 </asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [CourseName] FROM [Course]"></asp:SqlDataSource>
-                <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=DBCSEntities" DefaultContainerName="DBCSEntities" EnableFlattening="False" EntitySetName="Courses" Select="it.[CourseName]">
-                </asp:EntityDataSource>
             </div>
             <div class="form-group col-md-3">
                 <label for="">Level:</label>
