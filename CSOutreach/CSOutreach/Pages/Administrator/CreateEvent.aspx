@@ -36,6 +36,7 @@
             $('.timepicker-default').timepicker();
         });
 
+
         
 
     </script>
@@ -52,10 +53,9 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label>Event Type :</label>
-               <asp:DropDownList ID="drpEventType" runat="server"  DataTextField="TypeName" DataValueField="EventTypeId">
-                </asp:DropDownList>
+               <asp:DropDownList ID="drpEventType" runat="server" DataTextField="TypeName" DataValueField="EventTypeId" onchange="showHideOthersTxt()"></asp:DropDownList>
             </div>
-            <div class="form-group col-md-6">
+           <div class="form-group col-md-6" ID="othrLabel" style="display:none;">
                 <label for="">If selected Other:</label>
                 <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox> 
             </div>
@@ -128,4 +128,14 @@
             <hr class="col-md-6" />
         </div>
               
+    <script>
+        function showHideOthersTxt() {
+            if (document.getElementById('<%=drpEventType.ClientID%>').value == "1505") {
+                document.getElementById('othrLabel').style.display = "block";
+            }
+            else {
+                document.getElementById('othrLabel').style.display = "none";
+            }
+        }
+</script>
 </asp:Content>
