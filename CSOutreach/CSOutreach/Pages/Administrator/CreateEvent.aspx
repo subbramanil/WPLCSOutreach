@@ -98,7 +98,7 @@
             </div>
          <div class="form-group col-md-6">
                 <label for="">End Date:</label>
-                <asp:TextBox ID="endDate" class="enddate" runat="server"></asp:TextBox> 
+                <asp:TextBox ID="endDate" class="datepicker enddate" runat="server"></asp:TextBox> 
             </div>
         </div>
     <div class="row">
