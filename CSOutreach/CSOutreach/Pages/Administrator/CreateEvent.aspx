@@ -117,11 +117,19 @@
             <hr class="col-md-12" />
         </div>
        <div class="row">
-            <div class="form-group col-md-6">
-                 <label for="">Find Instructors:</label>
-               <asp:DropDownList ID="DropDownList1" runat="server">
-                </asp:DropDownList>
+            <div class="form-group col-md-3">
+                 <label for="">Instructors:</label>
+              
+                <asp:ListBox ID="ListBox1" runat="server" CssClass="form-control" >
+                    <asp:ListItem>Sample Instructor Set</asp:ListItem>
+                </asp:ListBox>
             </div>
+
+           <div class="form-group col-md-3">
+               <br />
+               <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Instructor</button>
+                    </div>
+
         </div>
 
      <br />
