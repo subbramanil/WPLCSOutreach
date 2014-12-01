@@ -13,12 +13,12 @@
         <div class="row">
             <div class="form-group col-md-3">
                 <label for="">Enter Event Type:</label>
-                <asp:DropDownList ID="DropDownList1" runat="server">
+                <asp:DropDownList ID="drpEventName" runat="server" DataTextField="TypeName" DataValueField="EventTypeId">
                 </asp:DropDownList>
             </div>
             <div class="form-group col-md-3">
                 <label for="">Course Name:</label>
-                <asp:DropDownList ID="DropDownList2" runat="server">
+                <asp:DropDownList ID="drpCourseName" runat="server" DataTextField="CourseName" DataValueField="CourseId">
                 </asp:DropDownList>
             </div>
         </div>
