@@ -78,7 +78,10 @@
     <Content Include="js\jquery.dataTables.min.js" />
     <Content Include="js\jquery.validate.js" />
     <Content Include="js\jquery.validate.min.js" />
+    <Content Include="Pages\Administrator\CreateEvent.aspx" />
     <Content Include="Pages\Administrator\Dashboard.aspx" />
+    <Content Include="Pages\Administrator\ReviewApplicants.aspx" />
+    <Content Include="Pages\Administrator\UpdateEvent.aspx" />
     <Content Include="Pages\Administrator\XmlFIles\AdministratorTreeItems.xml" />
     <Content Include="Pages\Common\AboutUs.aspx" />
     <Content Include="css\bootstrap-theme.css" />
@@ -114,12 +117,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication.cs" />
+    <Compile Include="Pages\Administrator\CreateEvent.aspx.cs">
+      <DependentUpon>CreateEvent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrator\CreateEvent.aspx.designer.cs">
+      <DependentUpon>CreateEvent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Administrator\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Administrator\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrator\ReviewApplicants.aspx.cs">
+      <DependentUpon>ReviewApplicants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrator\ReviewApplicants.aspx.designer.cs">
+      <DependentUpon>ReviewApplicants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrator\UpdateEvent.aspx.cs">
+      <DependentUpon>UpdateEvent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrator\UpdateEvent.aspx.designer.cs">
+      <DependentUpon>UpdateEvent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Common\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
@@ -161,30 +185,35 @@
     </Compile>
     <Compile Include="Pages\Instructor\InstructorJobs.aspx.cs">
       <DependentUpon>InstructorJobs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Instructor\InstructorJobs.aspx.designer.cs">
       <DependentUpon>InstructorJobs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Instructor\InstructorLeave.aspx.cs">
       <DependentUpon>InstructorLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Instructor\InstructorLeave.aspx.designer.cs">
       <DependentUpon>InstructorLeave.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Instructor\InstructorProfile.aspx.cs">
       <DependentUpon>InstructorProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Instructor\InstructorProfile.aspx.designer.cs">
       <DependentUpon>InstructorProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Instructor\InstructorStudent.aspx.cs">
       <DependentUpon>InstructorStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Instructor\InstructorStudent.aspx.designer.cs">
       <DependentUpon>InstructorStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Instructor\InstructorTimesheet.aspx.cs">
       <DependentUpon>InstructorTimesheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Instructor\InstructorTimesheet.aspx.designer.cs">
       <DependentUpon>InstructorTimesheet.aspx</DependentUpon>
