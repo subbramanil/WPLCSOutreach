@@ -20,6 +20,7 @@
     <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Events" Relationship="Self.fk_CourseIdEvent" FromRole="Course" ToRole="Event" />
     <NavigationProperty Name="Instructors" Relationship="Self.InstructorCourse" FromRole="Course" ToRole="Instructor" />
+    <Property Name="AgeGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Event">
     <Key>
@@ -44,6 +45,7 @@
     <NavigationProperty Name="StudentEvents" Relationship="Self.fk_EventIdStudentEvent" FromRole="Event" ToRole="StudentEvent" />
     <NavigationProperty Name="EventType" Relationship="Self.fk_EventTypeIdEvent" FromRole="Event" ToRole="EventType" />
     <NavigationProperty Name="Person1" Relationship="Self.fk_UpdatedByEvent" FromRole="Event" ToRole="Person" />
+    <Property Name="Location" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="EventInstructor">
     <Key>
@@ -56,6 +58,7 @@
     <Property Name="ACCEPTED" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Event" Relationship="Self.fk_EventIdEventInstructor" FromRole="EventInstructor" ToRole="Event" />
     <NavigationProperty Name="Instructor" Relationship="Self.fk_InstructorIdEventInstructor" FromRole="EventInstructor" ToRole="Instructor" />
+    <Property Name="LeaveApplied" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="EventType">
     <Key>
@@ -72,14 +75,13 @@
     </Key>
     <Property Name="ExtraWorkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="InstructorId" Type="Int32" Nullable="false" />
-    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
-    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Miles" Type="Int32" />
     <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Instructor" Relationship="Self.fk_InstructorIdExtraWork" FromRole="ExtraWork" ToRole="Instructor" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
   <EntityType Name="Instructor">
     <Key>
@@ -93,6 +95,8 @@
     <NavigationProperty Name="Academics" Relationship="Self.InstructorAcademics" FromRole="Instructor" ToRole="Academics" />
     <NavigationProperty Name="Courses" Relationship="Self.InstructorCourse" FromRole="Instructor" ToRole="Course" />
     <NavigationProperty Name="SkillSets" Relationship="Self.InstructorSkill" FromRole="Instructor" ToRole="SkillSet" />
+    <Property Name="JoinedUtd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hasCar" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Person">
     <Key>

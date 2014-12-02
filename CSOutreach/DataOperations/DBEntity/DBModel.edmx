@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="UTDallasCSOutreachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="UTDallasCSOutreachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Academics">
           <Key>
             <PropertyRef Name="AcademicsId" />
@@ -21,6 +21,7 @@
           <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CourseLevel" Type="int" Nullable="false" />
           <Property Name="CourseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AgeGroup" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Event">
@@ -35,6 +36,7 @@
           <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="CourseId" Type="int" Nullable="false" />
           <Property Name="CreatedDate" Type="date" Nullable="false" />
           <Property Name="CreatedBy" Type="int" Nullable="false" />
@@ -50,6 +52,7 @@
           <Property Name="InstructorId" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="ACCEPTED" Type="bit" Nullable="false" />
+          <Property Name="LeaveApplied" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="EventType">
           <Key>
@@ -65,9 +68,8 @@
           </Key>
           <Property Name="ExtraWorkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InstructorId" Type="int" Nullable="false" />
-          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
-          <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Miles" Type="int" />
@@ -77,8 +79,10 @@
           <Key>
             <PropertyRef Name="InstructorId" />
           </Key>
-          <Property Name="InstructorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstructorId" Type="int" Nullable="false" />
           <Property Name="canTeach" Type="bit" Nullable="false" />
+          <Property Name="JoinedUtd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="hasCar" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="InstructorAcademics">
           <Key>
@@ -129,7 +133,7 @@
           <Key>
             <PropertyRef Name="StudentId" />
           </Key>
-          <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
           <Property Name="EmergencyName" Type="nvarchar" MaxLength="50" />
           <Property Name="EmergencyNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="EmergencyRelation" Type="nvarchar" MaxLength="50" />
@@ -432,8 +436,7 @@
             <End Role="Event" EntitySet="Event" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UTDallasCSOutreachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -457,6 +460,7 @@
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Events" Relationship="Self.fk_CourseIdEvent" FromRole="Course" ToRole="Event" />
           <NavigationProperty Name="Instructors" Relationship="Self.InstructorCourse" FromRole="Course" ToRole="Instructor" />
+          <Property Name="AgeGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -481,6 +485,7 @@
           <NavigationProperty Name="StudentEvents" Relationship="Self.fk_EventIdStudentEvent" FromRole="Event" ToRole="StudentEvent" />
           <NavigationProperty Name="EventType" Relationship="Self.fk_EventTypeIdEvent" FromRole="Event" ToRole="EventType" />
           <NavigationProperty Name="Person1" Relationship="Self.fk_UpdatedByEvent" FromRole="Event" ToRole="Person" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EventInstructor">
           <Key>
@@ -493,6 +498,7 @@
           <Property Name="ACCEPTED" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Event" Relationship="Self.fk_EventIdEventInstructor" FromRole="EventInstructor" ToRole="Event" />
           <NavigationProperty Name="Instructor" Relationship="Self.fk_InstructorIdEventInstructor" FromRole="EventInstructor" ToRole="Instructor" />
+          <Property Name="LeaveApplied" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="EventType">
           <Key>
@@ -509,14 +515,13 @@
           </Key>
           <Property Name="ExtraWorkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InstructorId" Type="Int32" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Miles" Type="Int32" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Instructor" Relationship="Self.fk_InstructorIdExtraWork" FromRole="ExtraWork" ToRole="Instructor" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Instructor">
           <Key>
@@ -530,6 +535,8 @@
           <NavigationProperty Name="Academics" Relationship="Self.InstructorAcademics" FromRole="Instructor" ToRole="Academics" />
           <NavigationProperty Name="Courses" Relationship="Self.InstructorCourse" FromRole="Instructor" ToRole="Course" />
           <NavigationProperty Name="SkillSets" Relationship="Self.InstructorSkill" FromRole="Instructor" ToRole="SkillSet" />
+          <Property Name="JoinedUtd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hasCar" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -812,6 +819,7 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="UTDallasCSOutreachModel.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="AgeGroup" ColumnName="AgeGroup" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
                 <ScalarProperty Name="CourseLevel" ColumnName="CourseLevel" />
                 <ScalarProperty Name="CourseName" ColumnName="CourseName" />
@@ -822,6 +830,7 @@
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="UTDallasCSOutreachModel.Event">
               <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -841,6 +850,7 @@
           <EntitySetMapping Name="EventInstructors">
             <EntityTypeMapping TypeName="UTDallasCSOutreachModel.EventInstructor">
               <MappingFragment StoreEntitySet="EventInstructor">
+                <ScalarProperty Name="LeaveApplied" ColumnName="LeaveApplied" />
                 <ScalarProperty Name="EventInstructorId" ColumnName="EventInstructorId" />
                 <ScalarProperty Name="EventId" ColumnName="EventId" />
                 <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
@@ -861,11 +871,10 @@
           <EntitySetMapping Name="ExtraWorks">
             <EntityTypeMapping TypeName="UTDallasCSOutreachModel.ExtraWork">
               <MappingFragment StoreEntitySet="ExtraWork">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ExtraWorkId" ColumnName="ExtraWorkId" />
                 <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Miles" ColumnName="Miles" />
@@ -876,6 +885,8 @@
           <EntitySetMapping Name="Instructors">
             <EntityTypeMapping TypeName="UTDallasCSOutreachModel.Instructor">
               <MappingFragment StoreEntitySet="Instructor">
+                <ScalarProperty Name="hasCar" ColumnName="hasCar" />
+                <ScalarProperty Name="JoinedUtd" ColumnName="JoinedUtd" />
                 <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
                 <ScalarProperty Name="canTeach" ColumnName="canTeach" />
               </MappingFragment>

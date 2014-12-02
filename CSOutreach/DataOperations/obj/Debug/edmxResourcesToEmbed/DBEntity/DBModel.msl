@@ -14,6 +14,7 @@
     <EntitySetMapping Name="Courses">
       <EntityTypeMapping TypeName="UTDallasCSOutreachModel.Course">
         <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="AgeGroup" ColumnName="AgeGroup" />
           <ScalarProperty Name="CourseId" ColumnName="CourseId" />
           <ScalarProperty Name="CourseLevel" ColumnName="CourseLevel" />
           <ScalarProperty Name="CourseName" ColumnName="CourseName" />
@@ -24,6 +25,7 @@
     <EntitySetMapping Name="Events">
       <EntityTypeMapping TypeName="UTDallasCSOutreachModel.Event">
         <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="EventId" ColumnName="EventId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -43,6 +45,7 @@
     <EntitySetMapping Name="EventInstructors">
       <EntityTypeMapping TypeName="UTDallasCSOutreachModel.EventInstructor">
         <MappingFragment StoreEntitySet="EventInstructor">
+          <ScalarProperty Name="LeaveApplied" ColumnName="LeaveApplied" />
           <ScalarProperty Name="EventInstructorId" ColumnName="EventInstructorId" />
           <ScalarProperty Name="EventId" ColumnName="EventId" />
           <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
@@ -63,11 +66,10 @@
     <EntitySetMapping Name="ExtraWorks">
       <EntityTypeMapping TypeName="UTDallasCSOutreachModel.ExtraWork">
         <MappingFragment StoreEntitySet="ExtraWork">
+          <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="ExtraWorkId" ColumnName="ExtraWorkId" />
           <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Miles" ColumnName="Miles" />
@@ -78,6 +80,8 @@
     <EntitySetMapping Name="Instructors">
       <EntityTypeMapping TypeName="UTDallasCSOutreachModel.Instructor">
         <MappingFragment StoreEntitySet="Instructor">
+          <ScalarProperty Name="hasCar" ColumnName="hasCar" />
+          <ScalarProperty Name="JoinedUtd" ColumnName="JoinedUtd" />
           <ScalarProperty Name="InstructorId" ColumnName="InstructorId" />
           <ScalarProperty Name="canTeach" ColumnName="canTeach" />
         </MappingFragment>

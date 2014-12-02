@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -60,7 +59,7 @@ namespace CSOutreach.Pages.Administrator
                 using (DBCSEntities entity = new DBCSEntities())
                 {
                     Event even = new Event();
-
+                    
                     even.Name = txtEventName.Text;
                     if (!txtDescription.Text.Equals(""))
                     {
@@ -112,6 +111,10 @@ namespace CSOutreach.Pages.Administrator
             {
             }
         }
+
+     
+
+    
 
 
     }

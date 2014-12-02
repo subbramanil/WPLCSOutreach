@@ -16,6 +16,7 @@
     <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CourseLevel" Type="int" Nullable="false" />
     <Property Name="CourseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AgeGroup" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Event">
@@ -30,6 +31,7 @@
     <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
     <Property Name="EndDate" Type="date" Nullable="false" />
     <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="CourseId" Type="int" Nullable="false" />
     <Property Name="CreatedDate" Type="date" Nullable="false" />
     <Property Name="CreatedBy" Type="int" Nullable="false" />
@@ -45,6 +47,7 @@
     <Property Name="InstructorId" Type="int" Nullable="false" />
     <Property Name="Date" Type="date" Nullable="false" />
     <Property Name="ACCEPTED" Type="bit" Nullable="false" />
+    <Property Name="LeaveApplied" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="EventType">
     <Key>
@@ -60,9 +63,8 @@
     </Key>
     <Property Name="ExtraWorkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="InstructorId" Type="int" Nullable="false" />
-    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
     <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
-    <Property Name="EndDate" Type="date" Nullable="false" />
     <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Miles" Type="int" />
@@ -72,8 +74,10 @@
     <Key>
       <PropertyRef Name="InstructorId" />
     </Key>
-    <Property Name="InstructorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InstructorId" Type="int" Nullable="false" />
     <Property Name="canTeach" Type="bit" Nullable="false" />
+    <Property Name="JoinedUtd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="hasCar" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="InstructorAcademics">
     <Key>
@@ -124,7 +128,7 @@
     <Key>
       <PropertyRef Name="StudentId" />
     </Key>
-    <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentId" Type="int" Nullable="false" />
     <Property Name="EmergencyName" Type="nvarchar" MaxLength="50" />
     <Property Name="EmergencyNumber" Type="nvarchar" MaxLength="50" />
     <Property Name="EmergencyRelation" Type="nvarchar" MaxLength="50" />

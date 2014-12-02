@@ -78,6 +78,7 @@ C:\Users\Acer\Documents\GitHub\WPLCSOutreach\CSOutreach\CSOutreach\bin\Microsoft
 C:\Users\Acer\Documents\GitHub\WPLCSOutreach\CSOutreach\CSOutreach\obj\Debug\CSOutreach.csprojResolveAssemblyReference.cache
 C:\Users\Acer\Documents\GitHub\WPLCSOutreach\CSOutreach\CSOutreach\obj\Debug\CSOutreach.dll
 C:\Users\Acer\Documents\GitHub\WPLCSOutreach\CSOutreach\CSOutreach\obj\Debug\CSOutreach.pdb
+C:\WPLCSOutreach\CSOutreach\CSOutreach\obj\Debug\CSOutreach.csprojResolveAssemblyReference.cache
 C:\WPLCSOutreach\CSOutreach\CSOutreach\bin\CSOutreach.dll.config
 C:\WPLCSOutreach\CSOutreach\CSOutreach\bin\CSOutreach.dll
 C:\WPLCSOutreach\CSOutreach\CSOutreach\bin\CSOutreach.pdb
@@ -93,6 +94,5 @@ C:\WPLCSOutreach\CSOutreach\CSOutreach\bin\StudentEntity.pdb
 C:\WPLCSOutreach\CSOutreach\CSOutreach\bin\Microsoft.Practices.ServiceLocation.pdb
 C:\WPLCSOutreach\CSOutreach\CSOutreach\bin\Microsoft.Practices.Unity.pdb
 C:\WPLCSOutreach\CSOutreach\CSOutreach\bin\Microsoft.Practices.Unity.Interception.pdb
-C:\WPLCSOutreach\CSOutreach\CSOutreach\obj\Debug\CSOutreach.csprojResolveAssemblyReference.cache
 C:\WPLCSOutreach\CSOutreach\CSOutreach\obj\Debug\CSOutreach.dll
 C:\WPLCSOutreach\CSOutreach\CSOutreach\obj\Debug\CSOutreach.pdb

@@ -647,6 +647,30 @@ namespace DataOperations.DBEntity
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AgeGroup
+        {
+            get
+            {
+                return _AgeGroup;
+            }
+            set
+            {
+                OnAgeGroupChanging(value);
+                ReportPropertyChanging("AgeGroup");
+                _AgeGroup = StructuralObject.SetValidValue(value, true, "AgeGroup");
+                ReportPropertyChanged("AgeGroup");
+                OnAgeGroupChanged();
+            }
+        }
+        private global::System.String _AgeGroup;
+        partial void OnAgeGroupChanging(global::System.String value);
+        partial void OnAgeGroupChanged();
 
         #endregion
 
@@ -723,7 +747,8 @@ namespace DataOperations.DBEntity
         /// <param name="courseId">Initial value of the CourseId property.</param>
         /// <param name="createdDate">Initial value of the CreatedDate property.</param>
         /// <param name="createdBy">Initial value of the CreatedBy property.</param>
-        public static Event CreateEvent(global::System.Int32 eventId, global::System.String name, global::System.Int32 eventTypeId, global::System.DateTime startDate, global::System.TimeSpan startTime, global::System.DateTime endDate, global::System.TimeSpan endTime, global::System.Int32 courseId, global::System.DateTime createdDate, global::System.Int32 createdBy)
+        /// <param name="location">Initial value of the Location property.</param>
+        public static Event CreateEvent(global::System.Int32 eventId, global::System.String name, global::System.Int32 eventTypeId, global::System.DateTime startDate, global::System.TimeSpan startTime, global::System.DateTime endDate, global::System.TimeSpan endTime, global::System.Int32 courseId, global::System.DateTime createdDate, global::System.Int32 createdBy, global::System.String location)
         {
             Event @event = new Event();
             @event.EventId = eventId;
@@ -736,6 +761,7 @@ namespace DataOperations.DBEntity
             @event.CourseId = courseId;
             @event.CreatedDate = createdDate;
             @event.CreatedBy = createdBy;
+            @event.Location = location;
             return @event;
         }
 
@@ -1057,6 +1083,30 @@ namespace DataOperations.DBEntity
         private Nullable<global::System.Int32> _UpdatedBy;
         partial void OnUpdatedByChanging(Nullable<global::System.Int32> value);
         partial void OnUpdatedByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Location
+        {
+            get
+            {
+                return _Location;
+            }
+            set
+            {
+                OnLocationChanging(value);
+                ReportPropertyChanging("Location");
+                _Location = StructuralObject.SetValidValue(value, false, "Location");
+                ReportPropertyChanged("Location");
+                OnLocationChanged();
+            }
+        }
+        private global::System.String _Location;
+        partial void OnLocationChanging(global::System.String value);
+        partial void OnLocationChanged();
 
         #endregion
 
@@ -1280,7 +1330,8 @@ namespace DataOperations.DBEntity
         /// <param name="instructorId">Initial value of the InstructorId property.</param>
         /// <param name="date">Initial value of the Date property.</param>
         /// <param name="aCCEPTED">Initial value of the ACCEPTED property.</param>
-        public static EventInstructor CreateEventInstructor(global::System.Int32 eventInstructorId, global::System.Int32 eventId, global::System.Int32 instructorId, global::System.DateTime date, global::System.Boolean aCCEPTED)
+        /// <param name="leaveApplied">Initial value of the LeaveApplied property.</param>
+        public static EventInstructor CreateEventInstructor(global::System.Int32 eventInstructorId, global::System.Int32 eventId, global::System.Int32 instructorId, global::System.DateTime date, global::System.Boolean aCCEPTED, global::System.Boolean leaveApplied)
         {
             EventInstructor eventInstructor = new EventInstructor();
             eventInstructor.EventInstructorId = eventInstructorId;
@@ -1288,6 +1339,7 @@ namespace DataOperations.DBEntity
             eventInstructor.InstructorId = instructorId;
             eventInstructor.Date = date;
             eventInstructor.ACCEPTED = aCCEPTED;
+            eventInstructor.LeaveApplied = leaveApplied;
             return eventInstructor;
         }
 
@@ -1417,6 +1469,30 @@ namespace DataOperations.DBEntity
         private global::System.Boolean _ACCEPTED;
         partial void OnACCEPTEDChanging(global::System.Boolean value);
         partial void OnACCEPTEDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean LeaveApplied
+        {
+            get
+            {
+                return _LeaveApplied;
+            }
+            set
+            {
+                OnLeaveAppliedChanging(value);
+                ReportPropertyChanging("LeaveApplied");
+                _LeaveApplied = StructuralObject.SetValidValue(value, "LeaveApplied");
+                ReportPropertyChanged("LeaveApplied");
+                OnLeaveAppliedChanged();
+            }
+        }
+        private global::System.Boolean _LeaveApplied;
+        partial void OnLeaveAppliedChanging(global::System.Boolean value);
+        partial void OnLeaveAppliedChanged();
 
         #endregion
 
@@ -1651,21 +1727,19 @@ namespace DataOperations.DBEntity
         /// </summary>
         /// <param name="extraWorkId">Initial value of the ExtraWorkId property.</param>
         /// <param name="instructorId">Initial value of the InstructorId property.</param>
-        /// <param name="startDate">Initial value of the StartDate property.</param>
         /// <param name="startTime">Initial value of the StartTime property.</param>
-        /// <param name="endDate">Initial value of the EndDate property.</param>
         /// <param name="endTime">Initial value of the EndTime property.</param>
         /// <param name="description">Initial value of the Description property.</param>
-        public static ExtraWork CreateExtraWork(global::System.Int32 extraWorkId, global::System.Int32 instructorId, global::System.DateTime startDate, global::System.TimeSpan startTime, global::System.DateTime endDate, global::System.TimeSpan endTime, global::System.String description)
+        /// <param name="date">Initial value of the Date property.</param>
+        public static ExtraWork CreateExtraWork(global::System.Int32 extraWorkId, global::System.Int32 instructorId, global::System.TimeSpan startTime, global::System.TimeSpan endTime, global::System.String description, global::System.DateTime date)
         {
             ExtraWork extraWork = new ExtraWork();
             extraWork.ExtraWorkId = extraWorkId;
             extraWork.InstructorId = instructorId;
-            extraWork.StartDate = startDate;
             extraWork.StartTime = startTime;
-            extraWork.EndDate = endDate;
             extraWork.EndTime = endTime;
             extraWork.Description = description;
+            extraWork.Date = date;
             return extraWork;
         }
 
@@ -1729,30 +1803,6 @@ namespace DataOperations.DBEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime StartDate
-        {
-            get
-            {
-                return _StartDate;
-            }
-            set
-            {
-                OnStartDateChanging(value);
-                ReportPropertyChanging("StartDate");
-                _StartDate = StructuralObject.SetValidValue(value, "StartDate");
-                ReportPropertyChanged("StartDate");
-                OnStartDateChanged();
-            }
-        }
-        private global::System.DateTime _StartDate;
-        partial void OnStartDateChanging(global::System.DateTime value);
-        partial void OnStartDateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.TimeSpan StartTime
         {
             get
@@ -1771,30 +1821,6 @@ namespace DataOperations.DBEntity
         private global::System.TimeSpan _StartTime;
         partial void OnStartTimeChanging(global::System.TimeSpan value);
         partial void OnStartTimeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime EndDate
-        {
-            get
-            {
-                return _EndDate;
-            }
-            set
-            {
-                OnEndDateChanging(value);
-                ReportPropertyChanging("EndDate");
-                _EndDate = StructuralObject.SetValidValue(value, "EndDate");
-                ReportPropertyChanged("EndDate");
-                OnEndDateChanged();
-            }
-        }
-        private global::System.DateTime _EndDate;
-        partial void OnEndDateChanging(global::System.DateTime value);
-        partial void OnEndDateChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1891,6 +1917,30 @@ namespace DataOperations.DBEntity
         private global::System.String _Comment;
         partial void OnCommentChanging(global::System.String value);
         partial void OnCommentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value, "Date");
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
 
         #endregion
 
@@ -1953,11 +2003,15 @@ namespace DataOperations.DBEntity
         /// </summary>
         /// <param name="instructorId">Initial value of the InstructorId property.</param>
         /// <param name="canTeach">Initial value of the canTeach property.</param>
-        public static Instructor CreateInstructor(global::System.Int32 instructorId, global::System.Boolean canTeach)
+        /// <param name="joinedUtd">Initial value of the JoinedUtd property.</param>
+        /// <param name="hasCar">Initial value of the hasCar property.</param>
+        public static Instructor CreateInstructor(global::System.Int32 instructorId, global::System.Boolean canTeach, global::System.String joinedUtd, global::System.Boolean hasCar)
         {
             Instructor instructor = new Instructor();
             instructor.InstructorId = instructorId;
             instructor.canTeach = canTeach;
+            instructor.JoinedUtd = joinedUtd;
+            instructor.hasCar = hasCar;
             return instructor;
         }
 
@@ -2015,6 +2069,54 @@ namespace DataOperations.DBEntity
         private global::System.Boolean _canTeach;
         partial void OncanTeachChanging(global::System.Boolean value);
         partial void OncanTeachChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JoinedUtd
+        {
+            get
+            {
+                return _JoinedUtd;
+            }
+            set
+            {
+                OnJoinedUtdChanging(value);
+                ReportPropertyChanging("JoinedUtd");
+                _JoinedUtd = StructuralObject.SetValidValue(value, false, "JoinedUtd");
+                ReportPropertyChanged("JoinedUtd");
+                OnJoinedUtdChanged();
+            }
+        }
+        private global::System.String _JoinedUtd;
+        partial void OnJoinedUtdChanging(global::System.String value);
+        partial void OnJoinedUtdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean hasCar
+        {
+            get
+            {
+                return _hasCar;
+            }
+            set
+            {
+                OnhasCarChanging(value);
+                ReportPropertyChanging("hasCar");
+                _hasCar = StructuralObject.SetValidValue(value, "hasCar");
+                ReportPropertyChanged("hasCar");
+                OnhasCarChanged();
+            }
+        }
+        private global::System.Boolean _hasCar;
+        partial void OnhasCarChanging(global::System.Boolean value);
+        partial void OnhasCarChanged();
 
         #endregion
 
