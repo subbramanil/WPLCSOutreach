@@ -148,6 +148,53 @@ namespace DataOperations.DBEntityManager
             return course;
         }
 
+        public void InsertEventInstructor(String name,DateTime date,int eventid)
+        {
+
+            //Data to insert in event table 
+               try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    EventInstructor ei = new EventInstructor();
+                    String[] Name = name.Split(' ');
+                    String fName = Name[0];
+                    String lName = Name[1];
+                    ei.EventId = eventid;
+                    ei.InstructorId=
+                    ((from per in entity.People
+                      where per.FirstName == fName && per.LastName == lName
+                        select per.PersonId).FirstOrDefault());
+                    ei.Date = date;
+                    ei.ACCEPTED = false;
+                    ei.LeaveApplied = false;
+                    entity.AddToEventInstructors(ei);
+                    entity.SaveChanges();
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+           
+        }
+
+
+        public List<SkillSet> GetSkillSet()
+        {
+            List<SkillSet> skillsets = new List<SkillSet>();
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    skillsets = (from Skillset in entity.SkillSets select Skillset).ToList();
+                }
+            }
+            catch (Exception)
+            {}
+            return skillsets;
+        }
 
 
     }

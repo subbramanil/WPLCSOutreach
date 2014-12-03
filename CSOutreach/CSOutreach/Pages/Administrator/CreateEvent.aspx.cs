@@ -104,10 +104,15 @@ namespace CSOutreach.Pages.Administrator
                     even.CreatedBy = (from per in entity.People
                         where per.Email == userName
                         select per.PersonId).FirstOrDefault();
-                    //even.CreatedBy = userName;
-
+                    //even.CreatedBy = userName
                     entity.AddToEvents(even);
                     entity.SaveChanges();
+                    int eventid=even.EventId;
+                    foreach (var item in lstSelectedInstructors.Items)
+                    {
+                        db.InsertEventInstructor(item.ToString(), even.StartDate,eventid);
+                        // Console.WriteLine(item.ToString());
+                    }
                     flag = true;
                     if (flag)
                     {

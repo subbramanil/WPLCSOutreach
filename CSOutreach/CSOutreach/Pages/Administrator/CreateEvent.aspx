@@ -174,8 +174,7 @@
                <br />
                <asp:LinkButton ID="btnAddInstructor" 
                         runat="server" 
-                        CssClass="btn btn-default" OnClick="btnAddInstructor_Click"    
-                        >
+                        CssClass="btn btn-default" OnClick="btnAddInstructor_Click">
                     <i aria-hidden="true" class="glyphicon glyphicon-plus"></i> Add Instructor
                 </asp:LinkButton>
              </div>
@@ -199,5 +198,36 @@
                 document.getElementById('othrLabel').style.display = "none";
             }
         }
+
+        $(document).ready(function () {
+
+            $("#pageform").validate({
+
+                rules: {
+                    "<%=txtEventName.UniqueID%>": { required: true },
+                    "<%=drpEventType.UniqueID%>": { required: true },
+                    "<%=EventRecurrance.UniqueID%>": { required: true },
+                    "<%=drpCourseType.UniqueID%>": { required: true },
+                    "<%=startDate.UniqueID%>": { required: true },
+                    "<%=endDate.UniqueID%>": { required: true },
+                    "<%=starttime.UniqueID%>": { required: true },
+                    "<%=endtime.UniqueID%>": { required: true },
+                    "<%=txtLocation.UniqueID%>": { required: true },
+                },
+
+                messages: {
+                    "<%=txtEventName.UniqueID%>": { required: "Please enter your Firstname" },
+                    "<%=drpEventType.UniqueID%>": { required: "Please enter your Lastname" },
+                    "<%=EventRecurrance.UniqueID%>": { required: "Please enter your Address" },
+                    "<%=drpCourseType.UniqueID%>": { required: "Please enter your City,State and Zip code" },
+                    "<%=startDate.UniqueID%>": { required: "Please enter your City,State and Zip code" },
+                    "<%=endDate.UniqueID%>": { required: "Please enter your City,State and Zip code" },
+                    "<%=starttime.UniqueID%>": { required: "Please enter your Contact phone number" },
+                    "<%=endtime.UniqueID%>": { required: "Please enter your Contact phone number" },
+                    "<%=txtLocation.UniqueID%>": { required: "Please enter your Contact phone number" },
+
+                },
+            });
+        });
 </script>
 </asp:Content>
