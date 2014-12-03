@@ -6,9 +6,9 @@
                      <div class="module">
                 <h5 class="disblock" style="cursor: default;">Upcomming Events</h5>
                 <div class="moduleBody">
-                    <asp:Repeater ID="menu_ul_1" runat="server">
+                    <asp:Repeater ID="mdlEvents" runat="server">
                         <HeaderTemplate>
-                            <ul class="my-menu">
+                            <ul>
                         </HeaderTemplate>
                         <ItemTemplate>
                             <li>
@@ -25,13 +25,24 @@
         </div>
             </div>
             <div class ="col-md-6">
-                <div id="eventSchedule">
+                <div id="courses">
                      <div class="module">
-                <h5 class="disblock" style="cursor: default;">Event Schedule</h5>
+                <h5 class="disblock" style="cursor: default;">Current Courses</h5>
                 <div class="moduleBody">
-                    <ul>
-                        <li>First Event</li>
-                    </ul>
+                     <asp:Repeater ID="mdlCourses" runat="server">
+                        <HeaderTemplate>
+                            <ul>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <li>
+                                    <a href='<%# Eval("CourseName")%>'>
+                                        <%# Eval("CourseName")%></a>
+                            </li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </ul>
+                        </FooterTemplate>
+                    </asp:Repeater>
                 </div>
             </div>
         </div>
@@ -44,7 +55,8 @@
                 <h5 class="disblock" style="cursor: default;">Announcements</h5>
                 <div class="moduleBody">
                     <ul>
-                        <li>First Event</li>
+                        <li>Welcome to the new CS Outreach website</li>
+                        <li>Please find all the naviation on the left hand side</li>
                     </ul>
                 </div>
             </div>
@@ -55,9 +67,20 @@
                      <div class="module">
                 <h5 class="disblock" style="cursor: default;">Instructors On Leave</h5>
                 <div class="moduleBody">
-                    <ul>
-                        <li>First Event</li>
-                    </ul>
+                    <asp:Repeater ID="mdlLeave" runat="server">
+                        <HeaderTemplate>
+                            <ul>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <li>
+                                    <a href='<%# Eval("FirstName")%>'>
+                                        <%# Eval("FirstName")%> <%# Eval("LastName")%></a>
+                            </li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            </ul>
+                        </FooterTemplate>
+                    </asp:Repeater>
                 </div>
             </div>
         </div>

@@ -13,12 +13,30 @@ namespace CSOutreach.Pages.Administrator {
     public partial class Dashboard {
         
         /// <summary>
-        /// menu_ul_1 control.
+        /// mdlEvents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater menu_ul_1;
+        protected global::System.Web.UI.WebControls.Repeater mdlEvents;
+        
+        /// <summary>
+        /// mdlCourses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater mdlCourses;
+        
+        /// <summary>
+        /// mdlLeave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater mdlLeave;
     }
 }

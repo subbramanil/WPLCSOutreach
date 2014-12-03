@@ -17,11 +17,21 @@ namespace CSOutreach.Pages.Administrator
         protected void Page_Load(object sender, EventArgs e)
         {
             AdminDBManager db = new AdminDBManager();
-            List<Event> upCommingEvents = db.GetUpcommingEvents();
-
             
-            menu_ul_1.DataSource = upCommingEvents;
-            menu_ul_1.DataBind();
+            //Get the upcomming events
+            List<Event> upCommingEvents = db.GetUpcommingEvents();
+            mdlEvents.DataSource = upCommingEvents;
+            mdlEvents.DataBind();
+
+            //Get the upcomming instructors on leave
+            List<Person> instructors = db.GetUpcommingInstructorsOnLeave();
+            mdlLeave.DataSource = instructors;
+            mdlLeave.DataBind();
+
+            //Get the current courses
+            List<Course> courses = db.GetCurrentCourses();
+            mdlCourses.DataSource = courses;
+            mdlCourses.DataBind();
         }
     }
 }
