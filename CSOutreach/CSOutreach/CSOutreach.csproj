@@ -80,6 +80,7 @@
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="Pages\Administrator\CreateEvent.aspx" />
     <Content Include="Pages\Administrator\Dashboard.aspx" />
+    <Content Include="Pages\Administrator\ManageStudent.aspx" />
     <Content Include="Pages\Administrator\ReviewApplicants.aspx" />
     <Content Include="Pages\Administrator\UpdateEvent.aspx" />
     <Content Include="Pages\Administrator\XmlFIles\AdministratorTreeItems.xml" />
@@ -130,6 +131,13 @@
     </Compile>
     <Compile Include="Pages\Administrator\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrator\ManageStudent.aspx.cs">
+      <DependentUpon>ManageStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrator\ManageStudent.aspx.designer.cs">
+      <DependentUpon>ManageStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Administrator\ReviewApplicants.aspx.cs">
       <DependentUpon>ReviewApplicants.aspx</DependentUpon>
