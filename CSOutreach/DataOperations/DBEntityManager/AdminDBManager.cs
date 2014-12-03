@@ -148,11 +148,11 @@ namespace DataOperations.DBEntityManager
             return course;
         }
 
-        public void InsertEventInstructor(String name,DateTime date,int eventid)
+        public void InsertEventInstructor(String name, DateTime date, int eventid)
         {
 
             //Data to insert in event table 
-               try
+            try
             {
                 using (DBCSEntities entity = new DBCSEntities())
                 {
@@ -161,10 +161,10 @@ namespace DataOperations.DBEntityManager
                     String fName = Name[0];
                     String lName = Name[1];
                     ei.EventId = eventid;
-                    ei.InstructorId=
+                    ei.InstructorId =
                     ((from per in entity.People
                       where per.FirstName == fName && per.LastName == lName
-                        select per.PersonId).FirstOrDefault());
+                      select per.PersonId).FirstOrDefault());
                     ei.Date = date;
                     ei.ACCEPTED = false;
                     ei.LeaveApplied = false;
@@ -177,8 +177,9 @@ namespace DataOperations.DBEntityManager
             {
                 Console.WriteLine(e);
             }
-           
         }
+
+           
 
 
         public List<SkillSet> GetSkillSet()
@@ -196,6 +197,24 @@ namespace DataOperations.DBEntityManager
             return skillsets;
         }
 
+        public List<EventInstructor> GetEventInstructors()
+        {
+            List<EventInstructor> eventInstructors = new List<EventInstructor>();
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    eventInstructors = (from eventInstructorTemp in entity.EventInstructors select eventInstructorTemp).ToList();
+                }
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+            return eventInstructors;
+        }
 
     }
 }
