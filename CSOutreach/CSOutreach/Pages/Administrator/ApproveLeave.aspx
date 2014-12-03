@@ -11,8 +11,40 @@
 
     <div class="form-Approve Leave">
         <div class="row">
-            <div class="form-group col-md-3">
+                           
+                <asp:Table ID="LeaveApplications" runat="server" CssClass="tablesorter table table-hover">
+             
+             
+              <asp:TableHeaderRow  TableSection="TableHeader">  
+                 <asp:TableHeaderCell>Event ID</asp:TableHeaderCell>
+                 <asp:TableHeaderCell>Instructor ID</asp:TableHeaderCell>
+                 <asp:TableHeaderCell>Event Date</asp:TableHeaderCell>
+                 <asp:TableHeaderCell>Leave Application</asp:TableHeaderCell>
+                 <asp:TableHeaderCell>Accept</asp:TableHeaderCell>
+                 <asp:TableHeaderCell>Reject</asp:TableHeaderCell>
+                     
+             </asp:TableHeaderRow> 
+             <asp:TableRow>
+                 <asp:TableCell> </asp:TableCell>
+                 
+                 <asp:TableCell> </asp:TableCell>
+                 
+                 <asp:TableCell> </asp:TableCell>
+                 
+                 <asp:TableCell> </asp:TableCell>
+                 
+                 <asp:TableCell>
+                     <input type="submit" class="btn btn-success" value="Accept"/>
+                 </asp:TableCell>
+                 
+                 <asp:TableCell>
+                     <input type="submit" class="btn btn-danger" value="Reject"/>
+                 </asp:TableCell>
+
+             </asp:TableRow>
+            
                 
-        </div>
+         </asp:Table>
+
     </div>
 </asp:Content>
