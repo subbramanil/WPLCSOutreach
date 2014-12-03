@@ -37,7 +37,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="AdminContent" runat="server">
       <div class="row">
-       <h3>Create Event</h3>
+       <h3>Review Applications</h3>
     </div>
      <div class="row">
             <hr class="col-md-12" />

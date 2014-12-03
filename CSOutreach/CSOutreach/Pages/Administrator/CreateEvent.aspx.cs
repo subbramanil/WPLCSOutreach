@@ -47,6 +47,9 @@ namespace CSOutreach.Pages.Administrator
             drpCourseType.DataSource = courseTypes;
             drpCourseType.DataBind();
 
+            List<DataOperations.DBEntity.Person> availInstructors = db.GetAvailableInstructors();
+            lstInstructor.DataSource = availInstructors;
+            lstInstructor.DataBind();
 
 
         }

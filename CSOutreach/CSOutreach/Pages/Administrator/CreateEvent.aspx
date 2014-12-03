@@ -60,7 +60,7 @@
     <div class="row">
         <div class="form-group col-md-4">
        <label>Event Name :</label> 
-      <asp:TextBox ID="txtEventName" class="form-control" runat="server" Width="444px"></asp:TextBox> 
+      <asp:TextBox ID="txtEventName" class="form-control" runat="server"></asp:TextBox> 
         </div>       
     </div>
 
@@ -70,14 +70,14 @@
                <asp:DropDownList ID="drpEventType" runat="server" class="form-control" DataTextField="TypeName" DataValueField="EventTypeId" onchange="showHideOthersTxt()" AppendDataBoundItems="True">
                </asp:DropDownList>
             </div>
-           <div class="form-group col-md-6" ID="othrLabel" style="display:none;">
+           <div class="form-group col-md-4" ID="othrLabel" style="display:none;">
                 <label for="">If selected Other:</label>
                 <asp:TextBox ID="TextBox5" class="form-control" runat="server"></asp:TextBox> 
             </div>
              </div>
 
         <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                  <label for="">Event Recurrance:</label>
                <asp:DropDownList ID="EventRecurrance" class="form-control" runat="server">
                    <asp:ListItem>---SELECT---</asp:ListItem>
@@ -91,7 +91,7 @@
         </div>
 
         <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="">Course Type:</label>
                <asp:DropDownList ID="drpCourseType" class="form-control" runat="server" DataTextField="CourseName">
                 </asp:DropDownList>
@@ -114,31 +114,31 @@
         </div>
     
      <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="">Start Date:</label>
                 <asp:TextBox ID="startDate" class="datepicker startdate form-control" runat="server"></asp:TextBox> 
             </div>
-         <div class="form-group col-md-6">
+         <div class="form-group col-md-4">
                 <label for="">End Date:</label>
                 <asp:TextBox ID="endDate" class="datepicker enddate form-control" runat="server"></asp:TextBox> 
             </div>
         </div>
     <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="">Start Time:</label>
                 <asp:TextBox id="starttime" class="timepicker-default form-control" runat="server"></asp:TextBox> 
             </div>
-         <div class="form-group col-md-6">
+         <div class="form-group col-md-4">
                 <label for="">End Time:</label>
                 <asp:TextBox ID="endtime"  CssClass="timepicker-default form-control" runat="server"></asp:TextBox> 
             </div>
         </div>
      <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="">Location:</label>
                 <asp:TextBox ID="txtLocation" class="form-control" runat="server"></asp:TextBox> 
             </div>
-         <div class="form-group col-md-6">
+         <div class="form-group col-md-4">
                 <label for="">Description:</label>
                 <asp:TextBox ID="txtDescription" class="form-control" runat="server"></asp:TextBox> 
             </div>
@@ -148,12 +148,15 @@
             <hr class="col-md-12" />
         </div>
        <div class="row">
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                  <label for="">Instructors:</label>
-              
-                <asp:ListBox ID="ListBox1" runat="server" CssClass="form-control" >
-                    <asp:ListItem>Sample Instructor Set</asp:ListItem>
-                </asp:ListBox>
+                <asp:Repeater ID="lstInstructor" runat="server">
+                    <HeaderTemplate><select class="form-control" name="sometext" multiple="multiple"></HeaderTemplate>
+                    <ItemTemplate>
+                        <option  value="<%# Eval("PersonId")%>"><%# Eval("FirstName")%> <%# Eval("LastName")%></option>
+                    </ItemTemplate>
+                   <FooterTemplate></select></FooterTemplate> 
+                </asp:Repeater>
             </div>
 
            <div class="form-group col-md-3">

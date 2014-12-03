@@ -130,13 +130,13 @@ namespace CSOutreach.Pages.Administrator {
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
-        /// ListBox1 control.
+        /// lstInstructor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox ListBox1;
+        protected global::System.Web.UI.WebControls.Repeater lstInstructor;
         
         /// <summary>
         /// btnCreateEvent control.
