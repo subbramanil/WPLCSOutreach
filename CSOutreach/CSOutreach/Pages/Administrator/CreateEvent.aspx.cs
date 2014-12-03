@@ -28,7 +28,15 @@ namespace CSOutreach.Pages.Administrator
             //string password = user.encrypt("abc");
             //console.writeline(password);
 
-
+            //To hide the success and error messages initially
+            ContentPlaceHolder cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
+            HtmlGenericControl divsuccess = cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
+            if (divsuccess != null)
+                divsuccess.Style["display"] = "none";
+            ContentPlaceHolder ce = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
+            HtmlGenericControl diverror = ce.FindControl("AdminContent").FindControl("diverror") as HtmlGenericControl;
+            if (diverror != null)
+                diverror.Style["display"] = "none";
           
 
             List<EventType> eventTypes = db.GetEventTypes();
@@ -103,15 +111,21 @@ namespace CSOutreach.Pages.Administrator
                     flag = true;
                     if (flag)
                     {
-                        HtmlGenericControl divsuccess =
-                            Master.FindControl("BodyContent").FindControl("divsuccess") as HtmlGenericControl;
-                        flag = false;
+                        ContentPlaceHolder cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
+                        HtmlGenericControl divsuccess = cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
+                        if (divsuccess != null)
+                            divsuccess.Style["display"] = "block";
                     }
                 }
             }
 
-            catch (Exception)
+            catch (Exception k)
             {
+                Console.WriteLine(k.ToString());
+                ContentPlaceHolder ce = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
+                HtmlGenericControl diverror = ce.FindControl("AdminContent").FindControl("diverror") as HtmlGenericControl;
+                if (diverror != null)
+                    diverror.Style["display"] = "block";
             }
         }
 
