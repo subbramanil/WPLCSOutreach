@@ -55,7 +55,7 @@ namespace CSOutreach.Pages.Administrator
             drpCourseType.DataSource = courseTypes;
             drpCourseType.DataBind();
 
-            List<DataOperations.DBEntity.Person> availInstructors = db.GetAvailableInstructors();
+            List<String> availInstructors = db.GetAvailableInstructors();
             lstInstructor.DataSource = availInstructors;
             lstInstructor.DataBind();
 
@@ -128,6 +128,34 @@ namespace CSOutreach.Pages.Administrator
                     diverror.Style["display"] = "block";
             }
         }
+
+        protected void btnAddInstructor_Click(object sender, EventArgs e)
+        {
+
+            List<ListItem> selectedValues = (from item in lstInstructor.Items.Cast<ListItem>()
+                                                 where item.Selected
+                                                 select item).ToList();
+            foreach (ListItem value in selectedValues) {
+                lstSelectedInstructors.Items.Add(value);
+                lstInstructor.Items.Remove(value);
+            
+            }
+        }
+
+        protected void btnRemoveInstructor_Click(object sender, EventArgs e)
+        {
+            List<ListItem> selectedValues = (from item in lstSelectedInstructors.Items.Cast<ListItem>()
+                                             where item.Selected
+                                             select item).ToList();
+            foreach (ListItem value in selectedValues)
+            {
+                lstSelectedInstructors.Items.Remove(value);
+                lstInstructor.Items.Add(value);
+
+            }
+        }
+
+
 
      
 

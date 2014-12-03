@@ -68,18 +68,20 @@ namespace DataOperations.DBEntityManager
             return events;
         }
 
-        public List<Person> GetAvailableInstructors()
+        public List<String> GetAvailableInstructors()
         {
             DateTime thisDay = DateTime.Today;
 
             //Using this because there are no events that will start from today
             DateTime someDay = new DateTime(2014, 9, 2);
-            List<Person> instructor = new List<Person>();
+            List<String> instructor = new List<String>();
             try
             {
                 using (DBCSEntities entity = new DBCSEntities())
                 {
-                    instructor = (from instructorTemp in entity.People where instructorTemp.Role=="Instructor" select instructorTemp).ToList();
+                    instructor = (from instructorTemp in entity.People
+                                  where instructorTemp.Role=="Instructor" 
+                                  select instructorTemp.FirstName+" "+instructorTemp.LastName).ToList();
                 }
             }
             catch (Exception)

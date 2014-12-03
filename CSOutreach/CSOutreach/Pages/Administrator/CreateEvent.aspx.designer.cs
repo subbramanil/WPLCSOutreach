@@ -130,13 +130,40 @@ namespace CSOutreach.Pages.Administrator {
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
+        /// lstSelectedInstructors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lstSelectedInstructors;
+        
+        /// <summary>
+        /// btnRemoveInstructor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnRemoveInstructor;
+        
+        /// <summary>
         /// lstInstructor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater lstInstructor;
+        protected global::System.Web.UI.WebControls.ListBox lstInstructor;
+        
+        /// <summary>
+        /// btnAddInstructor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnAddInstructor;
         
         /// <summary>
         /// btnCreateEvent control.

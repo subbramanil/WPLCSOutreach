@@ -148,21 +148,38 @@
             <hr class="col-md-12" />
         </div>
        <div class="row">
-            <div class="form-group col-md-4">
-                 <label for="">Instructors:</label>
-                <asp:Repeater ID="lstInstructor" runat="server">
-                    <HeaderTemplate><select class="form-control" name="sometext" multiple="multiple"></HeaderTemplate>
-                    <ItemTemplate>
-                        <option  value="<%# Eval("PersonId")%>"><%# Eval("FirstName")%> <%# Eval("LastName")%></option>
-                    </ItemTemplate>
-                   <FooterTemplate></select></FooterTemplate> 
-                </asp:Repeater>
-            </div>
+           <div class="form-group col-md-4">
+               <label for="">Selected Instructors:</label><br />
+               <asp:ListBox ID="lstSelectedInstructors"  SelectionMode="Multiple" CssClass="form-control" runat="server">
+                   
+               </asp:ListBox>
+           </div>
+           
+           <div class="form-group col-md-2">
+               <br /> 
+               <asp:LinkButton ID="btnRemoveInstructor" 
+                        runat="server" 
+                        CssClass="btn btn-default" OnClick="btnRemoveInstructor_Click"    
+                        >
+                    <i aria-hidden="true" class="glyphicon glyphicon-minus"></i> Remove
+                </asp:LinkButton>
+           </div>
 
-           <div class="form-group col-md-3">
+             <div class="form-group col-md-4">
+
+                 <label for="">Available Instructors:</label><br />
+                 <asp:ListBox ID="lstInstructor" SelectionMode="Multiple" CssClass="form-control" runat="server"></asp:ListBox>
+            </div>
+           <div class="form-group col-md-2">
                <br />
-               <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Instructor</button>
-                    </div>
+               <asp:LinkButton ID="btnAddInstructor" 
+                        runat="server" 
+                        CssClass="btn btn-default" OnClick="btnAddInstructor_Click"    
+                        >
+                    <i aria-hidden="true" class="glyphicon glyphicon-plus"></i> Add Instructor
+                </asp:LinkButton>
+             </div>
+           
 
         </div>
 
