@@ -83,6 +83,7 @@
     <Content Include="Pages\Administrator\ManageStudent.aspx" />
     <Content Include="Pages\Administrator\ReviewApplicants.aspx" />
     <Content Include="Pages\Administrator\UpdateEvent.aspx" />
+    <Content Include="Pages\Administrator\ApproveLeave.aspx" />
     <Content Include="Pages\Administrator\XmlFIles\AdministratorTreeItems.xml" />
     <Content Include="Pages\Common\AboutUs.aspx" />
     <Content Include="css\bootstrap-theme.css" />
@@ -152,6 +153,13 @@
     </Compile>
     <Compile Include="Pages\Administrator\UpdateEvent.aspx.designer.cs">
       <DependentUpon>UpdateEvent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Administrator\ApproveLeave.aspx.cs">
+      <DependentUpon>ApproveLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Administrator\ApproveLeave.aspx.designer.cs">
+      <DependentUpon>ApproveLeave.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Common\AboutUs.aspx.cs">
       <DependentUpon>AboutUs.aspx</DependentUpon>
