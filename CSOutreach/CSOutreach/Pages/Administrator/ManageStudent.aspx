@@ -23,7 +23,7 @@
             <hr class="col-md-6" />
         </div>
 
-        <asp:Button runat ="server"  CssClass="btn btn-primary" Text="Search"/>
+        <asp:Button runat ="server"  CssClass="btn btn-primary" Text="Search" OnClick="Unnamed1_Click"/>
         <div class="row">
             <hr class="col-md-6" />
         </div>

@@ -23,7 +23,11 @@
                             <asp:TreeNode  Text="Manage Instructors" NavigateUrl="~/Pages/Administrator/ManageInstructor.aspx" />
                             <asp:TreeNode  Text="Leave Approval" NavigateUrl="~/Pages/Administrator/ApproveLeave.aspx" />
                         </asp:TreeNode>
-                    
+                         <asp:TreeNode Text="Student">
+                            <asp:TreeNode  Text="Manage Student" NavigateUrl="~/Pages/Administrator/ManageStudent.aspx" />
+                            
+                        
+                        </asp:TreeNode>
                     </Nodes>
                 </asp:TreeView>
 
