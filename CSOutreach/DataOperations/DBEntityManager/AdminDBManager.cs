@@ -216,5 +216,48 @@ namespace DataOperations.DBEntityManager
             return eventInstructors;
         }
 
+        public String UpdateReviewApplicantsAccept(int instructorID)
+        {
+            Instructor instructors = new Instructor();
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    instructors = (from instructorTemp in entity.Instructors where instructorTemp.InstructorId == instructorID select instructorTemp).FirstOrDefault<Instructor>();
+                    instructors.canTeach = true;
+                    entity.SaveChanges();
+
+                }
+            }
+            catch (Exception)
+            {
+                return "failed";
+
+            }
+
+            return "success";
+        }
+
+        public String UpdateReviewApplicantsReject(int instructorID)
+        {
+            Instructor instructors = new Instructor();
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    instructors = (from instructorTemp in entity.Instructors where instructorTemp.InstructorId == instructorID select instructorTemp).FirstOrDefault<Instructor>();
+                    instructors.canTeach = false;
+                    entity.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return "failed";
+
+            }
+
+            return "success";
+        }
+
     }
 }

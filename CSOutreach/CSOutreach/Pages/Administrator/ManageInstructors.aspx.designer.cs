@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CSOutreach.Pages {
+namespace CSOutreach.Pages.Administrator {
     
     
-    public partial class ReviewApplicants {
+    public partial class ManageInstructors {
         
         /// <summary>
         /// ApplicantName control.

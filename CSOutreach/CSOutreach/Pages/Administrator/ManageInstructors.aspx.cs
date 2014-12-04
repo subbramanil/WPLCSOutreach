@@ -12,9 +12,9 @@ using System.Web.ModelBinding;
 using DataOperations.DBEntity;
 using DataOperations.DBEntityManager;
 
-namespace CSOutreach.Pages
+namespace CSOutreach.Pages.Administrator
 {
-    public partial class ReviewApplicants : System.Web.UI.Page
+    public partial class ManageInstructors : System.Web.UI.Page
     {
         AdminDBManager db = new AdminDBManager();
 
@@ -46,7 +46,7 @@ namespace CSOutreach.Pages
                     var query = from person in entity.People
                                 join instructor in entity.Instructors on person.PersonId equals instructor.InstructorId
                                 //join skill in entity.SkillSets on instructor.InstructorId equals 
-                                where person.FirstName == even.FirstName && instructor.canTeach == false
+                                where person.FirstName == even.FirstName && instructor.canTeach == true
                                 select new { firstname = person.FirstName, lastname = person.LastName, contactnum = person.ContactNumber, hascar = instructor.hasCar, joinedUtd = instructor.JoinedUtd, instructorID = instructor.InstructorId };
                     ReviewApplcntRepeater.DataSource = query;
                     ReviewApplcntRepeater.DataBind();
@@ -56,7 +56,7 @@ namespace CSOutreach.Pages
                     var query = from person in entity.People
                                 join instructor in entity.Instructors on person.PersonId equals instructor.InstructorId
                                 //join skill in entity.SkillSets on instructor.InstructorId equals 
-                                where instructor.JoinedUtd == instruct.JoinedUtd && instructor.canTeach == false
+                                where instructor.JoinedUtd == instruct.JoinedUtd && instructor.canTeach == true
                                 select new { firstname = person.FirstName, lastname = person.LastName, contactnum = person.ContactNumber, hascar = instructor.hasCar, joinedUtd = instructor.JoinedUtd, instructorID = instructor.InstructorId };
                     ReviewApplcntRepeater.DataSource = query;
                     ReviewApplcntRepeater.DataBind();
@@ -66,7 +66,7 @@ namespace CSOutreach.Pages
                     var query = from person in entity.People
                                 join instructor in entity.Instructors on person.PersonId equals instructor.InstructorId
                                 //join skill in entity.SkillSets on instructor.InstructorId equals 
-                                where instructor.canTeach == false
+                                where instructor.canTeach == true
                                 select new { firstname = person.FirstName, lastname = person.LastName, contactnum = person.ContactNumber, hascar = instructor.hasCar, joinedUtd = instructor.JoinedUtd, instructorID = instructor.InstructorId };
                     ReviewApplcntRepeater.DataSource = query;
                     ReviewApplcntRepeater.DataBind();
@@ -76,7 +76,7 @@ namespace CSOutreach.Pages
                     var query = from person in entity.People
                                 join instructor in entity.Instructors on person.PersonId equals instructor.InstructorId
                                 //join skill in entity.SkillSets on instructor.InstructorId equals 
-                                where person.FirstName == even.FirstName && instructor.JoinedUtd == instruct.JoinedUtd && instructor.canTeach == false
+                                where person.FirstName == even.FirstName && instructor.JoinedUtd == instruct.JoinedUtd && instructor.canTeach == true
                                 select new { firstname = person.FirstName, lastname = person.LastName, contactnum = person.ContactNumber, hascar = instructor.hasCar, joinedUtd = instructor.JoinedUtd, instructorID = instructor.InstructorId };
                     ReviewApplcntRepeater.DataSource = query;
                     ReviewApplcntRepeater.DataBind();
@@ -85,19 +85,7 @@ namespace CSOutreach.Pages
             }
         }
 
-        protected void btnAccept_Click(object sender, EventArgs e)
-        {
-            foreach (RepeaterItem aItem in ReviewApplcntRepeater.Items)
-            {
-                CheckBox chkInstructor = (CheckBox)aItem.FindControl("checkbx");
-                if (chkInstructor.Checked)
-                {
-                    db.UpdateReviewApplicantsAccept(Convert.ToInt32(chkInstructor.Attributes["value"]));
-                }
-            }
-        }
-
-        /*protected void btnReject_Click(object sender, EventArgs e)
+        protected void btnReject_Click1(object sender, EventArgs e)
         {
             foreach (RepeaterItem aItem in ReviewApplcntRepeater.Items)
             {
@@ -107,7 +95,6 @@ namespace CSOutreach.Pages
                     db.UpdateReviewApplicantsReject(Convert.ToInt32(chkInstructor.Attributes["value"]));
                 }
             }
-        }*/
-
+        }
     }
 }
