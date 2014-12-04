@@ -20,10 +20,11 @@ namespace CSOutreach.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*List<SkillSet> skillsets = db.GetSkillSet();
-            ListBox1.AppendDataBoundItems = true;
-            ListBox1.DataSource = skillsets;
-            ListBox1.DataBind();*/
+            ContentPlaceHolder cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
+            HtmlGenericControl divsuccess = cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
+            if (divsuccess != null)
+                divsuccess.Style["display"] = "none";
+
         }
 
         protected void btnSearchApplcnt_Click(object sender, EventArgs e)
@@ -95,6 +96,11 @@ namespace CSOutreach.Pages
                     db.UpdateReviewApplicantsAccept(Convert.ToInt32(chkInstructor.Attributes["value"]));
                 }
             }
+
+            ContentPlaceHolder cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
+            HtmlGenericControl divsuccess = cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
+            if (divsuccess != null)
+            divsuccess.Style["display"] = "block";
         }
 
         /*protected void btnReject_Click(object sender, EventArgs e)

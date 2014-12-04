@@ -31,6 +31,13 @@
 <div class="row">
 <hr class="col-md-12" />
 </div>
+     <div class="row">
+       <div class="alert alert-success" id="divsuccess" runat="server">
+           <span class="glyphicon glyphicon-ok"></span><label>Applicant Updated Successfully.</label>
+       </div>
+     </div>
+ 
+
 <div class="row">
 <div class="form-group col-md-3">
 <label>Applicant Name :</label>

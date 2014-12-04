@@ -55,7 +55,11 @@
        </div>
      </div>
  
-
+      <div class="row">
+       <div class="alert alert-danger" id="diverror" runat="server">
+           <span class="glyphicon glyphicon-exclamation-sign"></span><label> Error occured while creating event</label>
+       </div>
+     </div>
 
     <div class="row">
         <div class="form-group col-md-3">
@@ -237,15 +241,15 @@
                 },
 
                 messages: {
-                    "<%=txtEventName.UniqueID%>": { required: "Please enter your Firstname" },
-                    "<%=drpEventType.UniqueID%>": { required: "Please enter your Lastname" },
-                    "<%=EventRecurrance.UniqueID%>": { required: "Please enter your Address" },
-                    "<%=drpCourseType.UniqueID%>": { required: "Please enter your City,State and Zip code" },
-                    "<%=startDate.UniqueID%>": { required: "Please enter your City,State and Zip code" },
-                    "<%=endDate.UniqueID%>": { required: "Please enter your City,State and Zip code" },
-                    "<%=starttime.UniqueID%>": { required: "Please enter your Contact phone number" },
-                    "<%=endtime.UniqueID%>": { required: "Please enter your Contact phone number" },
-                    "<%=txtLocation.UniqueID%>": { required: "Please enter your Contact phone number" },
+                    "<%=txtEventName.UniqueID%>": { required: "Please enter Event Name" },
+                    "<%=drpEventType.UniqueID%>": { required: "Please enter Event Type" },
+                    "<%=EventRecurrance.UniqueID%>": { required: "Please enter Event Recurrance" },
+                    "<%=drpCourseType.UniqueID%>": { required: "Please enter Course Type" },
+                    "<%=startDate.UniqueID%>": { required: "Please enter start date" },
+                    "<%=endDate.UniqueID%>": { required: "Please enter end date" },
+                    "<%=starttime.UniqueID%>": { required: "Please enter start time" },
+                    "<%=endtime.UniqueID%>": { required: "Please enter end time" },
+                    "<%=txtLocation.UniqueID%>": { required: "Please enter Location" },
 
                 },
                 errorClass: "has-error",

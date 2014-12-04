@@ -13,6 +13,15 @@ namespace CSOutreach.Pages.Administrator {
     public partial class ManageInstructors {
         
         /// <summary>
+        /// divsuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divsuccess;
+        
+        /// <summary>
         /// ApplicantName control.
         /// </summary>
         /// <remarks>
