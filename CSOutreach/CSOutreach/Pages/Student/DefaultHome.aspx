@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Pages/MasterPages/StudentMasterPage.Master" AutoEventWireup="true" CodeBehind="DefaultHome.aspx.cs" Inherits="CSOutreach.Pages.DefaultHome" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="StudentContent" runat="server">
-    
+
     <style>
         .containerPortal {
             padding: 18px 24px;
@@ -62,6 +62,11 @@
         .disblock {
             display: block;
         }
+
+        .modulesubcontent {
+            color: #9f9797;
+            font-style: italic;
+        }
     </style>
     <div class="containerPortal">
         <div id="registeredEvents">
@@ -85,18 +90,21 @@
         </div>
         <div id="UpComingEvents">
             <div class="module">
-                <h5 class="disblock" style="cursor: default;">Upcoming Events
+                <h5 class="disblock" style="cursor: default;">Upcoming Events Of Your Interest
                 </h5>
                 <div class="moduleBody">
                     <ul class="ulEvent">
-                        <li>
-                            <a href="#">Event1</a>
-                            <div>event info</div>
-                        </li>
-                        <li>
-                            <a href="#">Event2</a>
-                            <div>event info</div>
-                        </li>
+                        <asp:Repeater ID="repUpcomingEvents" runat="server" OnItemDataBound="repUpcomingEvents_ItemDataBound">
+                            <ItemTemplate>
+                                <li><a href="#"><%# DataBinder.Eval(Container.DataItem, "Name")%></a></li>
+                                <div>
+                                    <span class="modulesubcontent">Starts on </span>
+                                    <asp:Literal ID="ltrlUpcomingDate" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "StartDate")).ToString("MMM dd, yyyy")%>' ></asp:Literal>
+                                </div>
+                            </ItemTemplate>
+
+                        </asp:Repeater>
+
                     </ul>
                 </div>
             </div>
@@ -109,14 +117,21 @@
                 </h5>
                 <div class="moduleBody">
                     <ul class="ulEvent">
-                        <li>
-                            <a href="#">Event1</a>
-                            <div>event info</div>
-                        </li>
-                        <li>
-                            <a href="#">Event2</a>
-                            <div>event info</div>
-                        </li>
+                        <asp:Repeater ID="repEventSchedule" runat="server" OnItemDataBound="repEventSchedule_ItemDataBound">
+                            <ItemTemplate>
+                                <li><a href="#"><%# DataBinder.Eval(Container.DataItem, "Name")%></a></li>
+                                <div>
+                                    <span class="modulesubcontent">Starts on </span>
+                                    <asp:Literal ID="ltrlDate" runat="server"></asp:Literal>
+                                    <span class="modulesubcontent">from </span>
+                                    <asp:Literal ID="ltrlTimings" runat="server"></asp:Literal><br />
+                                    <span class="modulesubcontent">at </span>
+                                    <asp:Literal ID="ltrlLocation" runat="server"></asp:Literal>
+
+                                </div>
+                            </ItemTemplate>
+
+                        </asp:Repeater>
                     </ul>
                 </div>
             </div>
@@ -127,14 +142,14 @@
                 </h5>
                 <div class="moduleBody">
                     <ul class="ulEvent">
-                        <li>
-                            <a href="#">Event1</a>
-                            <div>event info</div>
-                        </li>
-                        <li>
-                            <a href="#">Event2</a>
-                            <div>event info</div>
-                        </li>
+                        <li><a href="#">
+                            <asp:Literal runat="server" ID="ltrlPaperWorkComplete"></asp:Literal></a></li>
+                        <asp:Repeater ID="repAnnouncements" runat="server" OnItemDataBound="repAnnouncements_ItemDataBound">
+                            <ItemTemplate>
+                            </ItemTemplate>
+
+                        </asp:Repeater>
+
                     </ul>
                 </div>
             </div>

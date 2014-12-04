@@ -28,7 +28,8 @@ namespace CSOutreach
         public enum SessionVariable
         {
             USERNAME,
-            ROLE
+            ROLE,
+            USERID
         }
         /// <summary>
         /// Returns true if a user of any role is logged in.
@@ -79,6 +80,24 @@ namespace CSOutreach
             // TODO: Add real checking.
             return true;
         }
+
+        /// <summary>
+        /// Retrieves the userid from the Session.
+        /// </summary>
+        public static Int32 UserId
+        {
+            get
+            {
+                Int32 userid = Convert.ToInt32(HttpContext.Current.Session[SessionVariable.USERID.ToString()]);
+                if (userid != null)
+                {
+                    return userid;
+                }
+                else { return 0; }
+            }
+        }
+
+
 
         /// <summary>
         /// Attempt login with user credentials.
