@@ -259,5 +259,27 @@ namespace DataOperations.DBEntityManager
             return "success";
         }
 
+        public void UpdateLeaveApplicationsApprove(int EventInstructorID)
+        {
+            EventInstructor eventInstructor = new EventInstructor();
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    eventInstructor = (from eventInstructorTemp in entity.EventInstructors
+                                       where eventInstructorTemp.EventInstructorId == EventInstructorID 
+                                       select eventInstructorTemp).FirstOrDefault();
+                    eventInstructor.ACCEPTED = true;
+                    entity.SaveChanges();
+
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+        }
+
+
     }
 }
