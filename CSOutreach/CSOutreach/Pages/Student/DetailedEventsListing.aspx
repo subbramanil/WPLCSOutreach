@@ -9,11 +9,11 @@
     </script>
     <div>
         <asp:Label ID="CourseLabel" runat="server" Text="Course Name"></asp:Label>
-        <asp:DropDownList runat="server" ID="FilterList"></asp:DropDownList>
+        <asp:DropDownList runat="server" ID="CourseFilterList"></asp:DropDownList>
     </div>
     <div>
 
-        <asp:Repeater ID="EventDetailsRepeater" runat="server">
+        <asp:Repeater ID="EventDetailsRepeater" runat="server" OnItemCommand="EventDetailsRepeater_ItemCommand">
             <HeaderTemplate>
                 <table id="DataEventsTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                     <thead>
@@ -30,10 +30,14 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <tr>
+
                     <td>
                         <asp:Label ID="LabelNo" runat="server" Text='<%# Eval("EventNo") %>'></asp:Label></td>
                     <td>
-                        <asp:Label ID="LabelEvent" runat="server" Text='<%# Eval("EventName") %>'></asp:Label></td>
+                        <asp:Label ID="LabelEvent" runat="server" Text='<%# Eval("EventName") %>'></asp:Label>
+                        <asp:Label ID="EventID" runat="server" Text='<%# Eval("EventID") %>' Visible="false"></asp:Label>
+
+                    </td>
                     <td>
                         <asp:Label ID="LabelDate" runat="server" Text='<%# Eval("EventStartDate") %>'></asp:Label></td>
                     <td>
