@@ -37,7 +37,7 @@
         });
 
 
-        
+
 
     </script>
 </asp:Content>
@@ -58,7 +58,7 @@
 
 
     <div class="row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
        <label>Event Name :</label> 
       <asp:TextBox ID="txtEventName" class="form-control" runat="server"></asp:TextBox> 
         </div>       
@@ -80,7 +80,7 @@
             <div class="form-group col-md-4">
                  <label for="">Event Recurrance:</label>
                <asp:DropDownList ID="EventRecurrance" class="form-control" runat="server">
-                   <asp:ListItem>---SELECT---</asp:ListItem>
+                   <asp:ListItem Value="0">---SELECT---</asp:ListItem>
                    <asp:ListItem>1 DAY</asp:ListItem>
                    <asp:ListItem>2 DAY</asp:ListItem>
                    <asp:ListItem>3 DAY</asp:ListItem>
@@ -199,15 +199,36 @@
             }
         }
 
+
+
         $(document).ready(function () {
+
+
+
+            jQuery.validator.addMethod("drpEventType", function (value, element) {
+                if (document.getElementById('<%=drpEventType.ClientID%>').value == "9999") return false;
+                else return true;
+            }, "Please select value for event type dropdown.");
+
+            jQuery.validator.addMethod("EventRecurrance", function (value, element) {
+                if (document.getElementById('<%=EventRecurrance.ClientID%>').value == "0") return false;
+                else return true;
+            }, "Please select value for event recurrance type dropdown.");
+
+            jQuery.validator.addMethod("drpCourseType", function (value, element) {
+                if (document.getElementById('<%=drpCourseType.ClientID%>').value == "9999") return false;
+                else return true;
+            }, "Please select value for event recurrance type dropdown.");
+
+
 
             $("#pageform").validate({
 
                 rules: {
                     "<%=txtEventName.UniqueID%>": { required: true },
-                    "<%=drpEventType.UniqueID%>": { required: true },
-                    "<%=EventRecurrance.UniqueID%>": { required: true },
-                    "<%=drpCourseType.UniqueID%>": { required: true },
+                    "<%=drpEventType.UniqueID%>": { required: true, drpEventType: true },
+                    "<%=EventRecurrance.UniqueID%>": { required: true, EventRecurrance: true },
+                    "<%=drpCourseType.UniqueID%>": { required: true, drpCourseType: true },
                     "<%=startDate.UniqueID%>": { required: true },
                     "<%=endDate.UniqueID%>": { required: true },
                     "<%=starttime.UniqueID%>": { required: true },
@@ -227,6 +248,7 @@
                     "<%=txtLocation.UniqueID%>": { required: "Please enter your Contact phone number" },
 
                 },
+                errorClass: "has-error",
             });
         });
 </script>

@@ -40,16 +40,18 @@ namespace CSOutreach.Pages.Administrator
           
 
             List<EventType> eventTypes = db.GetEventTypes();
-            drpEventType.Items.Add("---SELECT---");
+            ListItem lst = new ListItem("---SELECT---", "9999");
+            drpEventType.Items.Add(lst);
             drpEventType.AppendDataBoundItems = true;
             drpEventType.DataSource = eventTypes;
             drpEventType.DataBind();
-            ListItem lst = new ListItem("OTHER", "0");
+            lst = new ListItem("OTHER", "0");
             drpEventType.Items.Add(lst);
 
-       
-            
-            drpCourseType.Items.Add("---SELECT---");
+
+
+            lst = new ListItem("---SELECT---", "9999");
+            drpCourseType.Items.Add(lst);
             drpCourseType.AppendDataBoundItems = true;
             List<Course> courseTypes = db.GetCourseTypes();
             drpCourseType.DataSource = courseTypes;
