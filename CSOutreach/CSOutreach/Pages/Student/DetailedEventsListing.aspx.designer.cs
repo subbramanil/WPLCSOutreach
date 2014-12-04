@@ -13,6 +13,24 @@ namespace CSOutreach.Pages.Student {
     public partial class DetailedEventsListing {
         
         /// <summary>
+        /// CourseLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CourseLabel;
+        
+        /// <summary>
+        /// FilterList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList FilterList;
+        
+        /// <summary>
         /// EventDetailsRepeater control.
         /// </summary>
         /// <remarks>

@@ -1,7 +1,11 @@
-﻿using StudentEntity.CrossPageInformation;
+﻿using DataOperations.DBEntity;
+using DataOperations.DBEntityManager;
+using StudentEntity.CrossPageInformation;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Objects;
+using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,11 +15,14 @@ namespace CSOutreach.Pages.Student
 {
 
     //This page temporarily inherits System.Web.UI.page as against StudentBasePage
-    public partial class DetailedEventsListing : Page
+    public partial class DetailedEventsListing : StudentBasePage
     {
         private CrossPageDetailedEventsListing CrossPageInfo;
+
+        StudentDBManager StudentDB;
         protected void Page_Load(object sender, EventArgs e)
         {
+
 
             Initialize();
         }
@@ -23,14 +30,68 @@ namespace CSOutreach.Pages.Student
 
         private void Initialize()
         {
+            StudentDB = new StudentDBManager();
             if (!IsPostBack)
             {
                 //Temporarily disabled for demo purpose
-              //  CrossPageInfo = this.CrossPageInformation as CrossPageDetailedEventsListing;
+                //  CrossPageInfo = this.CrossPageInformation as CrossPageDetailedEventsListing;
+
+
+
                 RenderPageData();
             }
-           
+
         }
+
+        private List<Course> ApplicableCourses
+        {
+            get
+            {
+
+
+                List<Course> FilteredCourses = new List<Course>();
+                int StudentLevel = this.StudentLevel;
+                ObjectSet<Course> AllCourses = StudentDB.AllCourses;
+                foreach (Course CourseElement in AllCourses)
+                {
+                    if (CourseElement.CourseLevel <= StudentLevel)
+                    {
+                        FilteredCourses.Add(CourseElement);
+                    }
+                }
+
+                return FilteredCourses;
+            }
+        }
+
+        private List<Event> ApplicableEvents
+        {
+            get
+            {
+                List<Event> FilteredEvents = new List<Event>();
+                foreach (Course CourseElement in ApplicableCourses)
+                {
+                    foreach (Event EventElement in CourseElement.Events)
+                    {
+                        bool EventFound = false;
+                        foreach (StudentEvent StudentEventElement in this.StudentEvents)
+                        {
+                            if (StudentEventElement.EventId == EventElement.EventId)
+                            {
+                                EventFound = true;
+                                break;
+                            }
+                        }
+                        if (!EventFound)
+                        {
+                            FilteredEvents.Add(EventElement);
+                        }
+                    }
+                }
+                return FilteredEvents;
+            }
+        }
+
 
         private void RenderPageData()
         {
@@ -42,21 +103,22 @@ namespace CSOutreach.Pages.Student
             DataTable EventListingsTable = new DataTable();
             EventListingsTable.Columns.Add("EventNo");
             EventListingsTable.Columns.Add("EventName");
-            EventListingsTable.Columns.Add("EventDate");
-            EventListingsTable.Columns.Add("EventTime");
-            EventListingsTable.Columns.Add("EventVenue");
-            for (int i = 1; i <= 20; ++i)
+            EventListingsTable.Columns.Add("EventStartDate");
+            EventListingsTable.Columns.Add("EventStartTime");
+            int Count=0;
+            foreach (Event EventData in ApplicableEvents)
             {
-                DataRow row = EventListingsTable.NewRow();
-                row[0] = i.ToString();
-                row[1] = "Sample Event "+i.ToString();
-                row[2] = DateTime.Today.Date.ToString("MM-dd-yyyy");
-                row[3] = DateTime.Now.ToString("H:mm");
-                row[4] = "University of Texas at Dallas";
-                EventListingsTable.Rows.Add(row);
+                ++Count;
+                DataRow Drow = EventListingsTable.NewRow();
+                Drow[0] = Count.ToString();
+                Drow[1] = EventData.Name;
+                Drow[2] = EventData.StartDate.ToString("MM-dd-yyyy");
+                Drow[3] = EventData.StartTime.ToString(@"hh\:mm");
+                EventListingsTable.Rows.Add(Drow);
             }
             EventDetailsRepeater.DataSource = EventListingsTable;
             EventDetailsRepeater.DataBind();
         }
+
     }
 }

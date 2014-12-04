@@ -6,6 +6,7 @@ using StudentEntity.PageTraversal;
 using StudentEntity.Session;
 using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Web;
@@ -26,9 +27,9 @@ namespace CSOutreach.Pages.Student
 
         private bool AuthenticateUser()
         {
-            if (Session["USERNAME"] != null)
+            if (Session[Authentication.SessionVariable.USERNAME.ToString()] != null)
             {
-                if (Session["ROLE"].ToString().CompareTo("Student") == 0)
+                if (Session[Authentication.SessionVariable.ROLE.ToString()].ToString().CompareTo(Role.STUDENT.ToString()) == 0)
                 {
                     return true;
                 }
@@ -73,29 +74,48 @@ namespace CSOutreach.Pages.Student
             }
         }
 
-        protected EntityCollection<StudentEvent> StudentEvents
+        protected List<StudentEvent> StudentEvents
         {
             get
             {
-               return this.StudentDetails.Student.StudentEvents;
+
+                StudentDBManager StudentDB = new StudentDBManager();
+                List<StudentEvent> StudentEvents = new List<StudentEvent>();
+                object StudentEventsDetail = (from StudentEventElement in StudentDB.AllStudentEvents
+                                                                      where StudentEventElement.StudentId == this.StudentDetails.PersonId
+                                                                      select StudentEventElement);
+                ObjectQuery<StudentEvent> StudentEventsDataRaw = StudentEventsDetail as ObjectQuery<StudentEvent>;
+                foreach(StudentEvent StudentEventsData in StudentEventsDataRaw )
+                {
+                    StudentEvents.Add(StudentEventsData);
+                }
+                return StudentEvents;
 
             }
         }
 
-        protected EntityCollection<Course> StudentCourses
+        protected List<Course> StudentCourses
         {
             get
             {
-                EntityCollection<Course> AllStudentCourses=new EntityCollection<Course>();
-                foreach(StudentEvent Event in StudentEvents)
+                DBCSEntities ent = new DBCSEntities();
+               
+                List<Course> AllStudentCourses = new List<Course>();
+                if (StudentEvents != null)
                 {
-                    if (!AllStudentCourses.Contains(Event.Event.Course))
+                    foreach (StudentEvent Event in StudentEvents)
                     {
-                        AllStudentCourses.Add(Event.Event.Course);
+                        if (!AllStudentCourses.Contains(Event.Event.Course))
+                        {
+                            AllStudentCourses.Add(Event.Event.Course);
+                        }
                     }
+
+
                 }
                 return AllStudentCourses;
             }
+
         }
 
         protected int StudentLevel
@@ -105,10 +125,10 @@ namespace CSOutreach.Pages.Student
                 int MaxCourseLevel = -1;
                 foreach (Course CourseEntity in StudentCourses)
                 {
-                   if(CourseEntity.CourseLevel>MaxCourseLevel)
-                   {
-                       MaxCourseLevel = CourseEntity.CourseLevel;
-                   }
+                    if (CourseEntity.CourseLevel > MaxCourseLevel)
+                    {
+                        MaxCourseLevel = CourseEntity.CourseLevel;
+                    }
                 }
                 return MaxCourseLevel;
             }
