@@ -122,7 +122,7 @@ namespace CSOutreach.Pages.Student
         {
             get
             {
-                int MaxCourseLevel = -1;
+                int MaxCourseLevel = 1;
                 foreach (Course CourseEntity in StudentCourses)
                 {
                     if (CourseEntity.CourseLevel > MaxCourseLevel)
