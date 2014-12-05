@@ -1,6 +1,7 @@
 ﻿using DataOperations.DBEntity;
 using DataOperations.DBEntityManager;
 using StudentEntity.CrossPageInformation;
+using StudentEntity.PageTraversal;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -36,10 +37,25 @@ namespace CSOutreach.Pages.Student
                 //Temporarily disabled for demo purpose
                 //  CrossPageInfo = this.CrossPageInformation as CrossPageDetailedEventsListing;
 
-
-
+                RenderCourseElements();
                 RenderPageData();
             }
+
+        }
+
+        private void RenderCourseElements()
+        {
+            List<string> ApplicableCourseList = new List<string>();
+            foreach (Course CourseDetails in ApplicableCourses)
+            {
+                if (!ApplicableCourseList.Contains(CourseDetails.CourseName))
+                {
+                    ApplicableCourseList.Add(CourseDetails.CourseName);
+                }
+            }
+
+            CourseFilterList.DataSource = ApplicableCourseList;
+            CourseFilterList.DataBind();
 
         }
 
@@ -56,7 +72,10 @@ namespace CSOutreach.Pages.Student
                 {
                     if (CourseElement.CourseLevel <= StudentLevel)
                     {
-                        FilteredCourses.Add(CourseElement);
+                        if (!FilteredCourses.Contains(CourseElement))
+                        {
+                            FilteredCourses.Add(CourseElement);
+                        }
                     }
                 }
 
@@ -105,7 +124,8 @@ namespace CSOutreach.Pages.Student
             EventListingsTable.Columns.Add("EventName");
             EventListingsTable.Columns.Add("EventStartDate");
             EventListingsTable.Columns.Add("EventStartTime");
-            int Count=0;
+            EventListingsTable.Columns.Add("EventID");
+            int Count = 0;
             foreach (Event EventData in ApplicableEvents)
             {
                 ++Count;
@@ -114,11 +134,35 @@ namespace CSOutreach.Pages.Student
                 Drow[1] = EventData.Name;
                 Drow[2] = EventData.StartDate.ToString("MM-dd-yyyy");
                 Drow[3] = EventData.StartTime.ToString(@"hh\:mm");
+                Drow[4] = EventData.EventId.ToString();
                 EventListingsTable.Rows.Add(Drow);
             }
             EventDetailsRepeater.DataSource = EventListingsTable;
             EventDetailsRepeater.DataBind();
         }
+
+
+        protected void EventDetailsRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            RepeaterItem SelectedItem = e.Item;
+            Button SelectedButton = (Button)e.CommandSource;
+            Label EventIDLabel = SelectedItem.FindControl("EventID") as Label;
+            switch (SelectedButton.Text)
+            {
+                case "Register":
+                 
+                    int SelectedEventID = Int32.Parse(EventIDLabel.Text);
+                    CrossPageEventRegistration EventRegistrationParameters = new CrossPageEventRegistration();
+                    EventRegistrationParameters.RegistrationEventID = SelectedEventID;
+                    this.CrossPageInformation = EventRegistrationParameters;
+                    Response.Redirect(TraverseManager.GetPage(PageData.EventRegistration));
+                    break;
+                case "Details": 
+                    Response.Redirect(TraverseManager.GetPage(PageData.EventDetails)+"?eventid="+EventIDLabel.Text);
+                    break;
+            }
+        }
+
 
     }
 }
