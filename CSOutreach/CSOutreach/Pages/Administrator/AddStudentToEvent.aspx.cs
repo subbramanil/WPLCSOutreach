@@ -1,24 +1,27 @@
-﻿using System;
-
+﻿using DataOperations.DBEntity;
+using DataOperations.DBEntityManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.Entity;
-using System.Web.ModelBinding;
-using DataOperations.DBEntity;
-using DataOperations.DBEntityManager;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace CSOutreach.Pages.Administrator
 {
-    public partial class UpdateEvent : System.Web.UI.Page
+    public partial class AddStudentToEvent : System.Web.UI.Page
     {
+        private static int studentIdToBeAdded = 0;
         AdminDBManager db = new AdminDBManager();
-
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack)
+                return;
+            //getting student Id....
+            studentIdToBeAdded = Convert.ToInt32(Session["studentEventAddId"]);
+
+            ///Rest of initialization...........
             List<EventType> eventTypes = new List<EventType>();
             drpEventName.Items.Add("---SELECT---");
             drpEventName.AppendDataBoundItems = true;
@@ -34,12 +37,29 @@ namespace CSOutreach.Pages.Administrator
             drpCourseName.DataSource = courseTypes;
             drpCourseName.DataBind();
 
+
+
+        }
+
+        
+
+        protected void addStudentToEvent_Click(object sender, EventArgs e)
+        {
+           foreach (RepeaterItem aItem in addStudentToEventRepeater.Items)
+            {
+                CheckBox chkInstructor = (CheckBox)aItem.FindControl("checkbx");
+                if (chkInstructor.Checked)
+                {
+                    int i = Convert.ToInt32(chkInstructor.Attributes["value"]);
+                    i++;
+                    db.addStudentToEventAdmin(Convert.ToInt32(chkInstructor.Attributes["value"]), studentIdToBeAdded);
+                }
+            }
+
         }
 
         protected void btnSearchEvents_Click(object sender, EventArgs e)
         {
-
-
             try
             {
 
@@ -51,9 +71,9 @@ namespace CSOutreach.Pages.Administrator
                     //Checking if user has selected any filters or not....
                     String instructorText = null, locationText = null, eventTypeText = null, courseTypeText = null;
                     even.CourseId = 0;
-                    int InstructorId =0;
+                    int InstructorId = 0;
                     even.EventTypeId = 0;
-                    
+
                     if (!(drpEventName.SelectedItem.Text.Equals("---SELECT---")))
                     {
                         eventTypeText = drpEventName.SelectedItem.Text;
@@ -72,8 +92,8 @@ namespace CSOutreach.Pages.Administrator
                     {
                         instructorText = Instructor.ToString();
                         InstructorId = (from per in entity.People
-                                         where per.FirstName.Contains(Instructor.Value) || per.LastName.Contains(Instructor.Value)
-                                         select per.PersonId).First();
+                                        where per.FirstName.Contains(Instructor.Value) || per.LastName.Contains(Instructor.Value)
+                                        select per.PersonId).First();
 
                     }
                     if (!(Location.Value.Equals("")))
@@ -81,8 +101,8 @@ namespace CSOutreach.Pages.Administrator
                         locationText = Location.Value;
                     }
 
-                   
-                   
+
+
 
 
                     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,10 +117,10 @@ namespace CSOutreach.Pages.Administrator
                                  from ext in InnersType.DefaultIfEmpty()
                                  join ec in entity.Courses on evnt.CourseId equals ec.CourseId into InnersCourse
                                  from exc in InnersCourse.DefaultIfEmpty()
-                                 select new { id = evnt.EventId,name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
-                  
+                                 select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
+
                     }
                     //0001
                     else if (even.EventTypeId == 0 && even.CourseId == 0 && InstructorId == 0 && locationText != null)
@@ -113,14 +133,14 @@ namespace CSOutreach.Pages.Administrator
                                  from exc in InnersCourse.DefaultIfEmpty()
                                  where evnt.Location.Contains(locationText)
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
                     }
                     //0010
                     else if (even.EventTypeId == 0 && even.CourseId == 0 && InstructorId != 0 && locationText == null)
                     {
-                        
-                        
+
+
                         var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
                                  from ext in InnersType.DefaultIfEmpty()
@@ -130,8 +150,8 @@ namespace CSOutreach.Pages.Administrator
                                  from exi in Inners.DefaultIfEmpty()
                                  where exi.InstructorId == InstructorId
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
 
 
 
@@ -148,15 +168,15 @@ namespace CSOutreach.Pages.Administrator
                                  from exi in Inners.DefaultIfEmpty()
                                  where exi.InstructorId == InstructorId && evnt.Location.Contains(locationText)
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
 
 
                     }
                     //0100
                     else if (even.EventTypeId == 0 && even.CourseId != 0 && InstructorId == 0 && locationText == null)
                     {
-                  
+
                         var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
                                  from ext in InnersType.DefaultIfEmpty()
@@ -164,8 +184,8 @@ namespace CSOutreach.Pages.Administrator
                                  from exc in InnersCourse.DefaultIfEmpty()
                                  where evnt.CourseId == even.CourseId
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
 
 
 
@@ -175,7 +195,7 @@ namespace CSOutreach.Pages.Administrator
                     //0101
                     else if (even.EventTypeId == 0 && even.CourseId != 0 && InstructorId == 0 && locationText != null)
                     {
-                        
+
 
                         var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
@@ -184,15 +204,15 @@ namespace CSOutreach.Pages.Administrator
                                  from exc in InnersCourse.DefaultIfEmpty()
                                  where evnt.CourseId == even.CourseId && evnt.Location.Contains(locationText)
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
-                        
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
+
 
                     }
                     //0110
                     else if (even.EventTypeId == 0 && even.CourseId != 0 && InstructorId != 0 && locationText == null)
                     {
-                        
+
                         var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
                                  from ext in InnersType.DefaultIfEmpty()
@@ -202,13 +222,13 @@ namespace CSOutreach.Pages.Administrator
                                  from exi in Inners.DefaultIfEmpty()
                                  where evnt.CourseId == even.CourseId && exi.InstructorId == InstructorId
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
                     }
                     //0111
                     else if (even.EventTypeId == 0 && even.CourseId != 0 && InstructorId != 0 && locationText != null)
                     {
-                        
+
                         var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
                                  from ext in InnersType.DefaultIfEmpty()
@@ -218,22 +238,22 @@ namespace CSOutreach.Pages.Administrator
                                  from exi in Inners.DefaultIfEmpty()
                                  where evnt.CourseId == even.CourseId && exi.InstructorId == InstructorId && evnt.Location.Contains(locationText)
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
                     }
                     //1000
                     else if (even.EventTypeId != 0 && even.CourseId == 0 && InstructorId == 0 && locationText == null)
                     {
-                       
+
                         var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
                                  from ext in InnersType.DefaultIfEmpty()
                                  join ec in entity.Courses on evnt.CourseId equals ec.CourseId into InnersCourse
                                  from exc in InnersCourse.DefaultIfEmpty()
                                  where evnt.EventTypeId == even.EventTypeId
-                                 select new {  id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                                 select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
 
 
                     }
@@ -247,13 +267,13 @@ namespace CSOutreach.Pages.Administrator
                                  from exc in InnersCourse.DefaultIfEmpty()
                                  where evnt.EventTypeId == even.EventTypeId && evnt.Location.Contains(locationText)
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
                     }
                     //1010
                     else if (even.EventTypeId != 0 && even.CourseId == 0 && InstructorId != 0 && locationText == null)
                     {
-                        
+
                         var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
                                  from ext in InnersType.DefaultIfEmpty()
@@ -263,14 +283,14 @@ namespace CSOutreach.Pages.Administrator
                                  from exi in Inners.DefaultIfEmpty()
                                  where evnt.EventTypeId == even.EventTypeId && exi.InstructorId == InstructorId
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
                     }
                     //1011
                     else if (even.EventTypeId != 0 && even.CourseId == 0 && InstructorId != 0 && locationText != null)
                     {
-                        
-                            var q = (from evnt in entity.Events
+
+                        var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
                                  from ext in InnersType.DefaultIfEmpty()
                                  join ec in entity.Courses on evnt.CourseId equals ec.CourseId into InnersCourse
@@ -278,14 +298,14 @@ namespace CSOutreach.Pages.Administrator
                                  join ei in entity.EventInstructors on evnt.EventId equals ei.EventId into Inners
                                  from exi in Inners.DefaultIfEmpty()
                                  where evnt.EventTypeId == even.EventTypeId && exi.InstructorId == InstructorId && evnt.Location.Contains(locationText)
-                                     select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                                 select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
                     }
                     //1100
                     else if (even.EventTypeId != 0 && even.CourseId != 0 && InstructorId == 0 && locationText == null)
                     {
-                        
+
                         var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
                                  from ext in InnersType.DefaultIfEmpty()
@@ -295,15 +315,15 @@ namespace CSOutreach.Pages.Administrator
                                  from exi in Inners.DefaultIfEmpty()
                                  where evnt.EventTypeId == even.EventTypeId && evnt.CourseId == even.CourseId
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
-                         
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
+
 
                     }
                     //1101
                     else if (even.EventTypeId != 0 && even.CourseId != 0 && InstructorId == 0 && locationText != null)
                     {
-                        
+
                         var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
                                  from ext in InnersType.DefaultIfEmpty()
@@ -311,14 +331,14 @@ namespace CSOutreach.Pages.Administrator
                                  from exc in InnersCourse.DefaultIfEmpty()
                                  where evnt.EventTypeId == even.EventTypeId && evnt.CourseId == even.CourseId && evnt.Location.Contains(locationText)
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
 
                     }
                     //1110
                     else if (even.EventTypeId != 0 && even.CourseId != 0 && InstructorId != 0 && locationText == null)
                     {
-                       
+
                         var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
                                  from ext in InnersType.DefaultIfEmpty()
@@ -328,14 +348,14 @@ namespace CSOutreach.Pages.Administrator
                                  from exi in Inners.DefaultIfEmpty()
                                  where evnt.EventTypeId == even.EventTypeId && evnt.CourseId == even.CourseId && exi.InstructorId == InstructorId
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
 
                     }
                     //1111
                     else if (even.EventTypeId != 0 && even.CourseId != 0 && InstructorId != 0 && locationText != null)
                     {
-                        
+
                         var q = (from evnt in entity.Events
                                  join et in entity.EventTypes on evnt.EventTypeId equals et.EventTypeId into InnersType
                                  from ext in InnersType.DefaultIfEmpty()
@@ -345,8 +365,8 @@ namespace CSOutreach.Pages.Administrator
                                  from exi in Inners.DefaultIfEmpty()
                                  where evnt.EventTypeId == even.EventTypeId && evnt.CourseId == even.CourseId && exi.InstructorId == InstructorId && evnt.Location.Contains(locationText)
                                  select new { id = evnt.EventId, name = evnt.Name, eventTypeName = ext.TypeName, eventCourseName = exc.CourseName, sDate = evnt.StartDate, sTime = evnt.StartTime, eDate = evnt.EndDate, eTime = evnt.EndTime, locationTextname = evnt.Location });
-                        updateEventRepeater.DataSource = q;
-                        updateEventRepeater.DataBind();
+                        addStudentToEventRepeater.DataSource = q;
+                        addStudentToEventRepeater.DataBind();
 
                     }
 
@@ -375,87 +395,6 @@ namespace CSOutreach.Pages.Administrator
                 if (diverror != null)
                     diverror.Style["display"] = "block";
             }
-
-
-
-
         }
-
-        protected void btnEdit_Click(object sender, EventArgs e)
-        {
-            Button btnEdit1 = (Button)sender;
-            int eventIdToUpdate = Convert.ToInt32(btnEdit1.Attributes["value"]);
-            Session["EventIdPassed"] = eventIdToUpdate;
-            Server.Transfer("UpdatePage.aspx", true);
-       
-
-        }
-
-        protected void btnDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                using (DBCSEntities entity = new DBCSEntities())
-                {
-                    //Creating global eventObject..
-                    Button btnDelete = (Button)sender;
-                    int eventIdToDelete = Convert.ToInt32(btnDelete.Attributes["value"]);
-                   
-                    //deleting all entries from student registeration....
-                    List<StudentEvent> studentEventObjects = new List<StudentEvent>();
-                    studentEventObjects = (from studentevent in entity.StudentEvents
-                                           where studentevent.EventId == eventIdToDelete
-                                           select studentevent).ToList();
-                    if (studentEventObjects.Count != 0)
-                    {
-                        foreach (StudentEvent studentinstobj in studentEventObjects)
-                        {
-                            entity.DeleteObject(studentinstobj);
-                        }
-                     
-                    }
-                    //deleting all assigned instructors from the database.......
-                    List<EventInstructor> eventInstructorList = new List<EventInstructor>();
-                    eventInstructorList = (from ei in entity.EventInstructors
-                                           where ei.EventId == eventIdToDelete
-                                           select ei).ToList();
-                    if (eventInstructorList.Count != 0)
-                    {
-                        foreach (EventInstructor eventinstobj in eventInstructorList)
-                        {
-                            entity.DeleteObject(eventinstobj);
-                        }
-                    }
-                    //Deleting the Event................
-                    Event eventObject =new  Event();
-                    eventObject = (from eo in entity.Events
-                                           where eo.EventId == eventIdToDelete
-                                           select eo).FirstOrDefault();
-                    entity.DeleteObject(eventObject);
-                    entity.SaveChanges();
-
-                }
-            }
-            catch(Exception k){
-            
-            }
-        }
-
-        protected void showDetails_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void btnShowStudents_Click(object sender, EventArgs e)
-        {
-            Button btnShowStudents1 = (Button)sender;
-            int eventIdToStudents = Convert.ToInt32(btnShowStudents1.Attributes["value"]);
-            Session["EventIdPassed"] = eventIdToStudents;
-            Server.Transfer("ShowStudents.aspx", true);
-       
-
-        }
-        
     }
 }

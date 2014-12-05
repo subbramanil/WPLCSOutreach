@@ -1,9 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPages/AdministratorMasterpage.master" AutoEventWireup="true" CodeBehind="UpdateEvent.aspx.cs" Inherits="CSOutreach.Pages.Administrator.UpdateEvent" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="AdminContent" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/MasterPages/AdministratorMasterpage.master" AutoEventWireup="true" CodeBehind="AddStudentToEvent.aspx.cs" Inherits="CSOutreach.Pages.Administrator.AddStudentToEvent" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="AdminContent" runat="server">
     <div class="row">
-        <h3>Update Event</h3>
-        <p>Use the form below to update event.</p>
+        <h3>Search Event To Add This Student</h3>
+        <p>find event from following fields and add student to that event.</p>
     </div>
     <div class="updateForm">
         <div class="row">
@@ -53,7 +54,7 @@
     </div>
 
     <div class="row">
-        <asp:Repeater ID="updateEventRepeater" runat="server">
+        <asp:Repeater ID="addStudentToEventRepeater" runat="server">
             <HeaderTemplate>
                 <table id="DataEventsTable" class="table table-striped table-bordered" width="100%" cellspacing="0">
                     <thead>
@@ -68,10 +69,8 @@
                             <td>End Date</td>
                             <td>End Time</td>
                             <td>Location</td>
-                            <td>Show Students</td>
-                            <td>Edit Option</td>
-                            <td>Delete Option</td>
-                           
+                            <td>Add Student</td>
+                 
 
                         </tr>
                     </thead>
@@ -100,12 +99,8 @@
                     <td>
                         <asp:Label ID="Location" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"locationTextname") %>'></asp:Label></td>
 
-                    <td>
-                        <asp:Button CssClass="btn btn-primary" ID="btnShowStudents" runat="server" Text="Show Students" OnClick="btnShowStudents_Click" value='<%# DataBinder.Eval(Container.DataItem,"id") %>'></asp:Button></td>
-                    <td>
-                        <asp:Button CssClass="btn btn-primary" ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" value='<%# DataBinder.Eval(Container.DataItem,"id") %>'></asp:Button></td>
-                    <td>
-                        <asp:Button ID="btnDelete" CssClass="btn btn-primary" runat="server" Text="Delete" OnClick="btnDelete_Click" value='<%# DataBinder.Eval(Container.DataItem,"id") %>'></asp:Button></td>
+                    <td><asp:CheckBox ID="checkbx" runat="server" type="submit" value='<%# DataBinder.Eval(Container.DataItem,"id")%>'></asp:CheckBox></td>
+                    
                 </tr>
             </ItemTemplate>
             <FooterTemplate>
@@ -113,13 +108,17 @@
 
             </table>
               
-        
+        <asp:Button runat="server" CssClass="btn btn-primary" Text="Add Student" OnClick="addStudentToEvent_Click" ID="addStudentToEvent" />
             </FooterTemplate>
         </asp:Repeater>
 
 
     </div>
 
+    
+
+   
 
 
+    
 </asp:Content>

@@ -10,33 +10,24 @@
 namespace CSOutreach.Pages.Administrator {
     
     
-    public partial class ApproveLeave {
+    public partial class ShowStudents {
         
         /// <summary>
-        /// hidden_label control.
+        /// showstudentsdiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hidden_label;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl showstudentsdiv;
         
         /// <summary>
-        /// hidden_label2 control.
+        /// ShowStudentsRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hidden_label2;
-        
-        /// <summary>
-        /// LeaveApplicationsRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater LeaveApplicationsRepeater;
+        protected global::System.Web.UI.WebControls.Repeater ShowStudentsRepeater;
     }
 }

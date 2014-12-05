@@ -10,69 +10,60 @@
 namespace CSOutreach.Pages.Administrator {
     
     
-    public partial class ManageStudent {
+    public partial class AddStudentToEvent {
         
         /// <summary>
-        /// StudentName control.
+        /// drpEventName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText StudentName;
+        protected global::System.Web.UI.WebControls.DropDownList drpEventName;
         
         /// <summary>
-        /// studentsearchdiv control.
+        /// drpCourseName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl studentsearchdiv;
+        protected global::System.Web.UI.WebControls.DropDownList drpCourseName;
         
         /// <summary>
-        /// SearchStudentRepeater control.
+        /// Instructor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater SearchStudentRepeater;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Instructor;
         
         /// <summary>
-        /// RegisteredEvent control.
+        /// Location control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RegisteredEvent;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Location;
         
         /// <summary>
-        /// StudentEventRepeater control.
+        /// btnSearchEvents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater StudentEventRepeater;
+        protected global::System.Web.UI.WebControls.Button btnSearchEvents;
         
         /// <summary>
-        /// delsuccess control.
+        /// addStudentToEventRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl delsuccess;
-        
-        /// <summary>
-        /// delcatch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl delcatch;
+        protected global::System.Web.UI.WebControls.Repeater addStudentToEventRepeater;
     }
 }
