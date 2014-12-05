@@ -83,7 +83,7 @@
         <div class="row">
             <div class="form-group col-md-4">
                  <label for="">Event Recurrance:</label>
-               <asp:DropDownList ID="EventRecurrance" class="form-control" runat="server">
+               <asp:DropDownList ID="EventRecurrance" class="form-control"  onchange="showHideEndDate()"  runat="server">
                    <asp:ListItem Value="0">---SELECT---</asp:ListItem>
                    <asp:ListItem>1 DAY</asp:ListItem>
                    <asp:ListItem>2 DAY</asp:ListItem>
@@ -122,7 +122,7 @@
                 <label for="">Start Date:</label>
                 <asp:TextBox ID="startDate" class="datepicker startdate form-control" runat="server"></asp:TextBox> 
             </div>
-         <div class="form-group col-md-4">
+         <div id="edate" class="form-group col-md-4">
                 <label for="">End Date:</label>
                 <asp:TextBox ID="endDate" class="datepicker enddate form-control" runat="server"></asp:TextBox> 
             </div>
@@ -194,6 +194,16 @@
         </div>
               
     <script>
+        
+        function showHideEndDate() {
+            if (document.getElementById('<%=EventRecurrance.ClientID%>').value == "WEEKEND" ||document.getElementById('<%=EventRecurrance.ClientID%>').value == "WEEKLY") {
+                document.getElementById('edate').style.display = "block";
+            }
+            else {
+                document.getElementById('edate').style.display = "none";
+            }
+        }
+
         function showHideOthersTxt() {
             if (document.getElementById('<%=drpEventType.ClientID%>').value == "0") {
                 document.getElementById('othrLabel').style.display = "block";
@@ -234,7 +244,6 @@
                     "<%=EventRecurrance.UniqueID%>": { required: true, EventRecurrance: true },
                     "<%=drpCourseType.UniqueID%>": { required: true, drpCourseType: true },
                     "<%=startDate.UniqueID%>": { required: true },
-                    "<%=endDate.UniqueID%>": { required: true },
                     "<%=starttime.UniqueID%>": { required: true },
                     "<%=endtime.UniqueID%>": { required: true },
                     "<%=txtLocation.UniqueID%>": { required: true },
@@ -246,7 +255,6 @@
                     "<%=EventRecurrance.UniqueID%>": { required: "Please enter Event Recurrance" },
                     "<%=drpCourseType.UniqueID%>": { required: "Please enter Course Type" },
                     "<%=startDate.UniqueID%>": { required: "Please enter start date" },
-                    "<%=endDate.UniqueID%>": { required: "Please enter end date" },
                     "<%=starttime.UniqueID%>": { required: "Please enter start time" },
                     "<%=endtime.UniqueID%>": { required: "Please enter end time" },
                     "<%=txtLocation.UniqueID%>": { required: "Please enter Location" },
@@ -255,5 +263,5 @@
                 errorClass: "has-error",
             });
         });
-</script>
+    </script>
 </asp:Content>

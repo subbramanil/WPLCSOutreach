@@ -17,25 +17,36 @@ namespace CSOutreach.Pages.Administrator
 {
     public partial class CreateEvent : System.Web.UI.Page
     {
-        AdminDBManager db = new AdminDBManager();
-        
+        private AdminDBManager db = new AdminDBManager();
+        private static bool _flag = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ContentPlaceHolder cp;
+            HtmlGenericControl divsuccess;
             if (IsPostBack)
-                return;
+            {
 
+                if (Convert.ToBoolean(Session["_createEventSuccessFlag"]))
+                {
+                    cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
+                    divsuccess = cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
+                    if (divsuccess != null)
+                        divsuccess.Style["display"] = "block";
+                }
+                return;
+            }
 
             //To hide the success and error messages initially
-            ContentPlaceHolder cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
-            HtmlGenericControl divsuccess = cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
+            cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
+            divsuccess = cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
             if (divsuccess != null)
                 divsuccess.Style["display"] = "none";
             ContentPlaceHolder ce = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
             HtmlGenericControl diverror = ce.FindControl("AdminContent").FindControl("diverror") as HtmlGenericControl;
             if (diverror != null)
                 diverror.Style["display"] = "none";
-          
+
 
             List<EventType> eventTypes = db.GetEventTypes();
             ListItem lst = new ListItem("---SELECT---", "9999");
@@ -61,7 +72,7 @@ namespace CSOutreach.Pages.Administrator
 
 
         }
-        bool flag = false;
+
         protected void btnCreateEvent_Click(object sender, EventArgs e)
         {
             try
@@ -69,8 +80,9 @@ namespace CSOutreach.Pages.Administrator
 
                 using (DBCSEntities entity = new DBCSEntities())
                 {
+
                     Event even = new Event();
-                    
+
                     even.Name = txtEventName.Text;
                     if (!txtDescription.Text.Equals(""))
                     {
@@ -82,16 +94,16 @@ namespace CSOutreach.Pages.Administrator
                     }
                     string other = "";
 
+                    string reccurance = EventRecurrance.Text;
                     if (drpEventType.SelectedItem.ToString() == "OTHER")
                     {
-                        other=TextBox5.Text;
-                        string reccurance = EventRecurrance.Text;
+                        other = TextBox5.Text;
                         db.AddNewEvent(other, reccurance);
                     }
 
                     String eventType = drpEventType.SelectedItem.ToString();
                     even.EventTypeId = (from per in entity.EventTypes
-                        where per.TypeName == eventType || per.TypeName== other
+                        where per.TypeName == eventType || per.TypeName == other
                         select per.EventTypeId).FirstOrDefault();
 
 
@@ -101,34 +113,94 @@ namespace CSOutreach.Pages.Administrator
                         select per.CourseId).FirstOrDefault();
 
                     even.StartDate = Convert.ToDateTime(startDate.Text);
-                    even.EndDate = Convert.ToDateTime(endDate.Text);
                     even.StartTime = DateTime.Parse(starttime.Text).TimeOfDay;
                     even.EndTime = DateTime.Parse(endtime.Text).TimeOfDay;
 
 
-                    even.CreatedDate = DateTime.Today;
 
+                    even.CreatedDate = DateTime.Today;
+                    System.DayOfWeek yz = DateTime.Parse(endDate.Text).DayOfWeek;
                     string userName = CSOutreach.Authentication.Username;
                     even.CreatedBy = (from per in entity.People
                         where per.Email == userName
                         select per.PersonId).FirstOrDefault();
+                    if (reccurance == "1 DAY")
+                    {
+                        even.EndDate = Convert.ToDateTime(startDate.Text);
+                    }
+                    else if (reccurance == "2 DAY")
+                    {
+                        even.EndDate = Convert.ToDateTime(startDate.Text).AddDays(1);
+                    }
+                    else if (reccurance == "3 DAY")
+                    {
+                        even.EndDate = Convert.ToDateTime(startDate.Text).AddDays(2);
+                    }
+                    else if (reccurance == "WEEKEND" || reccurance == "WEEKLY")
+                    {
+                        even.EndDate = Convert.ToDateTime(endDate.Text);
+                    }
+
                     //even.CreatedBy = userName
                     entity.AddToEvents(even);
                     entity.SaveChanges();
-                    int eventid=even.EventId;
-                    foreach (var item in lstSelectedInstructors.Items)
+                    int eventid = even.EventId;
+
+                    reccurance = EventRecurrance.SelectedValue;
+                    int i = 0;
+                    if (reccurance == "1 DAY")
                     {
-                        db.InsertEventInstructor(item.ToString(), even.StartDate,eventid);
-                        // Console.WriteLine(item.ToString());
+                        foreach (var item in lstSelectedInstructors.Items)
+                        {
+                            db.InsertEventInstructor(item.ToString(), even.StartDate, eventid);
+                        }
                     }
-                    flag = true;
-                    if (flag)
+                    if (reccurance == "2 DAY")
                     {
-                        ContentPlaceHolder cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
-                        HtmlGenericControl divsuccess = cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
-                        if (divsuccess != null)
-                            divsuccess.Style["display"] = "block";
+                        i = 0;
+                        while (i < 2)
+                        {
+                            foreach (var item in lstSelectedInstructors.Items)
+                            {
+                                db.InsertEventInstructor(item.ToString(), even.StartDate.AddDays(i), eventid);
+                            }
+                            i++;
+                        }
                     }
+                    if (reccurance == "3 DAY")
+                    {
+                        i = 0;
+                        while (i < 3)
+                        {
+                            foreach (var item in lstSelectedInstructors.Items)
+                            {
+                                db.InsertEventInstructor(item.ToString(), even.StartDate.AddDays(i), eventid);
+                            }
+                            i++;
+                        }
+                    }
+                    if (reccurance == "WEEKEND" || reccurance == "WEEKLY")
+                    {
+                        DateTime tempDate = even.StartDate;
+                        while (tempDate <= even.EndDate)
+                        {
+                            foreach (var item in lstSelectedInstructors.Items)
+                            {
+                                db.InsertEventInstructor(item.ToString(), tempDate.AddDays(7), eventid);
+                            }
+                            tempDate = tempDate.AddDays(7);
+                        }
+                    }
+
+                    //ContentPlaceHolder cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
+                    //HtmlGenericControl divsuccess =
+                    //    cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
+                    //if (divsuccess != null)
+                    //    divsuccess.Style["display"] = "block";
+
+                   // ClearValues();
+                    Session["_createEventSuccessFlag"] = true;
+                    Response.Redirect("~/Pages/Administrator/CreateEvent.aspx");
                 }
             }
 
@@ -136,7 +208,8 @@ namespace CSOutreach.Pages.Administrator
             {
                 Console.WriteLine(k.ToString());
                 ContentPlaceHolder ce = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
-                HtmlGenericControl diverror = ce.FindControl("AdminContent").FindControl("diverror") as HtmlGenericControl;
+                HtmlGenericControl diverror =
+                    ce.FindControl("AdminContent").FindControl("diverror") as HtmlGenericControl;
                 if (diverror != null)
                     diverror.Style["display"] = "block";
             }
@@ -146,20 +219,21 @@ namespace CSOutreach.Pages.Administrator
         {
 
             List<ListItem> selectedValues = (from item in lstInstructor.Items.Cast<ListItem>()
-                                                 where item.Selected
-                                                 select item).ToList();
-            foreach (ListItem value in selectedValues) {
+                where item.Selected
+                select item).ToList();
+            foreach (ListItem value in selectedValues)
+            {
                 lstSelectedInstructors.Items.Add(value);
                 lstInstructor.Items.Remove(value);
-            
+
             }
         }
 
         protected void btnRemoveInstructor_Click(object sender, EventArgs e)
         {
             List<ListItem> selectedValues = (from item in lstSelectedInstructors.Items.Cast<ListItem>()
-                                             where item.Selected
-                                             select item).ToList();
+                where item.Selected
+                select item).ToList();
             foreach (ListItem value in selectedValues)
             {
                 lstSelectedInstructors.Items.Remove(value);
@@ -169,12 +243,18 @@ namespace CSOutreach.Pages.Administrator
         }
 
 
-
-     
-
-    
-
+        protected void ClearValues()
+        {
+            ContentPlaceHolder temp = Master.FindControl("BodyContent") as ContentPlaceHolder;
+            //Clear all the textboxes.
+            foreach (Control ctrl in temp.FindControl("AdminContent").Controls)
+            {
+                if (ctrl.GetType().Name == "HtmlInputText")
+                {
+                    ((HtmlInputText) ctrl).Value = string.Empty;
+                }
+            }
+        }
 
     }
-    
-    }
+}
