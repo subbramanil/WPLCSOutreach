@@ -272,6 +272,7 @@ namespace DataOperations.DBEntityManager
                                        where eventInstructorTemp.EventInstructorId == EventInstructorID 
                                        select eventInstructorTemp).FirstOrDefault();
                     eventInstructor.ACCEPTED = true;
+                    eventInstructor.LeaveApplied = false;
                     entity.SaveChanges();
 
                 }

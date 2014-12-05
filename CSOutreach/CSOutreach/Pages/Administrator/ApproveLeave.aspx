@@ -31,6 +31,17 @@
 <p>Use the form below to approve/discard leave applications.</p>
 </div>
 
+ <div class="row">
+       <div id="hidden_label" runat="server">
+           <span class="glyphicon glyphicon-ok"></span><label> There are no leave applications for review.</label>
+       </div>
+     </div>
+
+<div class="row" >
+    <div id="hidden_label2"  runat="server" >
+        <span class="glyphicon glyphicon-ok"></span><label>The selected leave applications have been approved. </label>
+    </div>
+</div>
 
 <div class="row">
 <asp:Repeater ID="LeaveApplicationsRepeater" runat="server">
@@ -50,10 +61,10 @@
 <ItemTemplate>
 <tr>
 <td><asp:Label ID="EventId" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"evId")%>'></asp:Label></td>
-<td><asp:Label ID="InstructorId" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"instrFname")%>'></asp:Label></td>
-    <td><asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"instrLname")%>'></asp:Label></td>
+<td><asp:Label ID="InstructorFname" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"instrFname")%>'></asp:Label></td>
+<td><asp:Label ID="InstructorLname" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"instrLname")%>'></asp:Label></td>
 <td><asp:Label ID="Date" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"date")%>'></asp:Label></td>
-<td><asp:CheckBox ID="checkbox" runat="server" value='<%# DataBinder.Eval(Container.DataItem,"evInsId")%>'></asp:CheckBox></td>
+<td><asp:CheckBox ID="chkbox" runat="server" type="submit" value='<%# DataBinder.Eval(Container.DataItem,"evInsId")%>'></asp:CheckBox></td>
 </tr>
 </ItemTemplate>
 <FooterTemplate>
