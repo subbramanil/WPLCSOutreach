@@ -148,6 +148,7 @@ namespace CSOutreach
         public static void logout()
         {
             HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = null;
+            HttpContext.Current.Session[Authentication.SessionVariable.ROLE.ToString()] = null;
         }
         /// <summary>
         /// Compare an unhashed password (input) to hashed password from person object (person.password)

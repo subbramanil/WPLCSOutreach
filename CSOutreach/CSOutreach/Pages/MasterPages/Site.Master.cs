@@ -174,7 +174,8 @@ namespace CSOutreach
             // TODO: add real code to sign out
             Authentication.logout();
             Session["redirected_on_logout"] = true;
-            Response.Redirect(Request.Url.ToString()); // Force full page reload
+            Session["success_message"] = "Successfully Logged Out";
+            Response.Redirect("../Common/Default.aspx"); // Force full page reload
         }
 
         protected void Page_Unload(object sender, EventArgs e)

@@ -11,7 +11,27 @@ namespace CSOutreach.Pages.MasterPages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Code to check if the user role is Admin
 
+            //Get the current role from the session
+            var currentUserRole = HttpContext.Current.Session["ROLE"];
+
+            if (currentUserRole!=null)
+            {
+                if (currentUserRole.ToString().CompareTo("ADMIN") != 0)
+                {
+                    //Redirect if user is not admin
+                    Session["error_message"] = "Restricted Access: You are not logged in as Administrator!";
+                    Response.Redirect("../Common/Default.aspx");
+
+                }
+            }
+            else {
+                //Redirect if user has not logged in
+                Session["error_message"] = "Restricted Access: You are not logged in as Administrator!";
+                Response.Redirect("../Common/Default.aspx");
+            
+            }
         }
     }
 }
