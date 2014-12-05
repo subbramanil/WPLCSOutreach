@@ -111,7 +111,7 @@
         </div>
         <div id="FooterArea" align="right">
             
-            <asp:Button id="RegisterButton" runat="server" Text="Register" />
+            <asp:Button id="RegisterButton" runat="server" Text="Register" OnClick="RegisterButton_Click" />
         </div>
     </div>
 </asp:Content>

@@ -7,10 +7,7 @@
             $("#DataEventsTable").dataTable();
         });
     </script>
-    <div>
-        <asp:Label ID="CourseLabel" runat="server" Text="Course Name"></asp:Label>
-        <asp:DropDownList runat="server" ID="CourseFilterList"></asp:DropDownList>
-    </div>
+  
     <div>
 
         <asp:Repeater ID="EventDetailsRepeater" runat="server" OnItemCommand="EventDetailsRepeater_ItemCommand">

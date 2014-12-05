@@ -1,6 +1,8 @@
 ﻿using DataOperations.DBEngine;
 using DataOperations.DBEntity;
 using DataOperations.DBEntityManager;
+using StudentEntity.CrossPageInformation;
+using StudentEntity.PageTraversal;
 using System;
 using System.Collections.Generic;
 using System.Data.Objects;
@@ -13,7 +15,7 @@ namespace CSOutreach.Pages.Student
 {
 
 
-    public partial class EventDetails : System.Web.UI.Page
+    public partial class EventDetails : StudentBasePage
     {
         private Event _event;
         private Event SelectedEvent
@@ -25,25 +27,26 @@ namespace CSOutreach.Pages.Student
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            int EventID = int.Parse(Request.QueryString["eventid"]);
+            ObjectSet<Event> AllEvents = new StudentDBManager().AllEvents;
+            bool EventFound = false;
+            foreach (Event EventElement in AllEvents)
+            {
+                if (EventElement.EventId == EventID)
+                {
+                    EventFound = true;
+                    _event = EventElement;
+                    break;
+                }
+            }
+            if (!EventFound)
+            {
+                throw new ApplicationException("Invalid Event Specified");
+            }
             if (!IsPostBack)
             {
-                int EventID = int.Parse(Request.QueryString["eventid"]);
-                ObjectSet<Event> AllEvents = new StudentDBManager().AllEvents;
-                bool EventFound=false;
-               foreach(Event EventElement in AllEvents)
-               {
-                   if(EventElement.EventId==EventID)
-                   {
-                       EventFound = true;
-                       _event = EventElement;
-                       break;
-                   }
-               }
-                if(!EventFound)
-                {
-                    throw new ApplicationException("Invalid Event Specified");
-                }
-                
+
                 RenderPageElements();
             }
 
@@ -59,6 +62,14 @@ namespace CSOutreach.Pages.Student
             EndTimeLabel.Text = SelectedEvent.EndTime.ToString(@"hh\:mm");
             Date1.Text = SelectedEvent.StartDate.ToString("MM-dd-yyyy");
             Date2.Text = SelectedEvent.EndDate.ToString("MM-dd-yyyy");
+        }
+
+        protected void RegisterButton_Click(object sender, EventArgs e)
+        {
+            CrossPageEventRegistration EventInfo = new CrossPageEventRegistration();
+            EventInfo.RegistrationEventID = SelectedEvent.EventId;
+            this.CrossPageInformation = EventInfo;
+            Response.Redirect(TraverseManager.GetPage(PageData.EventRegistration));
         }
 
     }

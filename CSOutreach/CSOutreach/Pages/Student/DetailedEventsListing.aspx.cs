@@ -37,27 +37,13 @@ namespace CSOutreach.Pages.Student
                 //Temporarily disabled for demo purpose
                 //  CrossPageInfo = this.CrossPageInformation as CrossPageDetailedEventsListing;
 
-                RenderCourseElements();
+               
                 RenderPageData();
             }
 
         }
 
-        private void RenderCourseElements()
-        {
-            List<string> ApplicableCourseList = new List<string>();
-            foreach (Course CourseDetails in ApplicableCourses)
-            {
-                if (!ApplicableCourseList.Contains(CourseDetails.CourseName))
-                {
-                    ApplicableCourseList.Add(CourseDetails.CourseName);
-                }
-            }
-
-            CourseFilterList.DataSource = ApplicableCourseList;
-            CourseFilterList.DataBind();
-
-        }
+     
 
         private List<Course> ApplicableCourses
         {
