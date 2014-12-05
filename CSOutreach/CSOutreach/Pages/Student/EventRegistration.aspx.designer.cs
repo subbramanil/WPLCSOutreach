@@ -13,13 +13,31 @@ namespace CSOutreach.Pages.Student {
     public partial class EventRegistration {
         
         /// <summary>
-        /// StudentID control.
+        /// EventTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText StudentID;
+        protected global::System.Web.UI.WebControls.Literal EventTime;
+        
+        /// <summary>
+        /// EventTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal EventTitle;
+        
+        /// <summary>
+        /// EventType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal EventType;
         
         /// <summary>
         /// FirstName control.
@@ -40,30 +58,75 @@ namespace CSOutreach.Pages.Student {
         protected global::System.Web.UI.HtmlControls.HtmlInputText LastName;
         
         /// <summary>
-        /// PhoneArea control.
+        /// EmergConName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText PhoneArea;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText EmergConName;
         
         /// <summary>
-        /// PhoneFirst control.
+        /// EmergConRelation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText PhoneFirst;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText EmergConRelation;
         
         /// <summary>
-        /// PhoneSecond control.
+        /// EmergPhoneArea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText PhoneSecond;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText EmergPhoneArea;
+        
+        /// <summary>
+        /// EmergPhoneFirst control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText EmergPhoneFirst;
+        
+        /// <summary>
+        /// EmergPhoneSecond control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText EmergPhoneSecond;
+        
+        /// <summary>
+        /// preReqRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater preReqRepeater;
+        
+        /// <summary>
+        /// conflictsRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater conflictsRepeater;
+        
+        /// <summary>
+        /// step4SubmitBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button step4SubmitBtn;
     }
 }
