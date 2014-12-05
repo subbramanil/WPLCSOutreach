@@ -11,8 +11,12 @@
             <div class="treeBorderRight col-md-3">
 
                 <asp:TreeView ID="TreeView1" runat="server" Width="175px" HoverNodeStyle-CssClass= "nav nav-pills" NodeStyle-CssClass="nav nav-pills" SelectedNodeStyle-CssClass="nav nav-pills active" LeafNodeStyle-CssClass="nav nav-pills">
+                    
                     <Nodes>
                         
+                        <asp:TreeNode Text="Dashboard" NavigateUrl="~/Pages/Administrator/Dashboard.aspx">
+                        </asp:TreeNode>
+
                         <asp:TreeNode Text="Event">
                             <asp:TreeNode  Text="Create Event" NavigateUrl="~/Pages/Administrator/CreateEvent.aspx" />
                             <asp:TreeNode  Text="Update Event" NavigateUrl="~/Pages/Administrator/UpdateEvent.aspx" />

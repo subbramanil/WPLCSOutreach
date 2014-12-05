@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Principal;
 using System.Threading;
@@ -24,9 +25,6 @@ namespace CSOutreach.Pages.Administrator
             if (IsPostBack)
                 return;
 
-            //persondbmanager user = new persondbmanager();
-            //string password = user.encrypt("abc");
-            //console.writeline(password);
 
             //To hide the success and error messages initially
             ContentPlaceHolder cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
@@ -82,10 +80,18 @@ namespace CSOutreach.Pages.Administrator
                     {
                         even.Location = txtLocation.Text;
                     }
+                    string other = "";
+
+                    if (drpEventType.SelectedItem.ToString() == "OTHER")
+                    {
+                        other=TextBox5.Text;
+                        string reccurance = EventRecurrance.Text;
+                        db.AddNewEvent(other, reccurance);
+                    }
 
                     String eventType = drpEventType.SelectedItem.ToString();
                     even.EventTypeId = (from per in entity.EventTypes
-                        where per.TypeName == eventType
+                        where per.TypeName == eventType || per.TypeName== other
                         select per.EventTypeId).FirstOrDefault();
 
 

@@ -110,7 +110,7 @@
 </table>
 <div class="row">
 <div class="form-group col-md-3">
-    <asp:Button ID="btnReject" runat="server" type="submit" class="btn btn-success" Text="Reject" OnClick="btnReject_Click1"></asp:button>
+    <asp:Button ID="btnReject" runat="server" type="submit" class="btn btn-danger" Text="Reject" OnClick="btnReject_Click1"></asp:button>
 </div>
 </div>
 

@@ -197,6 +197,8 @@ namespace DataOperations.DBEntityManager
             return skillsets;
         }
 
+
+
         public List<EventInstructor> GetEventInstructors()
         {
             List<EventInstructor> eventInstructors = new List<EventInstructor>();
@@ -278,6 +280,27 @@ namespace DataOperations.DBEntityManager
             {
                 
             }
+        }
+
+        public void AddNewEvent(string other, string reccurance)
+        {
+            EventType et = new EventType();
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    et.TypeName = other;
+                    et.Recurrence = reccurance;
+                    entity.AddToEventTypes(et);
+                    entity.SaveChanges();
+
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
 
