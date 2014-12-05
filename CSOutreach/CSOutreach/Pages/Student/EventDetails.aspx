@@ -17,7 +17,7 @@
             border-width: 1px;
             border-color: lightgray;
              box-shadow: 4px 4px 3px #888888;
-             height:100%;
+             margin-bottom:5px;
         }
 
             #EventDetailMain #TitleRegion {
@@ -33,7 +33,18 @@
 
             #EventDetailMain #ContentRegion {
                 padding-left: 7px;
+                 padding-bottom:20px;
             }
+
+             #EventDetailMain #FooterArea
+             {
+                 border-top-style:solid;
+                 border-top-color:lightgray;
+                 border-top-width:1px;
+                 padding-top:2px;
+                 padding-bottom:7px;
+                
+             }
 
                 #EventDetailMain #ContentRegion div {
                     padding-top: 3px;
@@ -97,6 +108,10 @@
                     <asp:Label ID="EventDescLabel" runat="server" Text="#EventDesc"></asp:Label>
                 </div>
             </div>
+        </div>
+        <div id="FooterArea" align="right">
+            
+            <asp:Button id="RegisterButton" runat="server" Text="Register" />
         </div>
     </div>
 </asp:Content>

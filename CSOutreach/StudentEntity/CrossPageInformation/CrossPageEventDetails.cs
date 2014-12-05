@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace StudentEntity.CrossPageInformation
 {
-   public class CrossPageDetailedEventsListing
+    class CrossPageEventDetails
     {
-       public String SelectedEvent
-       {
-           get;
-           set;
-       }
-        public String EventCategory;
+        int SelectedEventID
+        {
+            get;
+            set;
+        }
     }
 }
