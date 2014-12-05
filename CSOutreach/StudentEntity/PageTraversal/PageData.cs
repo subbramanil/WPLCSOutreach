@@ -12,9 +12,11 @@ using System.Threading.Tasks;
 
 namespace StudentEntity.PageTraversal
 {
-   public enum PageData
+    public enum PageData
     {
         StudentHome,
-       LoginPage
+        LoginPage,
+        EventRegistration,
+        EventDetails
     }
 }
