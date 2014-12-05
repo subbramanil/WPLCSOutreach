@@ -4,9 +4,9 @@
     <style>
         .Label {
             float: left;
-            width:110px;
-            font-size:12px;
-            font-weight:bold;
+            width: 110px;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         #EventDetailMain {
@@ -16,8 +16,8 @@
             border-style: solid;
             border-width: 1px;
             border-color: lightgray;
-             box-shadow: 4px 4px 3px #888888;
-             margin-bottom:5px;
+            box-shadow: 4px 4px 3px #888888;
+            margin-bottom: 5px;
         }
 
             #EventDetailMain #TitleRegion {
@@ -33,23 +33,51 @@
 
             #EventDetailMain #ContentRegion {
                 padding-left: 7px;
-                 padding-bottom:20px;
+                padding-bottom: 20px;
             }
 
-             #EventDetailMain #FooterArea
-             {
-                 border-top-style:solid;
-                 border-top-color:lightgray;
-                 border-top-width:1px;
-                 padding-top:2px;
-                 padding-bottom:7px;
-                
-             }
+            #EventDetailMain #FooterArea {
+                border-top-style: solid;
+                border-top-color: lightgray;
+                border-top-width: 1px;
+                padding-top: 2px;
+                padding-bottom: 7px;
+            }
 
-                #EventDetailMain #ContentRegion div {
-                    padding-top: 3px;
-                    padding-bottom: 3px;
-                }
+            #EventDetailMain #ContentRegion div {
+                padding-top: 3px;
+                padding-bottom: 3px;
+            }
+
+        #ArtifactsSection {
+            border-style: solid;
+            border-width: 1px;
+            border-color: lightgray;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            margin-bottom: 7px;
+            margin-left: 10px;
+            width: 40%;
+        }
+
+            #ArtifactsSection #Title {
+                font-size: 10px;
+                font-weight: bold;
+                color: black;
+                background-color: lightgray;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                padding-left:7px;
+            }
+
+             #ArtifactsSection div
+             {
+                 padding-left:7px;
+                 padding-top:3px;
+                 padding-bottom:3px;
+                 font-size:11px;
+                 font-weight:bold;
+             }
     </style>
 
     <div id="EventDetailMain">
@@ -109,9 +137,25 @@
                 </div>
             </div>
         </div>
+
+        <div id="ArtifactsSection">
+            <div id="Title">
+                Related Artifacts
+            </div>
+            <div id="Content">
+                <div>
+                    <a href="#">Document 1</a>
+                </div>
+                <div>
+                    <a href="#">Document 2</a>
+                </div>
+            </div>
+
+        </div>
+
         <div id="FooterArea" align="right">
-            
-            <asp:Button id="RegisterButton" runat="server" Text="Register" OnClick="RegisterButton_Click" />
+            <asp:Button ID="RegisterButton" runat="server" Text="Register" OnClick="RegisterButton_Click" />
         </div>
     </div>
+
 </asp:Content>
