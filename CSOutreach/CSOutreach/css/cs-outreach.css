@@ -120,7 +120,7 @@ html, body {
 
 /*Styling for tree navigation*/
 
-<<<<<<< HEAD
+
 .tree {
     margin-left: -70px;
     border-right: 1px solid;
@@ -188,55 +188,58 @@ html, body {
 }
 
 /*Css for tree navigation*/
-.treeStruct{
-    margin-left:-100px;
+.treeStruct {
+    margin-left: -100px;
 }
 
-.treeBorderRight{
+.treeBorderRight {
     border-right: 1px solid #ddd;
-    margin-right:0;
-    height:100%;
-   
+    margin-right: 0;
+    height: 100%;
 }
 
-.contentBorderLeft{
-    
+.contentBorderLeft {
     border-left: 1px solid #ddd;
     margin-left: -1px;
-    height:100%;
+    height: 100%;
 }
 
 .nav {
-  position: relative;
-  display: block;
+    position: relative;
+    display: block;
 }
-.nav > a {
-  position: relative;
-  display: block;
-  padding: 10px 15px;
-}
-.nav > a:hover,
-.nav > a:focus {
-  text-decoration: none;
-  background-color: #eee;
+
+    .nav > a {
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+    }
+
+        .nav > a:hover,
+        .nav > a:focus {
+            text-decoration: none;
+            background-color: #eee;
+        }
+
+.nav-pills > a {
+    float: left;
 }
 
 .nav-pills > a {
-  float: left;
+    border-radius: 4px;
 }
-.nav-pills > a {
-  border-radius: 4px;
-}
-.nav-pills > a + a {
-  margin-left: 2px;
-}
-.nav-pills.active > a ,
+
+    .nav-pills > a + a {
+        margin-left: 2px;
+    }
+
+.nav-pills.active > a,
 .nav-pills.active > a :hover,
 .nav-pills.active > a :focus {
-  color: #fff;
-  background-color: #008542;
-
+    color: #fff;
+    background-color: #008542;
 }
+
 .containerPortal {
     padding: 18px 24px;
     min-width: 600px;
@@ -299,31 +302,36 @@ html, body {
 }
 
 
-#conflictsBlock, #prereqBlock{
+#conflictsBlock, #prereqBlock {
     margin: 6px 0px 0px 0px;
     min-height: 200px;
     height: auto;
     float: left;
 }
 
-    .thumbnail:hover {
-        background-color: #FCA811;
-    }
+.thumbnail:hover {
+    background-color: #FCA811;
+}
 
 
-    .thumbnail .circle {
-        border-radius: 50%;
-        background-color: #f7f7f7;
-        width: 155px;
-        height: 155px;
-        margin: 0 auto;
-    }
+.thumbnail .circle {
+    border-radius: 50%;
+    background-color: #f7f7f7;
+    width: 155px;
+    height: 155px;
+    margin: 0 auto;
+}
 
-    .thumbnail:hover h3 a {
-        color: #000;
-        text-decoration: none;
-    }
-    .error_vld{
+.thumbnail:hover h3 a {
+    color: #000;
+    text-decoration: none;
+}
+
+.error_vld {
     border: solid 1px #a94442;
-  }
+}
 
+.modulesubcontent {
+    color: #9f9797;
+    font-style: italic;
+}

@@ -4,20 +4,17 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="server">
     <div class="treeStruct">
-        <div class="row">
-            <div class="tree col-md-2" style="float:left">
-                <asp:TreeView ID="TreeView1" runat="server" Width="175px" HoverNodeStyle-CssClass="nav-pills" NodeStyle-CssClass="treeParent" SelectedNodeStyle-CssClass="treeNodeSelected">
+        <div class="col-md-12">
+            <div class="treeBorderRight col-md-3" style="float: left">
+                <asp:TreeView ID="TreeView1" runat="server" Width="175px" HoverNodeStyle-CssClass="nav nav-pills" NodeStyle-CssClass="nav nav-pills" SelectedNodeStyle-CssClass="nav nav-pills active" LeafNodeStyle-CssClass="nav nav-pills">
                     <Nodes>
-                        <asp:TreeNode Text="My Profile" NavigateUrl="~/Profile.aspx"></asp:TreeNode>
-                        <asp:TreeNode Text="List of Events">
-                            <asp:TreeNode Text="Detailed Event Listing" NavigateUrl="~/Pages/Student/DetailedEventsListing.aspx" />
-                            <asp:TreeNode Text="By Event Type" NavigateUrl="~/Pages/Student/ListAllEventsByType.aspx" />
-                            <asp:TreeNode Text="By Event Technology" NavigateUrl="~/Pages/Student/ListAllEventsByTech.aspx" />
-                        </asp:TreeNode>
+                        <asp:TreeNode Text="Dashboard" NavigateUrl="~/Pages/Student/DefaultHome.aspx"></asp:TreeNode>
+                        <asp:TreeNode Text="List of Events" NavigateUrl="~/Pages/Student/DetailedEventsListing.aspx"></asp:TreeNode>
+                        <asp:TreeNode Text="My Profile" NavigateUrl="~/Pages/Common/MyProfile.aspx"></asp:TreeNode>
                     </Nodes>
                 </asp:TreeView>
             </div>
-            <div class="col-md-10 contentDiv">
+            <div class="contentBorderLeft col-md-9 contentDiv">
                 <asp:ContentPlaceHolder ID="StudentContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
