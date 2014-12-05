@@ -14,12 +14,12 @@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label for="">Enter Event Type:</label>
-                    <asp:DropDownList ID="drpEventName" runat="server" DataTextField="TypeName" DataValueField="EventTypeId">
+                    <asp:DropDownList ID="drpEventName" CssClass="form-control" runat="server" DataTextField="TypeName" DataValueField="EventTypeId">
                     </asp:DropDownList>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="">Course Name:</label>
-                    <asp:DropDownList ID="drpCourseName" runat="server" DataTextField="CourseName" DataValueField="CourseId">
+                    <asp:DropDownList ID="drpCourseName" CssClass="form-control" runat="server" DataTextField="CourseName" DataValueField="CourseId">
                     </asp:DropDownList>
                 </div>
             </div>
@@ -97,8 +97,9 @@
                         <asp:Label ID="EndTime" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"eTime") %>'></asp:Label></td>
                     <td>
                         <asp:Label ID="Location" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"locationTextname") %>'></asp:Label></td>
+
                     <td>
-                        <asp:Button CssClass="btn btn-primary" ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click"></asp:Button></td>
+                        <asp:Button CssClass="btn btn-primary" ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" value='<%# DataBinder.Eval(Container.DataItem,"id") %>'></asp:Button></td>
                     <td>
                         <asp:Button ID="btnDelete" CssClass="btn btn-primary" runat="server" Text="Delete" OnClick="btnDelete_Click" value='<%# DataBinder.Eval(Container.DataItem,"id") %>'></asp:Button></td>
                 </tr>

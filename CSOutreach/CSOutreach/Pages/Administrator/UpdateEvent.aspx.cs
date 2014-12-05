@@ -19,8 +19,6 @@ namespace CSOutreach.Pages.Administrator
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
-                return;
             List<EventType> eventTypes = new List<EventType>();
             drpEventName.Items.Add("---SELECT---");
             drpEventName.AppendDataBoundItems = true;
@@ -83,8 +81,7 @@ namespace CSOutreach.Pages.Administrator
                         locationText = Location.Value;
                     }
 
-                  // List<Event> eventList = new List<Event>();
-                   // eventList = db.GetEventToUpdate(even.EventTypeId, even.CourseId, InstructorId, locationText);
+                   
                    
 
 
@@ -386,6 +383,11 @@ namespace CSOutreach.Pages.Administrator
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+            Button btnEdit1 = (Button)sender;
+            int eventIdToUpdate = Convert.ToInt32(btnEdit1.Attributes["value"]);
+            Session["EventIdPassed"] = eventIdToUpdate;
+            Server.Transfer("UpdatePage.aspx", true);
+       
 
         }
 
