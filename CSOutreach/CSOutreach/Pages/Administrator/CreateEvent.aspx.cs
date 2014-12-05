@@ -26,14 +26,7 @@ namespace CSOutreach.Pages.Administrator
             HtmlGenericControl divsuccess;
             if (IsPostBack)
             {
-
-                if (Convert.ToBoolean(Session["_createEventSuccessFlag"]))
-                {
-                    cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
-                    divsuccess = cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
-                    if (divsuccess != null)
-                        divsuccess.Style["display"] = "block";
-                }
+ 
                 return;
             }
 
@@ -119,7 +112,6 @@ namespace CSOutreach.Pages.Administrator
 
 
                     even.CreatedDate = DateTime.Today;
-                    System.DayOfWeek yz = DateTime.Parse(endDate.Text).DayOfWeek;
                     string userName = CSOutreach.Authentication.Username;
                     even.CreatedBy = (from per in entity.People
                         where per.Email == userName
@@ -192,15 +184,12 @@ namespace CSOutreach.Pages.Administrator
                         }
                     }
 
-                    //ContentPlaceHolder cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
-                    //HtmlGenericControl divsuccess =
-                    //    cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
-                    //if (divsuccess != null)
-                    //    divsuccess.Style["display"] = "block";
-
-                   // ClearValues();
-                    Session["_createEventSuccessFlag"] = true;
-                    Response.Redirect("~/Pages/Administrator/CreateEvent.aspx");
+                    ClearValues();
+                   ContentPlaceHolder cp = this.Master.Master.FindControl("BodyContent") as ContentPlaceHolder;
+                    divsuccess = cp.FindControl("AdminContent").FindControl("divsuccess") as HtmlGenericControl;
+                    if (divsuccess != null)
+                        divsuccess.Style["display"] = "block";
+                 
                 }
             }
 
@@ -245,15 +234,16 @@ namespace CSOutreach.Pages.Administrator
 
         protected void ClearValues()
         {
-            ContentPlaceHolder temp = Master.FindControl("BodyContent") as ContentPlaceHolder;
             //Clear all the textboxes.
-            foreach (Control ctrl in temp.FindControl("AdminContent").Controls)
-            {
-                if (ctrl.GetType().Name == "HtmlInputText")
-                {
-                    ((HtmlInputText) ctrl).Value = string.Empty;
-                }
-            }
+            txtEventName.Text = "";
+            startDate.Text = "";
+            endDate.Text = "";
+            txtLocation.Text = "";
+            txtDescription.Text = "";
+            drpCourseType.ClearSelection();
+            EventRecurrance.ClearSelection();
+            drpEventType.ClearSelection();
+            lstInstructor.Items.Clear();
         }
 
     }
