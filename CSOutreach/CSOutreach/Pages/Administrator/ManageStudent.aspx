@@ -42,7 +42,8 @@
                     <!--<td>Skills</td>-->
                     <td>Email</td>                 
                     
-                    <td>Select</td>
+                    <td>Remove</td>
+                        <td>Add</td>
                         </tr>
                 </thead>
                 <tbody>
@@ -56,6 +57,7 @@
                <td><asp:Label ID="LabelEmail" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"email") %>'></asp:Label></td>
               
                <td><asp:Button ID="btnSelect" runat="server"  type="submit" Text="Select" value='<%# DataBinder.Eval(Container.DataItem,"studentID") %>' OnClick="btnSelect_Click"></asp:Button></td>
+               <td><asp:Button ID="btnAddToEvent" runat="server"  type="submit" Text="Add to Event" value='<%# DataBinder.Eval(Container.DataItem,"studentID") %>' OnClick="btnAddToEvent_Click"></asp:Button></td>
            </tr>
         </ItemTemplate>
         <FooterTemplate>
