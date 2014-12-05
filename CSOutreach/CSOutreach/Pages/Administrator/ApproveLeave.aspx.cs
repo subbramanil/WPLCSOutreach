@@ -61,10 +61,11 @@ namespace CSOutreach.Pages.Administrator
                         LeaveApplicationsRepeater.DataSource = query;
                         LeaveApplicationsRepeater.DataBind();
                         
-
-                        //if()
-
-
+                        int n= query.Count();
+                        if(n == 0)
+                        {
+                            hidden_label.Style["display"] = "block";
+                        }
 
                     }
                     

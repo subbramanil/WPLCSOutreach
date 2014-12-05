@@ -16,7 +16,7 @@ namespace CSOutreach.Pages.Administrator
     public partial class ManageStudent : System.Web.UI.Page
     {
         AdminDBManager db = new AdminDBManager();
-
+      
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -134,6 +134,15 @@ namespace CSOutreach.Pages.Administrator
 
 
             }
+
+        protected void btnAddToEvent_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int studeventid = Convert.ToInt32(btn.Attributes["value"]);
+            Session["studentEventAddId"] = studeventid; 
+            Server.Transfer("AddStudentToEvent.aspx", true);
+
+        }
            
             
          

@@ -304,6 +304,31 @@ namespace DataOperations.DBEntityManager
 
         }
 
+        public String addStudentToEventAdmin(int eventIdToAdd, int studentIdToAdd)
+        {
+            StudentEvent stuEvnt = new StudentEvent();
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    stuEvnt.EventId = eventIdToAdd;
+                    stuEvnt.StudentId = studentIdToAdd;
+                    stuEvnt.RegistrationDate = DateTime.Today;
+
+                    entity.AddToStudentEvents(stuEvnt);
+                    entity.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return "failed";
+
+            }
+
+            return "success";
+        }
+
+
 
     }
 }
