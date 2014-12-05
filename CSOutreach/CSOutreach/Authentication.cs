@@ -127,6 +127,8 @@ namespace CSOutreach
                     isvalidpassword = true;
                     HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = user.Email;
                     HttpContext.Current.Session[SessionVariable.ROLE.ToString()] = user.Role.ToUpper();
+                    HttpContext.Current.Session[SessionVariable.USERID.ToString()] = user.PersonId;
+               
                 }
                 else
                 {
@@ -148,6 +150,7 @@ namespace CSOutreach
         public static void logout()
         {
             HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()] = null;
+            HttpContext.Current.Session[Authentication.SessionVariable.USERID.ToString()] = null;
         }
         /// <summary>
         /// Compare an unhashed password (input) to hashed password from person object (person.password)
