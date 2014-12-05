@@ -81,7 +81,7 @@ namespace CSOutreach.Pages.Administrator
                         join studentevent in entity.StudentEvents on person.PersonId equals studentevent.StudentId
                         join ev in entity.Events on studentevent.EventId equals ev.EventId
                         where person.PersonId == studentid
-                        select new { studenteventID=studentevent.StudentEventId, eventname = ev.Name, description = ev.Description, startdate = ev.StartDate, starttime=ev.StartTime };
+                        select new { studenteventID=studentevent.StudentEventId, eventname = ev.Name,startdate = ev.StartDate, starttime=ev.StartTime };
 
               StudentEventRepeater.DataSource = q;
               StudentEventRepeater.DataBind();

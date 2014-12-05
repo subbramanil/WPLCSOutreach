@@ -446,6 +446,16 @@ namespace CSOutreach.Pages.Administrator
         {
 
         }
+
+        protected void btnShowStudents_Click(object sender, EventArgs e)
+        {
+            Button btnShowStudents1 = (Button)sender;
+            int eventIdToStudents = Convert.ToInt32(btnShowStudents1.Attributes["value"]);
+            Session["EventIdPassed"] = eventIdToStudents;
+            Server.Transfer("ShowStudents.aspx", true);
+       
+
+        }
         
     }
 }

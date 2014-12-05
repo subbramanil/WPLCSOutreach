@@ -75,7 +75,7 @@
                     <tr>
                     <td style="display:none"></td>    
                     <td>Event Name</td>
-                    <td>Description</td>
+                   
                     <td>Start Date</td>
                     <td>Start Time</td>                                    
                     <td>Select</td>
@@ -87,7 +87,7 @@
            <tr>
                <td style="display:none"><asp:HiddenField ID="StudentID" runat="server"></asp:HiddenField></td>
                <td><asp:Label ID="LabelEventName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"eventname")%>'></asp:Label></td>
-               <td><asp:Label ID="LabelDesc" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"description")%>'></asp:Label></td>
+              
                <td><asp:Label ID="LabelStartDate" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"startdate") %>'></asp:Label></td>
               <td><asp:Label ID="LabelStartTime" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"starttime") %>'></asp:Label></td>
                <td><asp:Button ID="btnDelete" runat="server"  type="submit" Text="Delete" value='<%# DataBinder.Eval(Container.DataItem,"studenteventID") %>' OnClick="btnDelete_Click"></asp:Button></td>

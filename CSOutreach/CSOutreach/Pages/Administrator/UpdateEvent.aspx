@@ -68,8 +68,10 @@
                             <td>End Date</td>
                             <td>End Time</td>
                             <td>Location</td>
+                            <td>Show Students</td>
                             <td>Edit Option</td>
                             <td>Delete Option</td>
+                           
 
                         </tr>
                     </thead>
@@ -98,6 +100,8 @@
                     <td>
                         <asp:Label ID="Location" runat="server" Text='<%# DataBinder.Eval(Container.DataItem,"locationTextname") %>'></asp:Label></td>
 
+                    <td>
+                        <asp:Button CssClass="btn btn-primary" ID="btnShowStudents" runat="server" Text="Show Students" OnClick="btnShowStudents_Click" value='<%# DataBinder.Eval(Container.DataItem,"id") %>'></asp:Button></td>
                     <td>
                         <asp:Button CssClass="btn btn-primary" ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" value='<%# DataBinder.Eval(Container.DataItem,"id") %>'></asp:Button></td>
                     <td>
