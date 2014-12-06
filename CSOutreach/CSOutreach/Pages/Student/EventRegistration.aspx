@@ -74,6 +74,7 @@
                             <span id="msg1"></span>                            
                         </div>
                         <div class="text-right">
+                            <a class="btn btn-warning" href="DetailedEventsListing.aspx" id="step1PrevBtn" >Cancel Registration</a>
                             <input type="button" class="btn btn-primary" value="Next" id="step1NextBtn" />
                         </div>
                     </div>
@@ -228,9 +229,16 @@
                             </table>                                
                         </div>                        
                     </div>
-                    <div class="panel-footer text-right">
-                        <input type="button" class="btn btn-warning" value="Cancel Registration" id="step3CancelBtn" />
-                        <asp:Button runat="server" Text="Register" ID="step4SubmitBtn" CssClass="btn btn-success" OnClick="registerEvent"/>                        
+                    <div class="panel-footer">
+                        <div class="alert alert-danger" id="divError" role="alert">
+                          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                          <span class="sr-only">Error:</span>                          
+                            <span id="msg5">Failed to register</span>                            
+                        </div>
+                        <div class="text-right">                            
+                            <a class="btn btn-warning" href="DetailedEventsListing.aspx" id="step3CancelBtn" >Cancel Registration</a>
+                            <asp:Button runat="server" Text="Register" ID="step4SubmitBtn" CssClass="btn btn-success" OnClick="registerEvent"/>                        
+                        </div>
                     </div>                
                 </div>
             </div>
@@ -275,6 +283,7 @@
         function resetMethod() {
             $('#regStep1 .panel .panel-footer .alert').hide();
             $('#regStep2 .panel .panel-footer .alert').hide();
+            $('#regStep4 .panel .panel-footer .alert').hide();
         }
 
         $('#step1NextBtn').click(function () {
@@ -316,7 +325,7 @@
                 dataType: "json",
                 contentType: 'application/json; charset=utf-8',                
                 success: function (response) {
-                    alert(response.d);
+//                    alert(response.d);
                 },
                 error: function () {
                     Console.log("Error in making ajax conversation with the server");
@@ -353,6 +362,8 @@
             if (noPreReq != 0) {
                 $('#regStep2 .panel .panel-footer .alert').show();                
                 $('#regStep2 .panel .panel-footer .alert #msg3').text("Prerequisites found!! Cannot register for the event");
+                $('#step2NextBtn').hide();
+                $('#step2PrevBtn').prop('value', 'Cancel');
                 return;
             }
             if (noConflicts != 0) {

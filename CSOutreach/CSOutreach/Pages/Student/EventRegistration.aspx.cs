@@ -10,6 +10,7 @@ using System.Web.Services;
 using DataOperations.DBEntity;
 using DataOperations.DBEntityManager;
 using StudentEntity.CrossPageInformation;
+using StudentEntity.PageTraversal;
 
 namespace CSOutreach.Pages.Student
 {
@@ -95,19 +96,29 @@ namespace CSOutreach.Pages.Student
             List<Event> eventsList = studEventDBMgr.GetStudentRegisteredEvent(userID);
             List<Event> conflictEventsList = new List<Event>();
 
-            DateTime selectedEventStart = selectedEvent.StartDate.Add(selectedEvent.StartTime);
-            DateTime selectedEventEnd = selectedEvent.EndDate.Add(selectedEvent.EndTime);
-
             if (eventsList != null)
             {
                 foreach (Event eventItem in eventsList) // Loop through List with foreach
                 {
-                    if ((selectedEvent.StartDate.CompareTo(eventItem.StartDate) >= 0) || (selectedEvent.EndDate.CompareTo(eventItem.EndDate) <= 0))
+
+                    if (selectedEvent.StartDate.Ticks > eventItem.StartDate.Ticks && selectedEvent.StartDate.Ticks < eventItem.EndDate.Ticks)
                     {
-                        if((selectedEvent.StartTime.CompareTo(eventItem.StartTime) >=0) || (selectedEvent.EndTime.CompareTo(eventItem.EndTime) <= 0)){                            
+                        if ((selectedEvent.StartTime.Ticks > eventItem.StartTime.Ticks && selectedEvent.StartTime.Ticks < eventItem.EndTime.Ticks) ||
+                            (selectedEvent.EndTime.Ticks > eventItem.StartTime.Ticks && selectedEvent.EndTime.Ticks < eventItem.EndTime.Ticks))                       
+                        {
                             conflictEventsList.Add(eventItem);
-                        }                      
-                    }               
+                        }
+                        
+                    }
+                    else if (selectedEvent.EndDate.Ticks > eventItem.StartDate.Ticks && selectedEvent.EndDate.Ticks < eventItem.EndDate.Ticks)
+                    {
+                        if ((selectedEvent.StartTime.Ticks > eventItem.StartTime.Ticks && selectedEvent.StartTime.Ticks < eventItem.EndTime.Ticks) ||
+                            (selectedEvent.EndTime.Ticks > eventItem.StartTime.Ticks && selectedEvent.EndTime.Ticks < eventItem.EndTime.Ticks))
+                        {
+                            conflictEventsList.Add(eventItem);
+                        }
+                    }
+
                 }
             }
 
@@ -141,6 +152,7 @@ namespace CSOutreach.Pages.Student
         protected void registerEvent(object sender, EventArgs e)
         {
             Boolean statusFlag = false;
+            this.crossEventData = this.CrossPageInformation as CrossPageEventRegistration;
             // Get student details from session
             string username = (string)HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()];
             // Call DB to get the student details
@@ -157,11 +169,11 @@ namespace CSOutreach.Pages.Student
             }
             if (statusFlag)
             {
-                Response.Redirect("DefaultHome.aspx");
+                Response.Redirect("DefaultHome.aspx");                
             }
             else
             {
-
+                // Show error
             }
         }
      
