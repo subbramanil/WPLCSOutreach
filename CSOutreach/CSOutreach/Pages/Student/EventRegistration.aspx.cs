@@ -34,7 +34,7 @@ namespace CSOutreach.Pages.Student
                 studentEvent = new StudentEvent();
 
                 // Get student details from session
-                string username = (string)HttpContext.Current.Session[SessionVariable.USERNAME.ToString()];
+                string username = (string)HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()];
                 // Call DB to get the student details
                 loggedInStudent = personDBMgr.GetUser(username);
                 // Setup values in the screen
@@ -126,7 +126,7 @@ namespace CSOutreach.Pages.Student
         {
             String statusMsg = "";
             // Get student details from session
-            string username = (string)HttpContext.Current.Session[SessionVariable.USERNAME.ToString()];
+            string username = (string)HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()];
             // Call DB to get the student details
             loggedInStudent = personDBMgr.GetUser(username);
             selectedEvent = eventDBMgr.GetSelectedEventDetails(20001);            

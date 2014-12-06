@@ -11,8 +11,10 @@ namespace DataOperations.DBEntityManager
     public class StudentDBManager
     {
         DBCSEntities Entities;
+        Student student;
         public StudentDBManager()
         {
+            student = new Student();
             Entities = new DBCSEntities();
         }
         public ObjectSet<Course> AllCourses
@@ -40,6 +42,24 @@ namespace DataOperations.DBEntityManager
             {
                 return Entities.Events;
             }
+        }
+		
+        public Student GetStudent(int studentID)
+        {
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    student = (from studentRecord in entity.Students
+                               where studentRecord.StudentId == studentID
+                               select studentRecord).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return student;
         }
     }
 }

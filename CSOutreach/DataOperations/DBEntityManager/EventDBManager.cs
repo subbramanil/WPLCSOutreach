@@ -34,5 +34,31 @@ namespace DataOperations.DBEntityManager
             return studentEventList;
         }
 
+        public Event GetSelectedEventDetails(int eventID)
+        {
+            Event selectedEvent = null;
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    var query = from Event in entity.Events
+                                where Event.EventId == eventID
+                                select Event;
+                    selectedEvent = query.First();
+                    Console.WriteLine(selectedEvent.EventType + selectedEvent.Name);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception in EventDBManager.GetSelectedEventDetails() method" + ex.Message);                
+            }
+            return selectedEvent;
+        }
+
+        public void RegisterEvent()
+        {
+
+        }
+
     }
 }

@@ -93,6 +93,67 @@ namespace DataOperations.DBEntityManager
             }
             return ispaperworkComplete;
         }
+		
+		
+       /// <summary>
+       /// Get Events PreReq
+       /// </summary>
+       /// <param name="userid"></param>
+       /// <returns></returns>
+       public List<Event> GetEventPrereq(int userID, Event selectedEvent)
+       {
+           int courseLevel;
+           List<Event> studentEventList = null;
+           int courseID = selectedEvent.CourseId;
+
+           try
+           {
+               using (DBCSEntities entity = new DBCSEntities())
+               {
+                   var query = from course in entity.Courses
+                               join regEvent in entity.Events on course.CourseId equals regEvent.CourseId
+                               where regEvent.EventId == selectedEvent.EventId 
+                               select course.CourseLevel;
+                   courseLevel = query.SingleOrDefault();
+               }
+
+               using (DBCSEntities entity = new DBCSEntities())
+               {                   
+                   var query = from Event in entity.Events                               
+                               join eventCourse in entity.Courses on Event.CourseId equals eventCourse.CourseId
+                               join studentEvent in entity.StudentEvents on Event.EventId equals studentEvent.EventId
+                               where studentEvent.StudentId == userID 
+                               where eventCourse.CourseLevel < courseLevel   
+                               select Event;
+                   studentEventList = (query).ToList();                   
+               }
+           }
+           catch (Exception ex)
+           {
+               
+           }
+           return studentEventList;
+       }
+
+
+       public String registerEvent(StudentEvent studentEvent)
+       {
+           String statusMsg = "success";
+           try
+           {
+               using (DBCSEntities entity = new DBCSEntities())
+               {
+                   entity.AddToStudentEvents(studentEvent);
+                   entity.SaveChanges();
+               }
+
+           }
+           catch (Exception ex)
+           {
+               statusMsg = "fail";
+           }
+           return statusMsg;
+       }
     }
 
 }
