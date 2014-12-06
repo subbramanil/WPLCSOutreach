@@ -18,12 +18,12 @@ namespace CSOutreach.Pages.Student
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
         static string hashvaluepassword, emailId;
         protected void btn_update_Click(object sender, EventArgs e)
         {
-            
+
             int up = 0;
             PersonDBManager personDBMgr = new PersonDBManager();
             try
@@ -46,12 +46,12 @@ namespace CSOutreach.Pages.Student
 
             if (personDBMgr.Encrypt(txt_cpassword.Text) == hashvaluepassword)
             {
-                    up = 1;
+                up = 1;
             }
             if (up == 1)
             {
-                
-                
+
+
                 Person password_user = new Person();
                 password_user.Password = txt_npassword.Text;
                 password_user.Email = emailId;

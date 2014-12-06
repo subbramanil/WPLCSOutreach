@@ -1,24 +1,42 @@
 ﻿<%@ Page Title="myprofile" Language="C#" MasterPageFile="~/Pages/MasterPages/StudentMasterPage.master" AutoEventWireup="true" CodeBehind="myprofile.aspx.cs" Inherits="CSOutreach.Pages.Student.myprofile" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="StudentContent" runat="server">
-<div class="row">
-       <div class="alert alert-success" id="divsuccess" runat="server">
-           <span class="glyphicon glyphicon-ok"></span><label>You have successfully edit the content</label>
-       </div>
-     </div>
-      <div class="row">
-       <div class="alert alert-danger" id="diverror" runat="server">
-           <span class="glyphicon glyphicon-exclamation-sign"></span><label> Error occured while editing. Please try again later.</label>
-       </div>
-<div class="form-edit">
+    <style type="text/css">
+    .rfv
+    {
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: #A94442;
+    font-weight: bold;
+    }
+    </style>
+    <div class="row">
+        <div class="alert alert-success" id="divsuccess" runat="server">
+            <span class="glyphicon glyphicon-ok"></span>
+            <label>You have successfully edit the content</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="alert alert-danger" id="diverror" runat="server">
+            <span class="glyphicon glyphicon-exclamation-sign"></span>
+            <label>Error occured while editing. Please try again later.</label>
+        </div>
+    </div>
+    <div class="form-signup">
         <div class="row">
             <div class="form-group col-md-3">
                 <label for="">First Name:</label>
-                <input type="text" class="form-control" id="First_Name" runat="server" maxlength="50" DataTextField="First_Name" DataValueField="First_Name"/>
-                
+                <input type="text" class="form-control" value="" id="First_Name" runat="server" maxlength="50" datatextfield="First_Name" datavaluefield="First_Name" />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+            ControlToValidate="First_Name" CssClass="rfv"
+            ErrorMessage="Please enter First Name"></asp:RequiredFieldValidator>
             </div>
             <div class="form-group col-md-3">
                 <label for="">Last Name:</label>
-                <input type="text" class="form-control" id="Last_Name" runat="server" maxlength="50" DataTextField="Last_Name" DataValueField="Last_Name"/>
+                <input type="text" class="form-control" id="Last_Name" value="" runat="server" maxlength="50" datatextfield="Last_Name" datavaluefield="Last_Name" />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+            ControlToValidate="Last_Name" CssClass="rfv"
+            ErrorMessage="Please enter Last Name"></asp:RequiredFieldValidator>
             </div>
         </div>
 
@@ -29,103 +47,119 @@
         <div class="row">
             <div class="form-group col-md-6">
                 <label for="">Address:</label>
-                <textarea class="form-control" id="Address" runat="server" maxlength="85" DataTextField="Address_1" DataValueField="Address_1"></textarea>
+                <textarea class="form-control" id="Address" runat="server" maxlength="85" datatextfield="Address_1" datavaluefield="Address_1"></textarea>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+            ControlToValidate="Address" CssClass="rfv"
+            ErrorMessage="Please enter Your Address" ></asp:RequiredFieldValidator>
             </div>
         </div>
-    
-        
+
+
         <div class="row">
             <div class="col-md-3">
                 <label for="">Contact Phone Number:</label>
-                <input type="text" class="form-control" id="Contact_Number" runat="server" maxlength="10" DataTextField="Contact_Number" DataValueField="Contact_Number"/>
+                <input type="text" class="form-control" id="Contact_Number" runat="server" maxlength="10" datatextfield="Contact_Number" datavaluefield="Contact_Number" />
+                <asp:RequiredFieldValidator   
+             ID="RequiredFieldValidator4"  
+             runat="server"  CssClass="rfv"
+             ControlToValidate="Contact_Number"  
+             Text="Contact Number is Required"  
+             >  
+        </asp:RequiredFieldValidator>  
+        <asp:RegularExpressionValidator   
+            ID="RegularExpressionValidator1"  
+            runat="server"   
+            ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"  
+            ControlToValidate="Contact_Number"  
+            ErrorMessage="Input valid Phone Number!"  
+            ></asp:RegularExpressionValidator>  
             </div>
         </div>
-        
+
         <div class="row">
             <hr class="col-md-6" />
         </div>
 
         <div class="row">
             <div class="form-group col-md-3">
-                <label for="">Email:</label>1
-                <input type="text" class="form-control" id="Email" runat="server" DataTextField="Email" DataValueField="Email" />
+                <label for="">Email:</label>
+                <input type="text" class="form-control" id="Email" runat="server" datatextfield="Email" datavaluefield="Email" />
             </div>
-            <div class="form-group col-md-3">
-                <label for="">Confirm Email:</label>
-                <input type="text" class="form-control" id="EmailConfirm" runat="server" DataTextField="EmailConfirm" DataValueField="EmailConfirm" />
-            </div>
+
             <div class="col-md-1" id="email-ok"></div>
         </div>
         <p class="has-error"><em>*Use your UTDallas email address if you have one.</em></p>
         <br />
-        <div class="row">
+         <div class="row">
+        <asp:LinkButton ID="lnk_changepassword" runat="server"
+        onclick="lnk_changepassword_Click">Change Password</asp:LinkButton>
+        </div>
+        <%--<div class="row">
             <div class="form-group col-md-3">
                 <label for="">Password:</label>
-                <input type="password" class="form-control" id="Password" runat="server" maxlength="6" DataTextField="Password" DataValueField="Password"/>
+                <input type="password" class="form-control" id="Password" runat="server" maxlength="6" datatextfield="Password" datavaluefield="Password" />
 
- 
+
             </div>
             <div class="form-group col-md-3">
                 <label for="">Confirm Password:</label>
                 <input type="password" class="form-control" id="CPassword" runat="server" />
-                 </div>
+            </div>
             <div class="col-md-1" id="password-ok"></div>
-        </div>
+        </div>--%>
         <div class="row">
             <p class="has-error col-md-6"><em>*Password must be 8-15 characters long and contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.</em></p>
         </div>
         <br />
-    <asp:Button id="Button1" runat="server" Text="myprofile" 
-	onClickonserverclick="Button1_Click" />
-        <input type="submit" class="btn btn-primary" value="Submit" id="btnclick" runat="server"/>
+
+        <asp:Button class="btn btn-primary" value="btnSubmit" ID="btnSubmit" Text="Submit" runat="server" onserverclick="btnSubmit_Click" />
         <div class="row">
             <hr class="col-md-6" />
         </div>
     </div>
 
- <script>
+     <script>
 
-     $(document).ready(function () {
+         $(document).ready(function () {
 
-         jQuery.validator.addMethod("letters", function (value, element) {
-             return this.optional(element) || /^[a-zA-Z]+$/.test(value);
-         }, "Please enter letters only without spaces");
+             jQuery.validator.addMethod("letters", function (value, element) {
+                 return this.optional(element) || /^[a-zA-Z]+$/.test(value);
+             }, "Please enter letters only without spaces");
 
-         jQuery.validator.addMethod("letters_spaces", function (value, element) {
-             return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
-         }, "Please enter letters only");
+             jQuery.validator.addMethod("letters_spaces", function (value, element) {
+                 return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
+             }, "Please enter letters only");
 
-         jQuery.validator.addMethod("checkpassword", function (value, element) {
-             return this.optional(element) || /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,15})+$/.test(value);
-         }, "Entered password does not meet minimum requirements");
+             jQuery.validator.addMethod("checkpassword", function (value, element) {
+                 return this.optional(element) || /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,15})+$/.test(value);
+             }, "Entered password does not meet minimum requirements");
 
-         jQuery.validator.addMethod("matchfield", function (value, element, param) {
-             if (param == "email")
-                 var fieldval = $("#" + "<%=Email.ClientID%>").val();
-                    if (param == "password")
-                        var fieldval = $("#" + "<%=Password.ClientID%>").val();
+             jQuery.validator.addMethod("matchfield", function (value, element, param) {
+                 if (param == "email")
+                     var fieldval = $("#" + "<%=Email.ClientID%>").val();
+             <%--if (param == "password")
+                 var fieldval = $("#" + "<%=Password.ClientID%>").val();--%>
 
-                    return this.optional(element) || value === fieldval;
-                });
+             return this.optional(element) || value === fieldval;
+         });
 
-                jQuery.validator.addMethod("checkaddress", function (value, element) {
-                    return this.optional(element) || /^[a-zA-Z0-9'\-\,\.\s]+$/.test(value);
-                }, "Address contains some invalid characters");
+         jQuery.validator.addMethod("checkaddress", function (value, element) {
+             return this.optional(element) || /^[a-zA-Z0-9'\-\,\.\s]+$/.test(value);
+         }, "Address contains some invalid characters");
 
 
-                $("#pageform").validate({
+         $("#pageform").validate({
 
-                    rules: {
-                        "<%=First_Name.UniqueID%>": { required: true, letters: true },
+             rules: {
+                 "<%=First_Name.UniqueID%>": { required: true, letters: true },
                         "<%=Last_Name.UniqueID%>": { required: true, letters: true },
                         "<%=Address.UniqueID%>": { required: true, checkaddress: true },
-                        "<%=Contact_Number.UniqueID%>": { required: true, digits: true, minlength: 9 },
-                         "<%=Email.UniqueID%>": {
+                        "<%=Email.UniqueID%>": {
                             required: true,
                             email: true,
                             remote: function () { //call a webmethod to check user name availability
                                 return {
-                                    url: "myprofile.aspx/",
+                                    url: "Signup.aspx/CheckUserExists",
                                     data: "{userName: '" + $("#" + "<%=Email.ClientID%>").val() + "'}",
                                     cache: false,
                                     type: 'POST',
@@ -140,34 +174,27 @@
                             },
                         },
 
-                        "<%=EmailConfirm.UniqueID%>": { required: true, email: true, matchfield: "email" },
+                       <%-- "<%=EmailConfirm.UniqueID%>": { required: true, email: true, matchfield: "email" },
                         "<%=Password.UniqueID%>": { required: true, checkpassword: true },
-                        "<%=CPassword.UniqueID%>": { required: true, checkpassword: true, matchfield: "password" },
+                        "<%=PasswordConfirm.UniqueID%>": { required: true, checkpassword: true, matchfield: "password" },--%>
 
 
                     },
-                    
+                    groups: {
                     },
                     messages: {
                         "<%=First_Name.UniqueID%>": { required: "Please enter your Firstname" },
                         "<%=Last_Name.UniqueID%>": { required: "Please enter your Lastname" },
-                        "<%=Address.UniqueID%>": { required: "Please enter your Address" },                        
-                        "<%=Contact_Number.UniqueID%>": { required: "Please enter your Contact phone number", digits: "Please enter numbers only", minlength: "minimum 3 digits required" },
+                        "<%=Address.UniqueID%>": { required: "Please enter your Address" },
+                        
                         "<%=Email.UniqueID%>": { required: "Please enter your email", email: "Please enter a valid email address", remote: "Email already in use" },
-                        "<%=EmailConfirm.UniqueID%>": { required: "Please confirm your email", email: "Please enter a valid email address", matchfield: "Email and Confirm email not same" },
-                        "<%=Password.UniqueID%>": { required: "Please enter your password" },
-                        "<%=CPassword.UniqueID%>": { required: "Please confirm your password", matchfield: "Password and Confirm password not same" },
+                        
 
                     },
                     errorClass: "has-error",
                     errorPlacement: function (error, element) {
-                        //show a single error message for {Phoneno} and {City,State and Zip} groups validation
-                       // if ($(element).attr("name") == "" || $(element).attr("name") == " || $(element).attr("name") == ""
-                           // || $(element).attr("name") == "" || $(element).attr("name") == "" || $(element).attr("name") == " {
-                          //  error.insertAfter($(element).parent().parent());
-                       // }
-                      //  else { error.insertAfter($(element)); }
-                   // },
+                        
+                    },
                     highlight: function (element, errorClass) {
                         $(element).parent().children("input").addClass("error_vld");
                     },
@@ -177,7 +204,8 @@
                 });
 
 
-            });
+     });
 
         </script>
+
 </asp:Content>

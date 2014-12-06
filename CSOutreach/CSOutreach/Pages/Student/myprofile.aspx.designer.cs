@@ -76,15 +76,6 @@ namespace CSOutreach.Pages.Student {
         protected global::System.Web.UI.HtmlControls.HtmlInputText Email;
         
         /// <summary>
-        /// EmailConfirm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText EmailConfirm;
-        
-        /// <summary>
         /// Password control.
         /// </summary>
         /// <remarks>
@@ -103,21 +94,39 @@ namespace CSOutreach.Pages.Student {
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword CPassword;
         
         /// <summary>
-        /// Button1 control.
+        /// EmergencyName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText EmergencyName;
         
         /// <summary>
-        /// btnclick control.
+        /// EmergencyContactNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputSubmit btnclick;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText EmergencyContactNum;
+        
+        /// <summary>
+        /// EmergencyRelation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText EmergencyRelation;
+        
+        /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

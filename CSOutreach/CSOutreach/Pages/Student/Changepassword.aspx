@@ -1,42 +1,98 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Changepassword.aspx.cs" Inherits="CSOutreach.Pages.Student.WebForm1" %>
+﻿%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Pages/MasterPages/StudentMasterPage.Master" AutoEventWireup="true" CodeBehind="DefaultHome.aspx.cs" Inherits="CSOutreach.Pages.DefaultHome" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content2" ContentPlaceHolderID="StudentContent" runat="server">
+    <div class="col-md-6">
+        <div id="registeredEvents">
+            <div class="module">
+                <h5 class="disblock" style="cursor: default;">Registered Events
+                </h5>
+                <div class="moduleBody">
+                    <ul class="ulEvent">
+                        <asp:Repeater ID="repRegisteredEvents" runat="server" OnItemDataBound="repRegisteredEvents_ItemDataBound">
+                            <ItemTemplate>
+                                <li><a id="lnkName" runat="server"><%# DataBinder.Eval(Container.DataItem, "Name")%></a></li>
+                                <div>
+                                    <asp:Literal ID="ltrlDescription" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Description")%>'></asp:Literal>
+                                </div>
+                            </ItemTemplate>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-        <asp:Label ID="Label1" runat="server" Text="Current password" Width="120px"></asp:Label>
-        <asp:TextBox ID="txt_cpassword" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-            ControlToValidate="txt_cpassword"
-            ErrorMessage="Please enter Current password"></asp:RequiredFieldValidator>
-        <br />
-         <asp:Label ID="Label2" runat="server" Text="New password" Width="120px"
-            Font-Bold="True"></asp:Label>
-        <asp:TextBox ID="txt_npassword" runat="server" TextMode="Password"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-            ControlToValidate="txt_npassword" ErrorMessage="Please enter New password"></asp:RequiredFieldValidator>
-        <br />
-       
-         <asp:Label ID="Label3" runat="server" Text="Confirm password" Width="120px"
-            Font-Bold="True" ></asp:Label>
-
-        <asp:TextBox ID="txt_ccpassword" runat="server" TextMode="Password"></asp:TextBox>   
-
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-            ControlToValidate="txt_ccpassword"
-            ErrorMessage="Please enter Confirm  password"></asp:RequiredFieldValidator>
-
-        <asp:CompareValidator ID="CompareValidator1" runat="server"
-            ControlToCompare="txt_npassword" ControlToValidate="txt_ccpassword"
-            ErrorMessage="Password Mismatch"></asp:CompareValidator>   
+                        </asp:Repeater>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-    <asp:Button ID="btn_update" runat="server" Font-Bold="True" BackColor="#CCFF99" onclick="btn_update_Click" Text="Update" />
-    <asp:Label ID="lbl_msg" Font-Bold="True" BackColor="#FFFF66" ForeColor="#FF3300" runat="server" Text=""></asp:Label><br />
-    </form>
-</body>
-</html>
+    <div class="col-md-6">
+        <div id="UpComingEvents">
+            <div class="module">
+                <h5 class="disblock" style="cursor: default;">Upcoming Events Of Your Interest
+                </h5>
+                <div class="moduleBody">
+                    <ul class="ulEvent">
+                        <asp:Repeater ID="repUpcomingEvents" runat="server" OnItemDataBound="repUpcomingEvents_ItemDataBound">
+                            <ItemTemplate>
+                                <li><a id="lnkUpcomingEventName" runat="server"><%# DataBinder.Eval(Container.DataItem, "Name")%></a></li>
+                                <div>
+                                    <span class="modulesubcontent">Starts on </span>
+                                    <asp:Literal ID="ltrlUpcomingDate" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "StartDate")).ToString("MMM dd, yyyy")%>'></asp:Literal>
+                                </div>
+                            </ItemTemplate>
+
+                        </asp:Repeater>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-6">
+        <div id="EventSchedule">
+            <div class="module">
+                <h5 class="disblock" style="cursor: default;">Event Schedule
+                </h5>
+                <div class="moduleBody">
+                    <ul class="ulEvent">
+                        <asp:Repeater ID="repEventSchedule" runat="server" OnItemDataBound="repEventSchedule_ItemDataBound">
+                            <ItemTemplate>
+                                <li><a id="lnkEventName" runat="server"><%# DataBinder.Eval(Container.DataItem, "Name")%></a></li>
+                                <div>
+                                    <span class="modulesubcontent">Starts on </span>
+                                    <asp:Literal ID="ltrlDate" runat="server"></asp:Literal>
+                                    <span class="modulesubcontent">from </span>
+                                    <asp:Literal ID="ltrlTimings" runat="server"></asp:Literal><br />
+                                    <span class="modulesubcontent">at </span>
+                                    <asp:Literal ID="ltrlLocation" runat="server"></asp:Literal>
+
+                                </div>
+                            </ItemTemplate>
+
+                        </asp:Repeater>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div id="Announcements">
+            <div class="module">
+                <h5 class="disblock" style="cursor: default;">Announcements
+                </h5>
+                <div class="moduleBody">
+                    <ul class="ulEvent">
+                        <li><a href="#">
+                            <asp:Literal runat="server" ID="ltrlPaperWorkComplete"></asp:Literal></a></li>
+                        <asp:Repeater ID="repAnnouncements" runat="server">
+                            <ItemTemplate>
+                            </ItemTemplate>
+
+                        </asp:Repeater>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>
+

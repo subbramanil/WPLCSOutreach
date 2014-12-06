@@ -19,12 +19,17 @@ namespace CSOutreach.Pages.Student
         PersonDBManager personDBMgr = new PersonDBManager();
         protected void Page_Load(object sender, EventArgs e)
         {
-           // HtmlGenericControl divsuccess = Master.FindControl("BodyContent").FindControl("divsuccess") as HtmlGenericControl;
-           // if (divsuccess != null)
-              //  divsuccess.Style["display"] = "none";
-            //HtmlGenericControl diverror = Master.FindControl("BodyContent").FindControl("diverror") as HtmlGenericControl;
-         //   if (diverror != null)
-             //   diverror.Style["display"] = "none";
+                       if (!IsPostBack)
+            {
+                //To hide the success and error messages initially
+                //HtmlGenericControl divsuccess = Master.FindControl("BodyContent").FindControl("divsuccess") as HtmlGenericControl;
+                if (divsuccess != null)
+                    divsuccess.Style["display"] = "none";
+                //HtmlGenericControl diverror = Master.FindControl("BodyContent").FindControl("diverror") as HtmlGenericControl;
+                if (diverror != null)
+                    diverror.Style["display"] = "none";
+
+
             try
             {
                 List<Person> personelist = new List<Person>();
@@ -38,31 +43,67 @@ namespace CSOutreach.Pages.Student
                     //            select new { firstname = person.FirstName, lastname = person.LastName, contactnum = person.ContactNumber, email=person.Email, password=person.Password, address=person.Address};
                     First_Name.Value = person.FirstName;
                     Last_Name.Value = person.LastName;
-
-                    HtmlTextArea addressText = Master.FindControl("BodyContent").FindControl("Address") as HtmlTextArea;
-                    addressText.Value = person.Address;
+                    Address.Value = person.Address;
                     Contact_Number.Value = person.ContactNumber;
+                    Email.Value = person.Email;
+                    Email.Disabled = true;
+
                     Password.Value = person.Password;
-                    HtmlInputPassword passwordconfirm = Master.FindControl("BodyContent").FindControl("Cpassword") as HtmlInputPassword;
-                    passwordconfirm.Value = person.Password;
+                    CPassword.Value = person.Password;
 
                 }
 
 
-
+            
 
             }
             catch (Exception ex)
             {
             }
-        }          
+        }
 
 
-      
 
-       protected void Button1_Click(object sender, EventArgs e)
+        }
+
+        protected void ClearValues()
         {
-            
+            //Clear all the textboxes.
+            foreach (Control ctrl in Master.FindControl("BodyContent").Controls)
+            {
+                if (ctrl.GetType().Name == "HtmlInputText")
+                {
+                    ((HtmlInputText)ctrl).Value = string.Empty;
+                }
+            }
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            PersonDBManager persondb = new PersonDBManager();
+ 
+                Person signed_user = new Person();
+                signed_user.FirstName = First_Name.Value;
+                signed_user.LastName = Last_Name.Value.Trim();
+                signed_user.Address = Address.Value.Trim();
+                signed_user.Email = Email.Value.Trim();
+                signed_user.ContactNumber = Contact_Number.Value.Trim();
+                signed_user.Password = Password.Value;
+
+                bool result = persondb.AddNewUserDetails(signed_user);
+                if (result == true)
+                {
+                    if (divsuccess != null)
+                        divsuccess.Style["display"] = "block";
+                }
+                else
+                {
+                    if (diverror != null)
+                        diverror.Style["display"] = "block";
+                }
+                            
+            }
+
         }
     }
-}
+
