@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Services;
+
 
 using DataOperations.DBEntity;
 using DataOperations.DBEntityManager;
@@ -23,9 +25,14 @@ namespace CSOutreach.Pages.Student
         Event selectedEvent;
         StudentEvent studentEvent;
 
+        /// <summary>
+        /// Method to load data to the page
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            EventRegistration eventReg = new EventRegistration();
             if (!IsPostBack)
             {
                 Page.Title = "Event Registration";
@@ -37,16 +44,15 @@ namespace CSOutreach.Pages.Student
                 string username = (string)HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()];
                 // Call DB to get the student details
                 loggedInStudent = personDBMgr.GetUser(username);
+                
                 // Setup values in the screen
-
                 if (loggedInStudent != null)
                 {
                     FirstName.Value = loggedInStudent.FirstName;
                     LastName.Value = loggedInStudent.LastName;
-                }                
-
+                }
+                // Get Student details from DB
                 student = studentDBMgr.GetStudent(loggedInStudent.PersonId);
-
                 if (student != null)
                 {
                     EmergConName.Value = student.EmergencyName;
@@ -56,24 +62,20 @@ namespace CSOutreach.Pages.Student
                     EmergPhoneSecond.Value = student.EmergencyNumber.Substring(6, 4);
                 }
 
-                // Get Selected Event details from DB
-                //crossEventData.eventID = 20000;
-                selectedEvent = eventDBMgr.GetSelectedEventDetails(20001);            
+                // Get Selected Event details from DB                
+                selectedEvent = eventDBMgr.GetSelectedEventDetails(this.crossEventData.RegistrationEventID);            
                 if (selectedEvent != null)
                 {
                     EventTitle.Text = selectedEvent.Name;
                     EventType.Text = selectedEvent.EventType.TypeName;
-                    EventTime.Text = selectedEvent.StartDate.Add(selectedEvent.StartTime).ToString();
-                   // EventDetails.Text = selectedEvent.Course.Description;                    
+                    EventTime.Text = selectedEvent.StartDate.Add(selectedEvent.StartTime).ToString();                   
                 }
 
-                EventRegistration test = new EventRegistration();
-
-                conflictsRepeater.DataSource = test.getEventConflicts(loggedInStudent.PersonId, selectedEvent);
+                conflictsRepeater.DataSource = eventReg.getEventConflicts(loggedInStudent.PersonId, selectedEvent);
                 conflictsRepeater.DataBind();
 
                 List<Event> eventsList = studEventDBMgr.GetStudentRegisteredEvent(loggedInStudent.PersonId);
-                List<Event> preReqEventsList = test.getEventPrerequisites(loggedInStudent.PersonId, selectedEvent);
+                List<Event> preReqEventsList = eventReg.getEventPrerequisites(loggedInStudent.PersonId, selectedEvent);
                 preReqRepeater.DataSource = preReqEventsList;
                 preReqRepeater.DataBind();
 
@@ -81,7 +83,12 @@ namespace CSOutreach.Pages.Student
             
         }
 
-        
+
+        /// <summary>
+        /// Method to get the event Conflicts
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
         private List<Event> getEventConflicts(int userID, Event selectedEvent)
         {
 
@@ -107,7 +114,12 @@ namespace CSOutreach.Pages.Student
             return conflictEventsList;
         }
 
-        public List<Event> getEventPrerequisites(int userID, Event selectedEvent)
+        /// <summary>
+        /// Method to get the event Prerequisites
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        private List<Event> getEventPrerequisites(int userID, Event selectedEvent)
         {
             List<Event> eventsList = studEventDBMgr.GetEventPrereq(userID, selectedEvent);
             if (eventsList != null)
@@ -121,15 +133,19 @@ namespace CSOutreach.Pages.Student
             return eventsList;
         }
 
-
+        /// <summary>
+        /// Method to register the event to the user
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
         protected void registerEvent(object sender, EventArgs e)
         {
-            String statusMsg = "";
+            Boolean statusFlag = false;
             // Get student details from session
             string username = (string)HttpContext.Current.Session[Authentication.SessionVariable.USERNAME.ToString()];
             // Call DB to get the student details
             loggedInStudent = personDBMgr.GetUser(username);
-            selectedEvent = eventDBMgr.GetSelectedEventDetails(20001);            
+            selectedEvent = eventDBMgr.GetSelectedEventDetails(this.crossEventData.RegistrationEventID);            
             studentEvent = new StudentEvent();
     
             if (loggedInStudent != null && selectedEvent != null)
@@ -137,14 +153,56 @@ namespace CSOutreach.Pages.Student
                 studentEvent.StudentId = loggedInStudent.PersonId;
                 studentEvent.EventId = selectedEvent.EventId;
                 studentEvent.RegistrationDate = DateTime.Now;
-                statusMsg = studEventDBMgr.registerEvent(studentEvent);
+                statusFlag = studEventDBMgr.RegisterEvent(studentEvent);
             }
-            
-            if (statusMsg.CompareTo("success")==0)
+            if (statusFlag)
             {
-                Console.WriteLine(); 
+                Response.Redirect("DefaultHome.aspx");
             }
-            Response.Redirect("DefaultHome.aspx");
+            else
+            {
+
+            }
         }
+     
+
+        /// <summary>
+        /// Method to check if the student emergency details are already present, if not add the details
+        /// </summary>
+        /// <param name="studentData">JSON Data of User Emergency Information</param>
+        /// <returns></returns>
+        [WebMethod()]
+        public static bool isEmergDataAvailable(DataOperations.DBEntity.Student studentData)
+        {
+            try
+            {
+                StudentDBManager studentDBMgr = new StudentDBManager();
+                int userID = (int) HttpContext.Current.Session[Authentication.SessionVariable.USERID.ToString()];                
+                DataOperations.DBEntity.Student student = studentDBMgr.GetStudent(userID);
+                if (student == null)
+                {
+                    // User is not present, add the student and the emergency details
+                    student = new DataOperations.DBEntity.Student();
+                    student.StudentId = userID;
+                    student.EmergencyName = studentData.EmergencyName;
+                    student.EmergencyRelation = studentData.EmergencyRelation;
+                    student.EmergencyNumber = studentData.EmergencyNumber;                   
+                    return studentDBMgr.addStudent(student);
+                }
+                else
+                {
+                    // User is present , Update the emergency details
+                    student = new DataOperations.DBEntity.Student();
+                    student.EmergencyName = studentData.EmergencyName;
+                    student.EmergencyRelation = studentData.EmergencyRelation;
+                    student.EmergencyNumber = studentData.EmergencyNumber;
+                    return studentDBMgr.addStudent(student);
+                }                    
+            }
+            catch (Exception e)
+            {
+            }
+            return false;
+        }     
     }
 }

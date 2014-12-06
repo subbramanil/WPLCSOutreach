@@ -136,9 +136,9 @@ namespace DataOperations.DBEntityManager
        }
 
 
-       public String registerEvent(StudentEvent studentEvent)
+       public Boolean RegisterEvent(StudentEvent studentEvent)
        {
-           String statusMsg = "success";
+           Boolean statusFlag = true;
            try
            {
                using (DBCSEntities entity = new DBCSEntities())
@@ -150,10 +150,32 @@ namespace DataOperations.DBEntityManager
            }
            catch (Exception ex)
            {
-               statusMsg = "fail";
+               statusFlag = false;
            }
-           return statusMsg;
+           return statusFlag;
+       }
+
+       public Boolean isStudentEmergDataAvailable(int userID) {
+           Boolean isAvailable = false;
+           try
+           {
+               using (DBCSEntities entity = new DBCSEntities())
+               {
+                   var query = from studentEvent in entity.StudentEvents
+                               where studentEvent.StudentId == userID
+                               select studentEvent;
+                   if(query.ToList().Count>0){
+                       isAvailable = true;
+                   }
+               }
+
+           }
+           catch (Exception ex)
+           {
+               
+           }
+           return isAvailable;
        }
     }
-
+    
 }

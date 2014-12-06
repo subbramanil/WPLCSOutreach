@@ -61,5 +61,23 @@ namespace DataOperations.DBEntityManager
             }
             return student;
         }
+
+        public Boolean addStudent(Student student)
+        {
+            Boolean oprnStatus = true;
+            try
+            {
+                using (DBCSEntities entity = new DBCSEntities())
+                {
+                    entity.AddToStudents(student);
+                    entity.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                oprnStatus = false;
+            }
+            return oprnStatus;
+        }
     }
 }

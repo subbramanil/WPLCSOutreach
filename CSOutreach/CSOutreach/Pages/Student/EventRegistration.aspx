@@ -7,9 +7,9 @@
                 <h4 class="col-md-4 text-left">
                     <asp:Literal ID="EventTime" runat="server" />
                 </h4>
-                <h1 class="col-md-4">
+                <h2 class="col-md-4">
                     <asp:Literal ID="EventTitle" runat="server" />
-                </h1>
+                </h2>
                 <h3 class="col-md-4 text-right">
                     <asp:Literal ID="EventType" runat="server" />
                 </h3>
@@ -56,13 +56,13 @@
                         </div>
                         <div class="row">
                             <label class="form-group col-md-2" for="">Contact Number:</label>                        
-                            <div class="form-group col-md-1">
-                                <input type="text" class="form-control col-md-1" maxlength="3" id="EmergPhoneArea" runat="server" />
+                            <div class="form-group col-md-2 ">
+                                <input type="text" class="form-control col-md-1 text-center" maxlength="3" id="EmergPhoneArea" runat="server" />
                             </div>
-                            <div class="form-group col-md-1">
-                                <input type="text" class="form-control col-md-1" maxlength="3" id="EmergPhoneFirst" runat="server" />
+                            <div class="form-group col-md-2 ">
+                                <input type="text" class="form-control col-md-1 text-center" maxlength="3" id="EmergPhoneFirst" runat="server" />
                             </div>
-                            <div class="form-group col-md-2">
+                            <div class="form-group col-md-2 ">
                                 <input type="text" class="form-control col-md-2 text-center" maxlength="4" id="EmergPhoneSecond" runat="server" />
                             </div>                        
                         </div>
@@ -217,15 +217,20 @@
                     <div class="panel-heading">
                         <h3 id="regStep4Title">Confirmation</h3>
                     </div>
-                    <div class="panel-body">
-                        <div class="col-md-5">
-
-                        </div>
+                    <div class="panel-body">                       
+                        <div class="text-capitalize text-justify text-success">
+                            Do You Want to register for this course?
+                            <table class="table" id="confirmTable">
+                                <tr>
+                                    <td>Course Fees: </td>
+                                    <td> $75.00 </td>
+                                </tr>
+                            </table>                                
+                        </div>                        
                     </div>
                     <div class="panel-footer text-right">
                         <input type="button" class="btn btn-warning" value="Cancel Registration" id="step3CancelBtn" />
-                        <asp:Button runat="server" Text="Register" ID="step4SubmitBtn" CssClass="btn btn-success" OnClick="registerEvent"/>
-                        <%--<input type="submit" class="btn btn-success" value="Confirm & pay" id="step4SubmitBtn" />--%>
+                        <asp:Button runat="server" Text="Register" ID="step4SubmitBtn" CssClass="btn btn-success" OnClick="registerEvent"/>                        
                     </div>                
                 </div>
             </div>
@@ -240,6 +245,23 @@
                     </div>
                 </div>
             </div>
+            <%--<div class="modal fade" id="emergContModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->--%>
         </div>               
     </div>
     <script>
@@ -255,48 +277,57 @@
             $('#regStep2 .panel .panel-footer .alert').hide();
         }
 
-        $('#step1NextBtn').click(function () {            
-            if ($('#BodyContent_StudentContent_EmergConName').val().length == 0) {
+        $('#step1NextBtn').click(function () {
+            var emergConName = $('#BodyContent_StudentContent_EmergConName').val();
+            var emergConRelation = $('#BodyContent_StudentContent_EmergConRelation').val();
+            var emergPhoneArea = $('#BodyContent_StudentContent_EmergPhoneArea').val();
+            var emergPhoneFirst = $('#BodyContent_StudentContent_EmergPhoneFirst').val();
+            var emergPhoneSecond = $('#BodyContent_StudentContent_EmergPhoneSecond').val();
+            var emergPhone = emergPhoneArea + emergPhoneFirst + emergPhoneSecond;
+            if (emergConName.length == 0) {
                 $('#regStep1 .panel .panel-footer .alert').show();
                 $('#regStep1 .panel .panel-footer .alert #msg1').empty();                
                 $('#regStep1 .panel .panel-footer .alert #msg1').text("Pls Fill Emergency Contact Name");
                 return;
             }
-            if ($('#BodyContent_StudentContent_EmergConRelation').val().length == 0) {
+            if (emergConRelation.length == 0) {
                 $('#regStep1 .panel .panel-footer .alert').show();
                 $('#regStep1 .panel .panel-footer .alert #msg1').empty();                
                 $('#regStep1 .panel .panel-footer .alert #msg1').text("Pls Fill Emergency Contact Relation");
                 return;
             }
             
-            if ($('#BodyContent_StudentContent_EmergPhoneArea').val().length == 0 || 
-                $('#BodyContent_StudentContent_EmergPhoneFirst').val().length == 0 ||
-                $('#BodyContent_StudentContent_EmergPhoneSecond').val().length == 0) {
+            if (emergPhoneArea.length == 0 ||
+                emergPhoneFirst.length == 0 ||
+                emergPhoneSecond.length == 0) {
                 $('#regStep1 .panel .panel-footer .alert').show();
                 $('#regStep1 .panel .panel-footer .alert #msg1').empty();                
                 $('#regStep1 .panel .panel-footer .alert #msg1').text("Pls Fill Complete Emergency Contact Number");
                 return;
             }
+
+            var emergDetails = {EmergencyName: emergConName, EmergencyRelation: emergConRelation, EmergencyNumber: emergPhone };
+            $.ajax({
+                url: "EventRegistration.aspx/isEmergDataAvailable",
+                data: JSON.stringify({ 'studentData': emergDetails }),
+                cache: false,
+                type: 'POST',
+                Async: false,
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',                
+                success: function (response) {
+                    alert(response.d);
+                },
+                error: function () {
+                    Console.log("Error in making ajax conversation with the server");
+                }
+            });
+
             $('#regStep1').hide();
             $('#regStep2').show();
             $('#progressbar').css('width', '25%');
             $('#progressbar').text("25%");
-            var eventName = $('#eventTitle').text();
-            //$.ajax({
-            //    url: "EventRegistration.aspx/getEventConflicts",
-            //    data: "{eventID: '" + eventName + "'}",
-            //    cache: false,
-            //    type: 'POST',
-            //    Async: false,
-            //    dataType: "json",
-            //    contentType: 'application/json; charset=utf-8',
-            //    success: function (response) {
-            //        alert(response);
-            //    },
-            //    error: function () {
-            //        alert("Error");
-            //    }
-            //});
+            var eventName = $('#eventTitle').text();           
             var noPreReq = $('#prereqTable tr').length;
             var noConflicts = $('#conflictsTable tr').length;
             if (noPreReq != 0) {                
@@ -318,7 +349,7 @@
             $('#regStep2 .panel .panel-footer .alert #msg3').empty();
             $('#regStep2 .panel .panel-footer .alert #msg4').empty();
             
-            /*
+            
             if (noPreReq != 0) {
                 $('#regStep2 .panel .panel-footer .alert').show();                
                 $('#regStep2 .panel .panel-footer .alert #msg3').text("Prerequisites found!! Cannot register for the event");
@@ -329,7 +360,7 @@
                 $('#regStep2 .panel .panel-footer .alert #msg4').text("Conflicts found!! Cannot register for the event");
                 return;
             }
-            */
+            
             $('#regStep2').hide();
             $('#regStep3').show();
             $('#progressbar').css('width', '50%');
