@@ -34,6 +34,8 @@ namespace CSOutreach.Pages.Student
             int EventID = int.Parse(Request.QueryString["eventid"]);
             ObjectSet<Event> AllEvents = new StudentDBManager().AllEvents;
             bool EventFound = false;
+            
+          
             foreach (Event EventElement in AllEvents)
             {
                 if (EventElement.EventId == EventID)
@@ -49,8 +51,22 @@ namespace CSOutreach.Pages.Student
             }
             if (!IsPostBack)
             {
-
+                CrossPageEventDetails EventSpecifics;
+                if (CrossPageInformation != null)
+                {
+                    EventSpecifics = (CrossPageEventDetails)this.CrossPageInformation;
+                }
+                else
+                {
+                    EventSpecifics = new CrossPageEventDetails();
+                    EventSpecifics.AlreadyRegistered = false;
+                }
+                if(EventSpecifics.AlreadyRegistered)
+                {
+                    RegisterButton.Visible = false;
+                }
                 RenderPageElements();
+                
             }
 
 

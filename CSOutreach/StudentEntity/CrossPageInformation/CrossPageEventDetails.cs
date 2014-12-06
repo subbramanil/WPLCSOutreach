@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace StudentEntity.CrossPageInformation
 {
-    class CrossPageEventDetails
+    public class CrossPageEventDetails
     {
+        public CrossPageEventDetails()
+        {
+            AlreadyRegistered = false;
+        }
         int SelectedEventID
+        {
+            get;
+            set;
+        }
+
+        public bool AlreadyRegistered
         {
             get;
             set;
