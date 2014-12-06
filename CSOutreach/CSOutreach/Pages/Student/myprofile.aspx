@@ -1,15 +1,6 @@
 ﻿<%@ Page Title="myprofile" Language="C#" MasterPageFile="~/Pages/MasterPages/StudentMasterPage.master" AutoEventWireup="true" CodeBehind="myprofile.aspx.cs" Inherits="CSOutreach.Pages.Student.myprofile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="StudentContent" runat="server">
-    <style type="text/css">
-    .rfv
-    {
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    color: #A94442;
-    font-weight: bold;
-    }
-    </style>
     <div class="row">
         <div class="alert alert-success" id="divsuccess" runat="server">
             <span class="glyphicon glyphicon-ok"></span>
@@ -22,21 +13,16 @@
             <label>Error occured while editing. Please try again later.</label>
         </div>
     </div>
-    <div class="form-signup">
+    <div class="form-edit">
         <div class="row">
             <div class="form-group col-md-3">
                 <label for="">First Name:</label>
                 <input type="text" class="form-control" value="" id="First_Name" runat="server" maxlength="50" datatextfield="First_Name" datavaluefield="First_Name" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-            ControlToValidate="First_Name" CssClass="rfv"
-            ErrorMessage="Please enter First Name"></asp:RequiredFieldValidator>
+
             </div>
             <div class="form-group col-md-3">
                 <label for="">Last Name:</label>
                 <input type="text" class="form-control" id="Last_Name" value="" runat="server" maxlength="50" datatextfield="Last_Name" datavaluefield="Last_Name" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-            ControlToValidate="Last_Name" CssClass="rfv"
-            ErrorMessage="Please enter Last Name"></asp:RequiredFieldValidator>
             </div>
         </div>
 
@@ -48,9 +34,6 @@
             <div class="form-group col-md-6">
                 <label for="">Address:</label>
                 <textarea class="form-control" id="Address" runat="server" maxlength="85" datatextfield="Address_1" datavaluefield="Address_1"></textarea>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-            ControlToValidate="Address" CssClass="rfv"
-            ErrorMessage="Please enter Your Address" ></asp:RequiredFieldValidator>
             </div>
         </div>
 
@@ -59,20 +42,6 @@
             <div class="col-md-3">
                 <label for="">Contact Phone Number:</label>
                 <input type="text" class="form-control" id="Contact_Number" runat="server" maxlength="10" datatextfield="Contact_Number" datavaluefield="Contact_Number" />
-                <asp:RequiredFieldValidator   
-             ID="RequiredFieldValidator4"  
-             runat="server"  CssClass="rfv"
-             ControlToValidate="Contact_Number"  
-             Text="Contact Number is Required"  
-             >  
-        </asp:RequiredFieldValidator>  
-        <asp:RegularExpressionValidator   
-            ID="RegularExpressionValidator1"  
-            runat="server"   
-            ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"  
-            ControlToValidate="Contact_Number"  
-            ErrorMessage="Input valid Phone Number!"  
-            ></asp:RegularExpressionValidator>  
             </div>
         </div>
 
@@ -112,7 +81,7 @@
         </div>
         <br />
 
-        <asp:Button class="btn btn-primary" value="btnSubmit" ID="btnSubmit" Text="Submit" runat="server" onserverclick="btnSubmit_Click" />
+        <asp:Button class="btn btn-primary" value="btnSubmit" ID="btnSubmit" Text="Submit" runat="server" OnClick="btnSubmit_Click"/>
         <div class="row">
             <hr class="col-md-6" />
         </div>

@@ -115,12 +115,14 @@
     <Content Include="Pages\Instructor\InstructorProfile.aspx" />
     <Content Include="Pages\Instructor\InstructorStudent.aspx" />
     <Content Include="Pages\Instructor\InstructorTimesheet.aspx" />
+    <Content Include="Pages\Student\Changepassword.aspx" />
     <Content Include="Pages\Student\DefaultHome.aspx" />
     <Content Include="Pages\Student\DetailedEventsListing.aspx" />
     <Content Include="Pages\Student\EventDetails.aspx" />
     <Content Include="Pages\Student\EventRegistration.aspx" />
     <Content Include="Pages\Student\ListAllEventsByTech.aspx" />
     <Content Include="Pages\Student\ListAllEventsByType.aspx" />
+    <Content Include="Pages\Student\myprofile.aspx" />
     <Content Include="Sampler.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -285,6 +287,13 @@
     <Compile Include="Pages\MasterPages\StudentMasterPage.master.designer.cs">
       <DependentUpon>StudentMasterPage.master</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Student\Changepassword.aspx.cs">
+      <DependentUpon>Changepassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Student\Changepassword.aspx.designer.cs">
+      <DependentUpon>Changepassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Student\DefaultHome.aspx.cs">
       <DependentUpon>DefaultHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -326,6 +335,13 @@
     </Compile>
     <Compile Include="Pages\Student\ListAllEventsByType.aspx.designer.cs">
       <DependentUpon>ListAllEventsByType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Student\myprofile.aspx.cs">
+      <DependentUpon>myprofile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Student\myprofile.aspx.designer.cs">
+      <DependentUpon>myprofile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\StudentBasePage.cs">
       <SubType>ASPXCodeBehind</SubType>

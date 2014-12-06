@@ -57,7 +57,7 @@ namespace DataOperations.DBEntityManager
                     person1.LastName = person.LastName;
                     person1.Address = person.Address;
                     person1.ContactNumber = person.ContactNumber;
-                    person1.Password = Encrypt(person.Password);
+                    //person1.Password = Encrypt(person.Password);
                     entity.SaveChanges();
                 }
                 return true;

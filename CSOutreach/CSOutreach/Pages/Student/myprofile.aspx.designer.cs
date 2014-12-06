@@ -76,49 +76,13 @@ namespace CSOutreach.Pages.Student {
         protected global::System.Web.UI.HtmlControls.HtmlInputText Email;
         
         /// <summary>
-        /// Password control.
+        /// lnk_changepassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password;
-        
-        /// <summary>
-        /// CPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword CPassword;
-        
-        /// <summary>
-        /// EmergencyName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText EmergencyName;
-        
-        /// <summary>
-        /// EmergencyContactNum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText EmergencyContactNum;
-        
-        /// <summary>
-        /// EmergencyRelation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText EmergencyRelation;
+        protected global::System.Web.UI.WebControls.LinkButton lnk_changepassword;
         
         /// <summary>
         /// btnSubmit control.

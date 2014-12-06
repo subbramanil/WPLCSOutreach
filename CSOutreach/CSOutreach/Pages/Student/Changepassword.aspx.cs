@@ -14,16 +14,25 @@ using DataOperations.DBEntityManager;
 
 namespace CSOutreach.Pages.Student
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class WebForm1 : StudentBasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (divsuccess != null)
+                divsuccess.Style["display"] = "none";
+            //HtmlGenericControl diverror = Master.FindControl("BodyContent").FindControl("diverror") as HtmlGenericControl;
+            if (diverror != null)
+                diverror.Style["display"] = "none";
+
+            if (divmismatch != null)
+                divmismatch.Style["display"] = "none";
+
 
         }
         static string hashvaluepassword, emailId;
         protected void btn_update_Click(object sender, EventArgs e)
         {
-
+            
             int up = 0;
             PersonDBManager personDBMgr = new PersonDBManager();
             try
@@ -46,24 +55,33 @@ namespace CSOutreach.Pages.Student
 
             if (personDBMgr.Encrypt(txt_cpassword.Text) == hashvaluepassword)
             {
-                up = 1;
+                    up = 1;
             }
             if (up == 1)
             {
-
-
+                
+                
                 Person password_user = new Person();
                 password_user.Password = txt_npassword.Text;
                 password_user.Email = emailId;
                 bool result = personDBMgr.UpdateUserPassword(password_user);
                 if (result == true)
                 {
-                    lbl_msg.Text = "Password changed Successfully";
+                    if (divsuccess != null)
+                        divsuccess.Style["display"] = "block";
                 }
+                else
+                {
+                    if (diverror != null)
+                        diverror.Style["display"] = "block";
+                }
+
             }
             else
             {
-                lbl_msg.Text = "Please enter correct Current password";
+                if (divmismatch != null)
+                    divmismatch.Style["display"] = "block";
+               
             }
         }
     }
