@@ -155,6 +155,9 @@ namespace CSOutreach.Pages.Student
                     Response.Redirect(TraverseManager.GetPage(PageData.EventRegistration));
                     break;
                 case "Details":
+                    CrossPageEventDetails EventSpec = new CrossPageEventDetails();
+                    EventSpec.AlreadyRegistered = false;
+                    this.CrossPageInformation = EventSpec;
                     Response.Redirect(TraverseManager.GetPage(PageData.EventDetails) + "?eventid=" + EventIDLabel.Text);
                     break;
             }
