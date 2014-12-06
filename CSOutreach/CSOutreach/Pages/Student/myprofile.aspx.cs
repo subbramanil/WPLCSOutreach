@@ -9,8 +9,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.ModelBinding;
-using DataOperations.DBEntity;
-using DataOperations.DBEntityManager;
+
 
 namespace CSOutreach.Pages.Student
 {
@@ -87,7 +86,7 @@ namespace CSOutreach.Pages.Student
             signup_user.ContactNumber = Contact_Number.Value.Trim();
             //signup_user.Password = Password.Value;
 
-            bool result = persondb.AddNewUserDetails(signup_user);
+            bool result = persondb.UpdateUserDetails(signup_user);
             if (result == true)
             {
                 if (divsuccess != null)

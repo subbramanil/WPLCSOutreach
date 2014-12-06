@@ -49,16 +49,16 @@ namespace DataOperations.DBEntityManager
             {
                 using (DBCSEntities entity = new DBCSEntities())
                 {
-                    /*person.Password = Encrypt(person.Password != null ? person.Password : "");
+                    person.Password = Encrypt(person.Password != null ? person.Password : "");
                     entity.AddToPeople(person);
-                    entity.SaveChanges();*/
-                    person1 = (from personTemp in entity.People where personTemp.Email == person.Email select personTemp).FirstOrDefault<Person>();
+                    entity.SaveChanges();
+                  /*  person1 = (from personTemp in entity.People where personTemp.Email == person.Email select personTemp).FirstOrDefault<Person>();
                     person1.FirstName = person.FirstName;
                     person1.LastName = person.LastName;
                     person1.Address = person.Address;
                     person1.ContactNumber = person.ContactNumber;
-                    //person1.Password = Encrypt(person.Password);
-                    entity.SaveChanges();
+                    person1.Password = Encrypt(person.Password);
+                    entity.SaveChanges();*/
                 }
                 return true;
             }
