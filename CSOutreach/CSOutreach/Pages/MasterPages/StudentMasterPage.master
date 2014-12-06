@@ -10,7 +10,7 @@
                     <Nodes>
                         <asp:TreeNode Text="Dashboard" NavigateUrl="~/Pages/Student/DefaultHome.aspx"></asp:TreeNode>
                         <asp:TreeNode Text="List of Events" NavigateUrl="~/Pages/Student/DetailedEventsListing.aspx"></asp:TreeNode>
-                        <asp:TreeNode Text="My Profile" NavigateUrl="~/Pages/Common/MyProfile.aspx"></asp:TreeNode>
+                        <asp:TreeNode Text="My Profile" NavigateUrl="~/Pages/Student/MyProfile.aspx"></asp:TreeNode>
                     </Nodes>
                 </asp:TreeView>
             </div>
