@@ -143,12 +143,13 @@
                 Related Artifacts
             </div>
             <div id="Content">
-                <div>
-                    <a href="#">Document 1</a>
-                </div>
-                <div>
-                    <a href="#">Document 2</a>
-                </div>
+               <asp:Repeater ID="ArtifactsRepeater" runat="server">
+                   <ItemTemplate>
+                       <div>
+                           <a id="DocLink" href='<%# Eval("DocumentLink") %>' runat="server">'<%# Eval("DocumentName") %>'</a>
+                       </div>
+                   </ItemTemplate>
+               </asp:Repeater>
             </div>
 
         </div>

@@ -94,6 +94,15 @@ namespace CSOutreach.Pages.Student {
         protected global::System.Web.UI.WebControls.Label EventDescLabel;
         
         /// <summary>
+        /// ArtifactsRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater ArtifactsRepeater;
+        
+        /// <summary>
         /// RegisterButton control.
         /// </summary>
         /// <remarks>
