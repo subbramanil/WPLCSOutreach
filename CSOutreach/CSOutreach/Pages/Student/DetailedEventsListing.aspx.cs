@@ -23,8 +23,6 @@ namespace CSOutreach.Pages.Student
         StudentDBManager StudentDB;
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
             Initialize();
         }
 
@@ -37,13 +35,14 @@ namespace CSOutreach.Pages.Student
                 //Temporarily disabled for demo purpose
                 //  CrossPageInfo = this.CrossPageInformation as CrossPageDetailedEventsListing;
 
-               
                 RenderPageData();
+               
+               
             }
 
         }
 
-     
+
 
         private List<Course> ApplicableCourses
         {
@@ -74,9 +73,8 @@ namespace CSOutreach.Pages.Student
             get
             {
                 List<Event> FilteredEvents = new List<Event>();
-                foreach (Course CourseElement in ApplicableCourses)
-                {
-                    foreach (Event EventElement in CourseElement.Events)
+                
+                    foreach (Event EventElement in SelectedCourse.Events)
                     {
                         bool EventFound = false;
                         foreach (StudentEvent StudentEventElement in this.StudentEvents)
@@ -92,7 +90,7 @@ namespace CSOutreach.Pages.Student
                             FilteredEvents.Add(EventElement);
                         }
                     }
-                }
+                
                 return FilteredEvents;
             }
         }
@@ -100,6 +98,19 @@ namespace CSOutreach.Pages.Student
 
         private void RenderPageData()
         {
+           
+        
+           
+           foreach(Course CourseItem in ApplicableCourses)
+           {
+               CourseFilterList.Items.Add(CourseItem.CourseName +" - "+CourseItem.CourseId);
+           }
+            if(CourseFilterList.Items.Count>0)
+            {
+                CourseFilterList.Items[0].Selected = true;
+                SelectedCourse = ApplicableCourses[0];
+            }
+
             RenderEventDetails();
         }
 
@@ -136,18 +147,32 @@ namespace CSOutreach.Pages.Student
             switch (SelectedButton.Text)
             {
                 case "Register":
-                 
+
                     int SelectedEventID = Int32.Parse(EventIDLabel.Text);
                     CrossPageEventRegistration EventRegistrationParameters = new CrossPageEventRegistration();
                     EventRegistrationParameters.RegistrationEventID = SelectedEventID;
                     this.CrossPageInformation = EventRegistrationParameters;
                     Response.Redirect(TraverseManager.GetPage(PageData.EventRegistration));
                     break;
-                case "Details": 
-                    Response.Redirect(TraverseManager.GetPage(PageData.EventDetails)+"?eventid="+EventIDLabel.Text);
+                case "Details":
+                    Response.Redirect(TraverseManager.GetPage(PageData.EventDetails) + "?eventid=" + EventIDLabel.Text);
                     break;
             }
         }
+
+        private Course SelectedCourse
+        {
+            get;
+            set;
+        }
+
+        protected void CourseFilterList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int SelectedIndex = CourseFilterList.SelectedIndex;
+            SelectedCourse = ApplicableCourses[SelectedIndex];
+            RenderEventDetails();
+        }
+       
 
 
     }

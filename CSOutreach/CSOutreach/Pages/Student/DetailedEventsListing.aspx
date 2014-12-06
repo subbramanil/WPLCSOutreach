@@ -7,6 +7,18 @@
             $("#DataEventsTable").dataTable();
         });
     </script>
+    <style>
+        #CourseSelector
+        {
+            padding-top:7px;
+            padding-bottom:7px;
+            font-weight:bold;
+        }
+    </style>
+
+   <div id="CourseSelector">
+      Course <asp:DropDownList ID="CourseFilterList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="CourseFilterList_SelectedIndexChanged"></asp:DropDownList>
+   </div>
   
     <div>
 
