@@ -8,6 +8,7 @@ using DataOperations.DBEntityManager;
 using DataOperations.DBEntity;
 using CSOutreach.Pages.Student;
 using System.Web.UI.HtmlControls;
+using StudentEntity.CrossPageInformation;
 
 
 namespace CSOutreach.Pages
@@ -42,7 +43,10 @@ namespace CSOutreach.Pages
                 Literal ltrlLocation = e.Item.FindControl("ltrlLocation") as Literal;
                 Literal ltrlDate = e.Item.FindControl("ltrlDate") as Literal;
                 HtmlAnchor lnkEventName = e.Item.FindControl("lnkEventName") as HtmlAnchor;
-                lnkEventName.HRef = "../Pages/Student/EventDetails.aspx?eventid=" + DataBinder.Eval(e.Item.DataItem, "EventId").ToString();
+                CrossPageEventDetails EventSpecifics = new CrossPageEventDetails();
+                EventSpecifics.AlreadyRegistered = true;
+                this.CrossPageInformation = EventSpecifics;
+                lnkEventName.HRef = "../Student/EventDetails.aspx?eventid=" + DataBinder.Eval(e.Item.DataItem, "EventId").ToString();
             
                 try
                 {
@@ -64,7 +68,10 @@ namespace CSOutreach.Pages
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 HtmlAnchor lnkName = e.Item.FindControl("lnkName") as HtmlAnchor;
-                lnkName.HRef ="../Pages/Student/EventDetails.aspx?eventid=" +DataBinder.Eval(e.Item.DataItem, "EventId").ToString();
+                CrossPageEventDetails EventSpecifics = new CrossPageEventDetails();
+                EventSpecifics.AlreadyRegistered = true;
+                this.CrossPageInformation = EventSpecifics;
+                lnkName.HRef ="../Student/EventDetails.aspx?eventid=" +DataBinder.Eval(e.Item.DataItem, "EventId").ToString();
             }
         }
 
@@ -75,7 +82,8 @@ namespace CSOutreach.Pages
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 HtmlAnchor lnkUpcomingEventName = e.Item.FindControl("lnkUpcomingEventName") as HtmlAnchor;
-                lnkUpcomingEventName.HRef = "../Pages/Student/EventDetails.aspx?eventid=" + DataBinder.Eval(e.Item.DataItem, "EventId").ToString();
+                
+                lnkUpcomingEventName.HRef = "../Student/EventDetails.aspx?eventid=" + DataBinder.Eval(e.Item.DataItem, "EventId").ToString();
             }
 
         }
